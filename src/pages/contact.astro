@@ -1,0 +1,389 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact Sixense — book a free Fit Call"
+  description="Get in touch to book a free 30-minute Fit Call. No pitch — just an honest conversation about whether there's something worth solving."
+>
+  <!-- Hero -->
+  <section class="hero section-dark" aria-labelledby="contact-heading">
+    <div class="container">
+      <span class="section-label">Contact</span>
+      <h1 id="contact-heading" class="fade-up" style="color:var(--color-paper)">
+        Let's have an honest conversation.
+      </h1>
+      <p class="fade-up" data-delay="80ms" style="font-size:18px;color:rgba(245,243,238,0.65);max-width:540px;margin-top:var(--space-2);line-height:1.7">
+        Whether you have a specific problem or you're not sure where to start —
+        the Fit Call is free, 30 minutes and completely obligation-free.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="section" aria-labelledby="form-heading">
+    <div class="container contact-layout">
+      <!-- Form -->
+      <div class="form-wrapper">
+        <h2 id="form-heading" class="sr-only">Contact form</h2>
+
+        <div id="form-container">
+          <form id="contact-form" novalidate aria-label="Contact enquiry form">
+            <!-- Honeypot -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="first-name">First name <span aria-hidden="true">*</span></label>
+                <input class="form-input" type="text" id="first-name" name="firstName" placeholder="First name" required autocomplete="given-name" />
+                <span class="form-error" id="first-name-error" role="alert" hidden></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="last-name">Last name <span aria-hidden="true">*</span></label>
+                <input class="form-input" type="text" id="last-name" name="lastName" placeholder="Last name" required autocomplete="family-name" />
+                <span class="form-error" id="last-name-error" role="alert" hidden></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="company">Company <span aria-hidden="true">*</span></label>
+              <input class="form-input" type="text" id="company" name="company" placeholder="Company name" required autocomplete="organization" />
+              <span class="form-error" id="company-error" role="alert" hidden></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="role">Role / Title</label>
+              <input class="form-input" type="text" id="role" name="role" placeholder="Your role (optional)" autocomplete="organization-title" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">Email address <span aria-hidden="true">*</span></label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email" />
+              <span class="form-error" id="email-error" role="alert" hidden></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone number</label>
+              <input class="form-input" type="tel" id="phone" name="phone" placeholder="Phone (optional)" autocomplete="tel" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Tell us about your situation <span aria-hidden="true">*</span></label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Describe the problem or opportunity you're working with..." required></textarea>
+              <span class="form-error" id="message-error" role="alert" hidden></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="source">How did you hear about us?</label>
+              <div class="select-wrapper">
+                <select class="form-select" id="source" name="source">
+                  <option value="" disabled selected>Select an option (optional)</option>
+                  <option value="Google search">Google search</option>
+                  <option value="Referral">Referral</option>
+                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="Word of mouth">Word of mouth</option>
+                  <option value="Other">Other</option>
+                </select>
+                <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M4 6l4 4 4-4" stroke="var(--color-ink-tertiary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary submit-btn" id="submit-btn">
+              <span id="submit-label">Send enquiry</span>
+              <span id="submit-spinner" hidden aria-hidden="true">
+                <svg class="spinner" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2" stroke-dasharray="32" stroke-dashoffset="12"/>
+                </svg>
+                Sending...
+              </span>
+            </button>
+
+            <p class="consent-note">
+              By submitting this form, you agree to Sixense contacting you regarding your enquiry.
+              We don't share your details with third parties.
+            </p>
+          </form>
+        </div>
+
+        <!-- Success state -->
+        <div id="form-success" class="form-success" hidden>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="14" stroke="var(--color-gold)" stroke-width="2"/>
+            <path d="M10 16.5l4.5 4.5 7.5-9" stroke="var(--color-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3 id="success-name" class="success-heading"></h3>
+          <p class="success-body">Expect to hear from us within one business day.</p>
+        </div>
+      </div>
+
+      <!-- Contact details -->
+      <aside class="contact-aside" aria-label="Other contact options">
+        <h3 class="aside-heading">Other ways to get in touch.</h3>
+        <p class="aside-body">Prefer email? Reach us directly at:</p>
+        <a href="mailto:rodney.ellias@sixense.com.au" class="aside-email">
+          rodney.ellias@sixense.com.au
+        </a>
+        <p class="aside-body" style="margin-top:var(--space-3)">Based in Australia. Working across the country.</p>
+
+        <div class="response-block">
+          <p class="response-label">Response time</p>
+          <p class="aside-body">We respond to all enquiries within one business day.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 55% 40%;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .submit-btn {
+    margin-top: var(--space-2);
+  }
+
+  @media (min-width: 768px) {
+    .submit-btn {
+      width: auto;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero { padding-top: 112px; }
+    .contact-layout {
+      grid-template-columns: 1fr;
+    }
+    .submit-btn {
+      width: 100%;
+    }
+  }
+
+  .select-wrapper {
+    position: relative;
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .form-select {
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  .consent-note {
+    font-size: 12px;
+    color: var(--color-ink-tertiary);
+    margin-top: var(--space-2);
+    line-height: 1.6;
+  }
+
+  /* Aside */
+  .aside-heading {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--color-ink);
+    margin-bottom: var(--space-2);
+  }
+
+  .aside-body {
+    font-size: 16px;
+    color: var(--color-ink-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .aside-email {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--color-gold);
+    text-decoration: none;
+    margin-top: 8px;
+  }
+
+  .response-block {
+    margin-top: var(--space-5);
+  }
+
+  .response-label {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    color: var(--color-ink-tertiary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* Success */
+  .form-success {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5) 0;
+  }
+
+  .success-heading {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--color-ink);
+    margin-top: var(--space-2);
+  }
+
+  .success-body {
+    font-size: 16px;
+    color: var(--color-ink-secondary);
+    margin: 0;
+  }
+
+  /* Spinner animation */
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .spinner {
+    animation: spin 800ms linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const formContainer = document.getElementById('form-container');
+  const formSuccess = document.getElementById('form-success');
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const submitLabel = document.getElementById('submit-label');
+  const submitSpinner = document.getElementById('submit-spinner');
+  const successName = document.getElementById('success-name');
+
+  function showError(fieldId: string, message: string) {
+    const input = document.getElementById(fieldId) as HTMLInputElement;
+    const error = document.getElementById(`${fieldId}-error`);
+    if (input) input.classList.add('error');
+    if (error) {
+      error.textContent = message;
+      error.removeAttribute('hidden');
+    }
+  }
+
+  function clearError(fieldId: string) {
+    const input = document.getElementById(fieldId) as HTMLInputElement;
+    const error = document.getElementById(`${fieldId}-error`);
+    if (input) input.classList.remove('error');
+    if (error) {
+      error.textContent = '';
+      error.setAttribute('hidden', '');
+    }
+  }
+
+  // Blur validation
+  ['first-name', 'last-name', 'company', 'email', 'message'].forEach(id => {
+    const el = document.getElementById(id);
+    el?.addEventListener('blur', () => {
+      const val = (el as HTMLInputElement).value.trim();
+      if (!val) {
+        showError(id, 'This field is required.');
+      } else if (id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        showError(id, 'Please enter a valid email address.');
+      } else {
+        clearError(id);
+      }
+    });
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Check honeypot
+    const honey = form.querySelector('[name="_honey"]') as HTMLInputElement;
+    if (honey?.value) return;
+
+    let valid = true;
+
+    const fields: [string, string][] = [
+      ['first-name', 'This field is required.'],
+      ['last-name', 'This field is required.'],
+      ['company', 'This field is required.'],
+      ['email', 'This field is required.'],
+      ['message', 'This field is required.'],
+    ];
+
+    fields.forEach(([id, msg]) => {
+      const el = document.getElementById(id) as HTMLInputElement;
+      const val = el?.value.trim();
+      if (!val) {
+        showError(id, msg);
+        valid = false;
+      } else if (id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        showError(id, 'Please enter a valid email address.');
+        valid = false;
+      } else {
+        clearError(id);
+      }
+    });
+
+    if (!valid) return;
+
+    // Loading state
+    submitBtn.disabled = true;
+    submitLabel?.setAttribute('hidden', '');
+    submitSpinner?.removeAttribute('hidden');
+
+    const data = new FormData(form);
+    const firstName = data.get('firstName') as string;
+
+    try {
+      // Using Formspree — replace YOUR_FORM_ID with actual ID
+      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        if (successName) successName.textContent = `Thanks, ${firstName}. We'll be in touch.`;
+        formContainer?.setAttribute('hidden', '');
+        formSuccess?.removeAttribute('hidden');
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch {
+      submitBtn.disabled = false;
+      submitLabel?.removeAttribute('hidden');
+      submitSpinner?.setAttribute('hidden', '');
+      alert('Something went wrong. Please try again or email us directly at rodney.ellias@sixense.com.au');
+    }
+  });
+</script>

@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
+
+const principles = [
+  {
+    heading: 'We start with your process, not a template',
+    body: 'Every solution is designed around how your business actually works — not a generic workflow from another industry or a platform\'s default settings.',
+  },
+  {
+    heading: 'We build in components, not monoliths',
+    body: 'Solutions are assembled from small, connected parts. Easier to change, extend and integrate. What we build today doesn\'t become a ceiling on what you can do tomorrow.',
+  },
+  {
+    heading: 'We pick the right tool for the job',
+    body: 'We\'re not advocates for any single platform. We select what fits your specific situation — weighing cost, performance, security and reliability.',
+  },
+  {
+    heading: 'We build AI responsibly',
+    body: 'Data privacy, security and responsible AI practices are built in from the start. Your data stays yours. AI is introduced where it genuinely adds value.',
+  },
+];
+---
+
+<BaseLayout
+  title="How we work — Sixense"
+  description="We start with your business, not the technology. Short build cycles, senior people, no handoffs. Here's how we engage and deliver."
+>
+  <!-- Hero -->
+  <section class="hero section-dark" aria-labelledby="hww-heading">
+    <div class="container">
+      <span class="section-label">How we work</span>
+      <h1 id="hww-heading" class="fade-up" style="color:var(--color-paper)">
+        We start with your business.<br />Not the technology.
+      </h1>
+      <div class="hero-anchors fade-up" data-delay="80ms">
+        <p>Process first. Experience led. Real solutions.</p>
+        <p>Start small. Prove value. Scale smart.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- We Work Backwards -->
+  <section class="section" aria-labelledby="backwards-heading">
+    <div class="container two-col two-col-50-50">
+      <div>
+        <span class="section-label">Our approach</span>
+        <h2 id="backwards-heading" class="fade-up">
+          We work backwards<br />from the outcome.
+        </h2>
+        <p class="fade-up" data-delay="80ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:var(--space-3)">
+          Every engagement starts with a clear picture of what better looks like
+          for your business — not a system requirement, not a features list.
+          From there we work back through your processes, people, systems and
+          data to understand what needs to change and what the right path forward
+          looks like.
+        </p>
+        <p class="fade-up" data-delay="120ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:1em">
+          This keeps solutions grounded in how your business actually works from
+          day one. It also keeps scope honest — we're building toward a defined
+          outcome, not generating work.
+        </p>
+      </div>
+      <div class="image-container fade-up" data-delay="80ms">
+        <img
+          src="/assets/Working_backwards.avif"
+          alt="Diagram illustrating working backwards from a defined outcome"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Short Cycles -->
+  <section class="section section-secondary" aria-labelledby="cycles-heading">
+    <div class="container two-col two-col-50-50">
+      <div class="image-container fade-up">
+        <img
+          src="/assets/Start-small-prove-value-scale-smart.avif"
+          alt="Diagram illustrating the agile approach: start small, prove value, scale smart"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <span class="section-label">Our method</span>
+        <h2 id="cycles-heading" class="fade-up">
+          We build in short cycles,<br />not long ones.
+        </h2>
+        <p class="fade-up" data-delay="80ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:var(--space-3)">
+          We don't disappear for months and return with something finished.
+          We build in short cycles, put working solutions in your hands quickly
+          and improve from there. Every increment delivers something usable.
+          Every milestone is a decision point — you stay in control of pace
+          and investment throughout.
+        </p>
+        <p class="fade-up" data-delay="120ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:1em">
+          It gets value into your hands fast. It surfaces the things that are
+          hard to specify on paper but obvious the moment you can see something
+          real. And it means everything we build can be extended and scaled
+          without starting again.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Structure -->
+  <section class="section" aria-labelledby="team-heading">
+    <div class="container two-col two-col-40-55">
+      <div>
+        <span class="section-label">Our team</span>
+        <h2 id="team-heading" class="fade-up">
+          Senior people.<br />Competitive cost.<br />No handoffs.
+        </h2>
+      </div>
+      <div>
+        <p class="fade-up" style="color:var(--color-ink-secondary);font-size:17px">
+          Our client-facing team is local and senior — experienced automation
+          designers and engineers who understand both the technology and the
+          business context behind it. They scope the work, lead the engagement
+          and stay accountable for the outcome. You deal with the same people
+          throughout. No account managers. No handoffs once the contract is signed.
+        </p>
+        <p class="fade-up" data-delay="80ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:1em">
+          Behind them is an offshore delivery centre of 30-plus people, working
+          under direct supervision of our local engineers to the same standards.
+          It's what lets us deliver at a quality level that would otherwise cost
+          significantly more.
+        </p>
+        <p class="fade-up pull-quote" data-delay="120ms">
+          The quality and accountability of a senior local firm, at a price point
+          that makes sense for a mid-sized business.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Build -->
+  <section class="section section-secondary" aria-labelledby="build-heading">
+    <div class="container">
+      <h2 id="build-heading" class="fade-up" style="text-align:center;margin-bottom:var(--space-5)">
+        How we build
+      </h2>
+      <div class="principles-grid">
+        {principles.map((p, i) => (
+          <div class="principle fade-up" data-delay={`${i * 80}ms`}>
+            <h3 class="principle-heading">{p.heading}</h3>
+            <p class="principle-body">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What Working With Us Looks Like -->
+  <section class="section" aria-labelledby="expect-heading">
+    <div class="container expect-inner">
+      <span class="section-label" style="text-align:center;display:block">What to expect</span>
+      <h2 id="expect-heading" class="fade-up" style="text-align:center">
+        What working with us looks like.
+      </h2>
+      <p class="fade-up" data-delay="80ms" style="color:var(--color-ink-secondary);font-size:17px;text-align:center;line-height:1.7;margin-top:var(--space-3)">
+        We're a small, senior team — which means you get direct access to the
+        people doing the work, not a layer of management between you and the delivery.
+        We communicate plainly, flag problems early and don't generate unnecessary complexity.
+      </p>
+      <p class="fade-up" data-delay="120ms" style="color:var(--color-ink-secondary);font-size:17px;text-align:center;line-height:1.7;margin-top:1em">
+        We're not here to make ourselves indispensable. We're here to build
+        something that works, prove it quickly and earn the right to do more.
+      </p>
+    </div>
+  </section>
+
+  <ClosingCTA />
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  .hero-anchors {
+    margin-top: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hero-anchors p {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(245, 243, 238, 0.5);
+    margin: 0;
+  }
+
+  .image-container {
+    background: var(--color-paper-secondary);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    overflow: hidden;
+  }
+
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .pull-quote {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--color-ink);
+    margin-top: var(--space-4);
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .principle {
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    border-left: 3px solid var(--color-gold);
+  }
+
+  .principle-heading {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--color-ink);
+    margin-bottom: 10px;
+  }
+
+  .principle-body {
+    font-size: 14px;
+    color: var(--color-ink-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .expect-inner {
+    max-width: 680px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 767px) {
+    .hero { padding-top: 112px; }
+    .principles-grid { grid-template-columns: 1fr; }
+    /* reverse image/text order on mobile for section 3 */
+    .section-secondary .two-col { flex-direction: column-reverse; }
+  }
+</style>

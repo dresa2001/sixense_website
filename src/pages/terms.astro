@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Terms of Use — Sixense"
+  description="Sixense Terms of Use."
+>
+  <section class="hero section-dark" aria-labelledby="terms-heading">
+    <div class="container">
+      <span class="section-label">Legal</span>
+      <h1 id="terms-heading" style="color:var(--color-paper)">Terms of Use</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container legal-content">
+      <p class="last-updated">Last updated: June 2026</p>
+
+      <h2>1. Acceptance of terms</h2>
+      <p>
+        By accessing this website, you agree to be bound by these Terms of Use.
+        If you do not agree, please do not use this site.
+      </p>
+
+      <h2>2. Intellectual property</h2>
+      <p>
+        All content on this site — including text, graphics, logos and code — is
+        the property of Sixense Pty Ltd and is protected by Australian copyright law.
+        You may not reproduce or redistribute any content without prior written consent.
+      </p>
+
+      <h2>3. Limitation of liability</h2>
+      <p>
+        Sixense Pty Ltd provides this website on an "as is" basis. We make no
+        warranties about the accuracy or completeness of the content and accept no
+        liability for any loss or damage arising from use of this site.
+      </p>
+
+      <h2>4. External links</h2>
+      <p>
+        This site may contain links to third-party websites. Sixense is not responsible
+        for the content or privacy practices of those sites.
+      </p>
+
+      <h2>5. Governing law</h2>
+      <p>
+        These terms are governed by the laws of New South Wales, Australia.
+        Any disputes will be subject to the exclusive jurisdiction of the courts of NSW.
+      </p>
+
+      <h2>6. Contact</h2>
+      <p>
+        Questions regarding these terms may be directed to
+        <a href="mailto:rodney.ellias@sixense.com.au">rodney.ellias@sixense.com.au</a>.
+      </p>
+
+      <p class="placeholder-note">
+        <em>This is placeholder content. Final legal copy to be supplied by Sixense Pty Ltd or a qualified legal copywriter.</em>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  .legal-content {
+    max-width: 720px;
+  }
+
+  .legal-content h2 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-2);
+    color: var(--color-ink);
+  }
+
+  .legal-content p {
+    color: var(--color-ink-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-2);
+  }
+
+  .legal-content a {
+    color: var(--color-gold);
+    text-decoration: none;
+  }
+
+  .last-updated {
+    font-size: 13px;
+    color: var(--color-ink-tertiary);
+    margin-bottom: var(--space-4);
+  }
+
+  .placeholder-note {
+    font-size: 13px;
+    color: var(--color-ink-tertiary);
+    margin-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-3);
+  }
+</style>

@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
+
+const outcomes = [
+  {
+    sector: 'National passenger transport operator — ~1,000 staff, 500+ vehicles',
+    heading: 'Fleet visibility & dispatch intelligence',
+    challenge: 'No live visibility of fleet position, driver status or fare availability. Dispatch operated blind.',
+    solution: 'Built a real-time IoT telemetry platform ingesting live vehicle data, processed through an event-driven pipeline and surfaced via an interactive web portal. Designed as a composable data layer for future AI capabilities.',
+    outcome: 'Live fleet awareness delivered in under 30 days. Became the operational foundation for dispatch optimisation and mobile app bookings.',
+    tags: ['IoT', 'Real-time data pipeline', 'Web platform', 'AI-ready foundation'],
+  },
+  {
+    sector: 'National private healthcare operator',
+    heading: 'Integrated billing operations',
+    challenge: 'Two billing systems with no integration. Staff manually bridging the gap — rekeying, reconciling and chasing errors.',
+    solution: 'Automated data integration pipeline connecting both systems. AI document understanding extracts billing data from unstructured sources, feeding intelligent reconciliation that matches and routes records without manual handling.',
+    outcome: 'Billing workflow runs end-to-end with minimal human intervention. Fewer errors, faster time-to-invoice and the cashflow benefits that follow.',
+    tags: ['System integration', 'Data pipeline', 'AI document understanding'],
+  },
+  {
+    sector: 'Major Australian utility — national grid operations',
+    heading: 'Energy dispatch optimisation platform',
+    challenge: 'Three years of planning with no working solution. Dispatch decisions made without real-time inputs. Stakeholders losing confidence.',
+    solution: 'High-frequency data ingestion platform pulling live forecasts, grid state and outage data, feeding an optimisation engine that models dispatch scenarios and surfaces least-cost recommendations automatically.',
+    outcome: 'Working prototype delivered in three months. Program renewed with full stakeholder confidence.',
+    tags: ['Real-time data ingestion', 'Optimisation engine', 'Decision support'],
+  },
+  {
+    sector: 'Major Australian utility — thousands of contractors on high-voltage assets',
+    heading: 'Contractor authorisations platform',
+    challenge: 'Paper-based credential management across thousands of contractors. Expired licences and lapsed insurances creating serious safety, legal and compliance exposure.',
+    solution: 'Self-service portal for contractor credential submission. AI-assisted document verification validates licences and insurance documents. Agentic expiry management monitors continuously and triggers automated renewal workflows.',
+    outcome: 'Compliance staff shifted from chasing paperwork to managing exceptions. Real-time credential visibility. Industry award winner — now critical operational infrastructure.',
+    tags: ['Workflow automation', 'Self-service portal', 'AI document verification', 'Agentic expiry management'],
+  },
+  {
+    sector: 'National beverage & distribution company — 100+ mobile sales reps',
+    heading: 'Digital field sales platform',
+    challenge: 'Over 100 field reps operating from printed order books and static inventory lists — outdated before they arrived on site.',
+    solution: 'Mobile-first platform with live integration to inventory and pricing systems. Order submission triggers automated back-office workflows end to end.',
+    outcome: 'Field sales became dynamic, professional and data-driven. Back-office processing largely eliminated. Management gained real-time field visibility for the first time.',
+    tags: ['Mobile platform', 'Live system integration', 'Workflow automation'],
+  },
+  {
+    sector: 'National logistics provider',
+    heading: 'Invoicing & reconciliation automation',
+    challenge: 'Entire invoicing cycle managed through manual email exchanges. Order matching, invoice distribution and reconciliation all dependent on people — slow, error-prone and unscalable.',
+    solution: 'Agentic automation workflow handling order scanning and matching, invoice generation, dunning sequences and payment reconciliation autonomously. AI interprets documents and orchestrates actions across systems.',
+    outcome: 'End-to-end finance operations with minimal human intervention. Faster invoicing, fewer errors, better cashflow visibility.',
+    tags: ['Finance workflow automation', 'Agentic AI', 'Document intelligence'],
+  },
+];
+---
+
+<BaseLayout
+  title="Our outcomes — Sixense"
+  description="See the automation and AI solutions we've delivered for Australian operators across transport, utilities, healthcare, logistics and more."
+>
+  <!-- Hero -->
+  <section class="hero section-dark" aria-labelledby="outcomes-heading">
+    <div class="container">
+      <span class="section-label">Our outcomes</span>
+      <h1 id="outcomes-heading" class="fade-up" style="color:var(--color-paper)">
+        Work we're proud of.
+      </h1>
+      <p class="fade-up" data-delay="80ms" style="font-size:18px;color:rgba(245,243,238,0.65);max-width:580px;margin-top:var(--space-3);line-height:1.7">
+        Every engagement here started with a business leader who could see a
+        problem or an opportunity — and needed a team to build toward it.
+        These are some of the solutions we've delivered.
+      </p>
+    </div>
+  </section>
+
+  <!-- Outcome Cards -->
+  <section class="section" aria-label="Outcome case studies">
+    <div class="container">
+      <div class="outcomes-grid">
+        {outcomes.map((card, i) => (
+          <article class="outcome-card fade-up" data-delay={`${(i % 2) * 80}ms`} aria-labelledby={`outcome-${i}`}>
+            <p class="card-sector">{card.sector}</p>
+            <h2 id={`outcome-${i}`} class="outcome-heading">{card.heading}</h2>
+
+            <div class="outcome-block">
+              <span class="card-label">Challenge</span>
+              <p class="outcome-body">{card.challenge}</p>
+            </div>
+            <div class="outcome-block">
+              <span class="card-label">Solution</span>
+              <p class="outcome-body">{card.solution}</p>
+            </div>
+            <div class="outcome-block">
+              <span class="card-label">Outcome</span>
+              <p class="outcome-body">{card.outcome}</p>
+            </div>
+
+            <div class="card-tags">
+              {card.tags.map(tag => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <ClosingCTA
+    heading="See something that looks familiar?"
+    body="Most of our clients came to us with a problem they'd been living with for a long time. The Fit Call is the fastest way to find out if we can help."
+    ctaLabel="Book a free Fit Call →"
+    showContactLink={false}
+  />
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .outcome-heading {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--color-ink);
+    margin-bottom: var(--space-3);
+    line-height: 1.3;
+  }
+
+  .outcome-block {
+    margin-bottom: var(--space-2);
+  }
+
+  .outcome-body {
+    font-size: 15px;
+    color: var(--color-ink-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 767px) {
+    .hero { padding-top: 112px; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+  }
+</style>

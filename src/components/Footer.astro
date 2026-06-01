@@ -1,0 +1,146 @@
+---
+import Logo from './Logo.astro';
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="footer-col footer-brand">
+      <Logo variant="dark" />
+      <p class="footer-tagline">connected thinking</p>
+      <p class="footer-legal">
+        © 2026 Sixense Pty Ltd. All rights reserved.<br />
+        ABN: [TO BE SUPPLIED]
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-heading">Site</p>
+      <nav aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/what-we-do">What We Do</a>
+        <a href="/how-we-work">How We Work</a>
+        <a href="/our-outcomes">Our Outcomes</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-heading">Get in touch</p>
+      <a href="mailto:rodney.ellias@sixense.com.au" class="footer-email">
+        rodney.ellias@sixense.com.au
+      </a>
+      <a href="/contact" class="btn btn-ghost-dark footer-cta">Book a free Fit Call →</a>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p class="footer-fine">
+      <a href="/privacy">Privacy Policy</a>
+      <span aria-hidden="true"> · </span>
+      <a href="/terms">Terms of Use</a>
+      <span aria-hidden="true"> · </span>
+      This site does not use cookies for tracking.
+      Sixense is committed to the responsible and ethical use of AI.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-paper-dark);
+    padding-top: 64px;
+    padding-bottom: 40px;
+    color: var(--color-paper);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-6);
+    padding-bottom: 40px;
+  }
+
+  .footer-tagline {
+    font-size: 13px;
+    color: rgba(245, 243, 238, 0.45);
+    margin-top: var(--space-2);
+    font-style: normal;
+  }
+
+  .footer-legal {
+    font-size: 13px;
+    color: rgba(245, 243, 238, 0.4);
+    margin-top: var(--space-3);
+    line-height: 1.7;
+  }
+
+  .footer-heading {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 11px;
+    color: rgba(245, 243, 238, 0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-3);
+  }
+
+  .footer-col nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-col nav a {
+    font-size: 14px;
+    color: rgba(245, 243, 238, 0.65);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .footer-col nav a:hover {
+    color: var(--color-paper);
+  }
+
+  .footer-email {
+    display: block;
+    font-size: 14px;
+    color: var(--color-gold);
+    text-decoration: none;
+    margin-bottom: var(--space-3);
+  }
+
+  .footer-cta {
+    display: inline-flex;
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(245, 243, 238, 0.1);
+    padding-top: 24px;
+  }
+
+  .footer-fine {
+    font-size: 12px;
+    color: rgba(245, 243, 238, 0.3);
+    line-height: 1.7;
+  }
+
+  .footer-fine a {
+    color: rgba(245, 243, 238, 0.3);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .footer-fine a:hover {
+    color: rgba(245, 243, 238, 0.6);
+  }
+
+  @media (max-width: 767px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+  }
+</style>

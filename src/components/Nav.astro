@@ -1,0 +1,208 @@
+---
+import Logo from './Logo.astro';
+
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'What We Do', href: '/what-we-do' },
+  { label: 'How We Work', href: '/how-we-work' },
+  { label: 'Our Outcomes', href: '/our-outcomes' },
+  { label: 'About', href: '/about' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header id="site-nav" role="banner">
+  <nav class="container nav-inner" aria-label="Main navigation">
+    <Logo />
+
+    <div class="nav-links" role="list">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`nav-link ${currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) ? 'active' : ''}`}
+          role="listitem"
+          aria-current={currentPath === link.href ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a href="/contact" class="btn btn-primary nav-cta">Book a Fit Call</a>
+    </div>
+
+    <button
+      class="hamburger"
+      id="menu-toggle"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-links">
+        {navLinks.map(link => (
+          <a href={link.href} class="mobile-link">{link.label}</a>
+        ))}
+      </div>
+      <a href="/contact" class="btn btn-primary mobile-cta">Book a free Fit Call</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(245, 243, 238, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    height: 72px;
+    display: flex;
+    align-items: center;
+    transition: box-shadow 200ms ease;
+  }
+
+  header.scrolled {
+    box-shadow: 0 1px 0 var(--color-border);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: color 200ms ease;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-gold);
+  }
+
+  .nav-sep {
+    display: block;
+    width: 1px;
+    height: 20px;
+    background: var(--color-border);
+    margin-inline: -4px;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--color-ink);
+    border-radius: 2px;
+    transition: all 200ms ease;
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: var(--color-paper-dark);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-menu[hidden] {
+    display: none;
+  }
+
+  .mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    padding: 40px 20px;
+    gap: var(--space-5);
+  }
+
+  .mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .mobile-link {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--color-paper);
+    text-decoration: none;
+  }
+
+  .mobile-cta {
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+  }
+
+  @media (max-width: 767px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.hasAttribute('hidden') === false;
+    if (isOpen) {
+      menu?.setAttribute('hidden', '');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
+      document.body.style.overflow = '';
+    } else {
+      menu?.removeAttribute('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close navigation menu');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.setAttribute('hidden', '');
+      toggle?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+</script>

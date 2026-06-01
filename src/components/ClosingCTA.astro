@@ -1,0 +1,70 @@
+---
+interface Props {
+  heading?: string;
+  body?: string;
+  ctaLabel?: string;
+  showContactLink?: boolean;
+}
+
+const {
+  heading = "Not sure if this applies to you?",
+  body = "That's exactly what the Fit Call is for. Thirty minutes. No pitch. Just an honest conversation about whether there's something worth solving.",
+  ctaLabel = "Book a free Fit Call",
+  showContactLink = true,
+} = Astro.props;
+---
+
+<section class="section section-dark closing-cta" aria-labelledby="cta-heading">
+  <div class="container cta-inner">
+    <h2 id="cta-heading" class="fade-up">{heading}</h2>
+    <p class="fade-up" data-delay="80ms">{body}</p>
+    <a href="/contact" class="btn btn-primary fade-up" data-delay="160ms">{ctaLabel}</a>
+    {showContactLink && (
+      <a href="/contact" class="contact-link fade-up" data-delay="200ms">Or contact us →</a>
+    )}
+  </div>
+</section>
+
+<style>
+  .closing-cta {
+    text-align: center;
+    padding-block: var(--space-7);
+  }
+
+  .cta-inner {
+    max-width: 600px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .cta-inner h2 {
+    color: var(--color-paper);
+    font-size: 36px;
+  }
+
+  .cta-inner p {
+    color: rgba(245, 243, 238, 0.65);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .cta-inner .btn {
+    margin-top: var(--space-2);
+  }
+
+  .contact-link {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(245, 243, 238, 0.5);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+
+  .contact-link:hover {
+    color: var(--color-paper);
+  }
+</style>

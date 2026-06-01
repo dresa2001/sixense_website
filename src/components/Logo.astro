@@ -1,0 +1,78 @@
+---
+interface Props {
+  variant?: 'light' | 'dark';
+  size?: 'default' | 'small';
+}
+const { variant = 'light', size = 'default' } = Astro.props;
+const markColor = variant === 'dark' ? '#F5F3EE' : '#C8A04A';
+const textColor = variant === 'dark' ? '#F5F3EE' : '#1A1A18';
+---
+
+<a href="/" class="logo" aria-label="Sixense — home">
+  <svg
+    class="logo-mark"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 48 48"
+    fill="none"
+    width={size === 'small' ? 32 : 40}
+    height={size === 'small' ? 32 : 40}
+    aria-hidden="true"
+  >
+    <!-- Three interlocking hexagons -->
+    <polygon points="24,5 30.9,9 30.9,17 24,21 17.1,17 17.1,9" stroke={markColor} stroke-width="2" fill="none" stroke-linejoin="round"/>
+    <polygon points="12,22 18.9,26 18.9,34 12,38 5.1,34 5.1,26" stroke={markColor} stroke-width="2" fill="none" stroke-linejoin="round"/>
+    <polygon points="36,22 42.9,26 42.9,34 36,38 29.1,34 29.1,26" stroke={markColor} stroke-width="2" fill="none" stroke-linejoin="round"/>
+    <!-- Hub spokes from centre -->
+    <line x1="24" y1="28" x2="24" y2="21" stroke={markColor} stroke-width="1.5"/>
+    <line x1="24" y1="28" x2="18.9" y2="26" stroke={markColor} stroke-width="1.5"/>
+    <line x1="24" y1="28" x2="29.1" y2="26" stroke={markColor} stroke-width="1.5"/>
+    <!-- Centre node -->
+    <circle cx="24" cy="28" r="3" fill={markColor}/>
+  </svg>
+
+  <div class="logo-text">
+    <span class="logo-wordmark" style={`color: ${textColor}`}>sixense</span>
+    <span class="logo-tagline" style={`color: ${textColor}`}>connected thinking</span>
+  </div>
+</a>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .logo:hover .logo-mark {
+    transform: rotate(5deg);
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .logo-wordmark {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .logo-tagline {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    opacity: 0.65;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+</style>

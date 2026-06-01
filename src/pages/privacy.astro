@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy — Sixense"
+  description="Sixense Privacy Policy."
+>
+  <section class="hero section-dark" aria-labelledby="privacy-heading">
+    <div class="container">
+      <span class="section-label">Legal</span>
+      <h1 id="privacy-heading" style="color:var(--color-paper)">Privacy Policy</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container legal-content">
+      <p class="last-updated">Last updated: June 2026</p>
+
+      <h2>1. Overview</h2>
+      <p>
+        Sixense Pty Ltd ("Sixense", "we", "us", "our") is committed to protecting your privacy
+        in accordance with the Australian Privacy Act 1988 (Cth) and the Australian Privacy Principles.
+        This Privacy Policy explains how we collect, use and disclose personal information.
+      </p>
+
+      <h2>2. Information we collect</h2>
+      <p>
+        We collect personal information you provide directly, including your name, company, role,
+        email address, phone number and details about your enquiry when you contact us via our website.
+      </p>
+
+      <h2>3. How we use your information</h2>
+      <p>
+        We use your personal information to respond to your enquiry, assess whether our services
+        may be suitable for your business and communicate with you about our services.
+        We do not sell or share your information with third parties for marketing purposes.
+      </p>
+
+      <h2>4. Contact form & third-party services</h2>
+      <p>
+        Our contact form uses Formspree to transmit form submissions. Formspree processes
+        form data in accordance with their own privacy policy, available at formspree.io.
+        We encourage you to review their privacy practices.
+      </p>
+
+      <h2>5. Cookies</h2>
+      <p>This site does not use cookies for tracking or advertising purposes.</p>
+
+      <h2>6. Data security</h2>
+      <p>
+        We take reasonable steps to protect your personal information from misuse, loss,
+        unauthorised access, modification or disclosure.
+      </p>
+
+      <h2>7. Contact</h2>
+      <p>
+        For privacy-related enquiries, please contact us at
+        <a href="mailto:rodney.ellias@sixense.com.au">rodney.ellias@sixense.com.au</a>.
+      </p>
+
+      <p class="placeholder-note">
+        <em>This is placeholder content. Final legal copy to be supplied by Sixense Pty Ltd or a qualified legal copywriter.</em>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  .legal-content {
+    max-width: 720px;
+  }
+
+  .legal-content h2 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-2);
+    color: var(--color-ink);
+  }
+
+  .legal-content p {
+    color: var(--color-ink-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-2);
+  }
+
+  .legal-content a {
+    color: var(--color-gold);
+    text-decoration: none;
+  }
+
+  .last-updated {
+    font-size: 13px;
+    color: var(--color-ink-tertiary);
+    margin-bottom: var(--space-4);
+  }
+
+  .placeholder-note {
+    font-size: 13px;
+    color: var(--color-ink-tertiary);
+    margin-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-3);
+  }
+</style>

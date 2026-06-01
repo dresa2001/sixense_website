@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Three interlocking hexagons, hub-and-spoke -->
+  <!-- Hexagon 1 - top -->
+  <polygon points="16,4 20.9,6.8 20.9,12.2 16,15 11.1,12.2 11.1,6.8" stroke="#C8A04A" stroke-width="1.5" fill="none"/>
+  <!-- Hexagon 2 - bottom left -->
+  <polygon points="9,15 13.9,17.8 13.9,23.2 9,26 4.1,23.2 4.1,17.8" stroke="#C8A04A" stroke-width="1.5" fill="none"/>
+  <!-- Hexagon 3 - bottom right -->
+  <polygon points="23,15 27.9,17.8 27.9,23.2 23,26 18.1,23.2 18.1,17.8" stroke="#C8A04A" stroke-width="1.5" fill="none"/>
+  <!-- Hub lines -->
+  <line x1="16" y1="15" x2="16" y2="19" stroke="#C8A04A" stroke-width="1.5"/>
+  <line x1="16" y1="19" x2="9" y2="17.8" stroke="#C8A04A" stroke-width="1.5"/>
+  <line x1="16" y1="19" x2="23" y2="17.8" stroke="#C8A04A" stroke-width="1.5"/>
+  <!-- Centre node -->
+  <circle cx="16" cy="19" r="2.5" fill="#C8A04A"/>
+</svg>
