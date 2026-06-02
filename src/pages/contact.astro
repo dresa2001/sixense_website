@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Watermark from '../components/Watermark.astro';
 ---
 
 <BaseLayout
@@ -8,12 +9,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <!-- Hero -->
   <section class="hero section-dark" aria-labelledby="contact-heading">
+    <Watermark />
     <div class="container">
       <span class="section-label">Contact</span>
-      <h1 id="contact-heading" class="fade-up" style="color:var(--color-paper)">
+      <h1 id="contact-heading" class="animate-in" style="color:var(--color-paper)">
         Let's have an honest conversation.
       </h1>
-      <p class="fade-up" data-delay="80ms" style="font-size:18px;color:rgba(245,243,238,0.65);max-width:540px;margin-top:var(--space-2);line-height:1.7">
+      <p class="animate-in" data-delay="80ms" style="font-size:18px;color:rgba(245,243,238,0.65);max-width:540px;margin-top:var(--space-2);line-height:1.7">
         Whether you have a specific problem or you're not sure where to start —
         the Fit Call is free, 30 minutes and completely obligation-free.
       </p>
@@ -110,8 +112,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <!-- Success state -->
         <div id="form-success" class="form-success" hidden>
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <circle cx="16" cy="16" r="14" stroke="var(--color-gold)" stroke-width="2"/>
-            <path d="M10 16.5l4.5 4.5 7.5-9" stroke="var(--color-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="14" stroke="var(--color-accent)" stroke-width="2"/>
+            <path d="M10 16.5l4.5 4.5 7.5-9" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <h3 id="success-name" class="success-heading"></h3>
           <p class="success-body">Expect to hear from us within one business day.</p>
@@ -120,16 +122,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <!-- Contact details -->
       <aside class="contact-aside" aria-label="Other contact options">
-        <h3 class="aside-heading">Other ways to get in touch.</h3>
-        <p class="aside-body">Prefer email? Reach us directly at:</p>
-        <a href="mailto:rodney.ellias@sixense.com.au" class="aside-email">
-          rodney.ellias@sixense.com.au
-        </a>
-        <p class="aside-body" style="margin-top:var(--space-3)">Based in Australia. Working across the country.</p>
-
-        <div class="response-block">
-          <p class="response-label">Response time</p>
-          <p class="aside-body">We respond to all enquiries within one business day.</p>
+        <h3 class="aside-heading">Other ways to reach us.</h3>
+        <div class="contact-rows">
+          <div class="contact-row">
+            <ph-icon name="envelope" size="20" color="#00C2FF" style="flex-shrink:0;margin-top:2px"></ph-icon>
+            <a href="mailto:automate@sixense.com.au" class="aside-email">automate@sixense.com.au</a>
+          </div>
+          <div class="contact-row">
+            <ph-icon name="map-pin" size="20" color="#00C2FF" style="flex-shrink:0;margin-top:2px"></ph-icon>
+            <p class="aside-body">Based in Australia. Working across the country.</p>
+          </div>
+          <div class="contact-row">
+            <ph-icon name="clock" size="20" color="#00C2FF" style="flex-shrink:0;margin-top:2px"></ph-icon>
+            <p class="aside-body">We respond to all enquiries within one business day.</p>
+          </div>
         </div>
       </aside>
     </div>
@@ -137,10 +143,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .hero {
-    padding-top: 120px;
-    padding-bottom: 80px;
-  }
+  .hero { padding-top: 120px; padding-bottom: 80px; }
 
   .contact-layout {
     display: grid;
@@ -149,29 +152,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: start;
   }
 
-  .submit-btn {
-    margin-top: var(--space-2);
-  }
+  .submit-btn { margin-top: var(--space-2); }
 
   @media (min-width: 768px) {
-    .submit-btn {
-      width: auto;
-    }
+    .submit-btn { width: auto; }
   }
 
   @media (max-width: 767px) {
     .hero { padding-top: 112px; }
-    .contact-layout {
-      grid-template-columns: 1fr;
-    }
-    .submit-btn {
-      width: 100%;
-    }
+    .contact-layout { grid-template-columns: 1fr; }
+    .submit-btn { width: 100%; }
   }
 
-  .select-wrapper {
-    position: relative;
-  }
+  .select-wrapper { position: relative; }
 
   .select-arrow {
     position: absolute;
@@ -196,42 +189,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   /* Aside */
   .aside-heading {
     font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 22px;
+    font-weight: 600;
+    font-size: var(--text-h3);
     color: var(--color-ink);
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-rows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
   }
 
   .aside-body {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--color-ink-secondary);
     line-height: 1.6;
     margin: 0;
   }
 
   .aside-email {
-    display: block;
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: 16px;
-    color: var(--color-gold);
+    font-size: 15px;
+    color: var(--color-accent);
     text-decoration: none;
-    margin-top: 8px;
   }
-
-  .response-block {
-    margin-top: var(--space-5);
-  }
-
-  .response-label {
-    font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 11px;
-    color: var(--color-ink-tertiary);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
+  .aside-email:hover { text-decoration: underline; }
 
   /* Success */
   .form-success {
@@ -365,7 +355,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const firstName = data.get('firstName') as string;
 
     try {
-      // Using Formspree — replace YOUR_FORM_ID with actual ID
       const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
         method: 'POST',
         body: data,
@@ -383,7 +372,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       submitBtn.disabled = false;
       submitLabel?.removeAttribute('hidden');
       submitSpinner?.setAttribute('hidden', '');
-      alert('Something went wrong. Please try again or email us directly at rodney.ellias@sixense.com.au');
+      alert('Something went wrong. Please try again or email us directly at automate@sixense.com.au');
     }
   });
 </script>

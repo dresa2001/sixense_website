@@ -30,12 +30,15 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalURL} />
 
-  <!-- Fonts -->
+  <!-- Fonts: Plus Jakarta Sans + DM Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- Favicons -->
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/phosphor-icons@1.4.2/src/index.js" is:inline></script>
+
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
   {isHome && (
@@ -47,7 +50,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
       "logo": "https://sixense.com.au/assets/Sixense-Transparent.avif",
       "contactPoint": {
         "@type": "ContactPoint",
-        "email": "rodney.ellias@sixense.com.au",
+        "email": "automate@sixense.com.au",
         "contactType": "customer support"
       },
       "address": {
@@ -67,7 +70,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
   <Footer />
 
   <script>
-    // Scroll-triggered fade-up animations
+    // Scroll-triggered animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -80,11 +83,9 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
       { threshold: 0.1 }
     );
 
-    document.querySelectorAll('.fade-up').forEach((el, i) => {
+    document.querySelectorAll('.animate-in').forEach((el) => {
       const delay = el.getAttribute('data-delay');
-      if (delay) {
-        (el as HTMLElement).style.transitionDelay = delay;
-      }
+      if (delay) (el as HTMLElement).style.transitionDelay = delay;
       observer.observe(el);
     });
 
@@ -92,11 +93,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
     const nav = document.getElementById('site-nav');
     if (nav) {
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-          nav.classList.add('scrolled');
-        } else {
-          nav.classList.remove('scrolled');
-        }
+        nav.classList.toggle('scrolled', window.scrollY > 10);
       }, { passive: true });
     }
   </script>

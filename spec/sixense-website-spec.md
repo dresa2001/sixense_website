@@ -1,9 +1,8 @@
-# Sixense Website — Full Design & Development Specification
-
-**Version:** 1.0  
-**Prepared for:** Developer / Agency handoff  
-**Contact:** rodney.ellias@sixense.com.au  
-**Date:** June 2026
+# Sixense Website — Complete Design & Development Specification
+**Version:** 3.0 (Final)  
+**Date:** June 2026  
+**Contact:** automate@sixense.com.au  
+**Note:** This is the single source of truth. All previous spec versions are superseded.
 
 ---
 
@@ -47,6 +46,8 @@ Sixense is an Australian automation and AI consultancy serving mid-market operat
 4. Our Outcomes (`/our-outcomes`)
 5. About (`/about`)
 6. Contact (`/contact`)
+7. Privacy Policy (`/privacy`) — placeholder
+8. Terms of Use (`/terms`) — placeholder
 
 ---
 
@@ -54,16 +55,16 @@ Sixense is an Australian automation and AI consultancy serving mid-market operat
 
 ### Personality
 
-**Sharp and confident.** Sixense speaks plainly, without hedging. No buzzword soup. No "we leverage synergies." Sentences are short and declarative.
+**Sharp and confident.** Sixense speaks plainly, without hedging. No buzzword soup. Sentences are short and declarative.
 
-**Premium but not corporate.** This is not a Big Four consulting firm. It is a small, senior, hands-on team. The brand should feel like a trusted expert, not an enterprise vendor.
+**Premium but not corporate.** A small, senior, hands-on team. The brand should feel like a trusted expert, not an enterprise vendor.
 
-**Operator-first.** The audience are people who live with operational problems daily. The tone is direct, peer-to-peer, not top-down.
+**Operator-first.** The audience are people who live with operational problems daily. The tone is direct, peer-to-peer.
 
-### Brand Voice (for any developer-written UI copy)
+### Brand Voice
 
-- Use plain English. Prefer "fix" over "optimise", "build" over "implement".
-- No bullet point lists of features or benefits in UI chrome.
+- Plain English. Prefer "fix" over "optimise", "build" over "implement".
+- No bullet-point lists of features in UI chrome.
 - Australian English throughout (e.g. "colour", "licence", "organisation").
 - Oxford comma is not used.
 
@@ -71,105 +72,173 @@ Sixense is an Australian automation and AI consultancy serving mid-market operat
 
 ## 3. Logo Specification
 
-### Concept
+### Current Asset
 
-The Sixense logo uses a precision-geometry mark — three interlocking hexagonal frames arranged around a central hub, evoking interconnection, intelligence and structure. The wordmark sits to the right. The current logo (supplied as `Sixense-Transparent.avif`) uses this same conceptual language but should be reworked as follows.
+The supplied file `Sixense-Transparent.avif` is the source reference. The mark (three interlocking hexagons with hub-and-spoke centre) is retained conceptually but reworked for precision and updated colour. The "connected thinking" tagline is removed from all instances.
 
-### Mark Rework Instructions
-
-The developer should engage a designer or use the following vector specification to redraw the mark from scratch (or refine the supplied asset):
+### Mark Rework
 
 **Geometry:**
 - Three hexagons, each rotated 120° from one another, overlapping at a central point
-- Hexagon stroke weight: 2px, no fill (outline only), with hard precision corners — no excessive rounding. Corner radius on hexagons: 2px maximum
-- Central connection node: a small filled circle, 6px diameter, at the intersection of all three hexagons
-- Three thin lines (1.5px) radiating from the centre node to each hexagon's inner vertex — forming a hub-and-spoke
+- Stroke weight: 2px, no fill, precision corners with corner radius 2px maximum
+- Central hub: filled circle, 6px diameter, at intersection of all three hexagons
+- Three spokes: 1.5px lines radiating from the hub to each hexagon's inner vertex
 
 **Colour:**
-- The mark uses a single colour: `#C8A04A` (warm burnished gold — see colour palette) on a light background; white on a dark background
-- The mark is never rendered in the primary dark (`#1A1A18`) as a fill — it is always the accent colour or white
+- Mark on dark backgrounds (`#1A1A18`): `#00C2FF`
+- Mark on light backgrounds (`#F5F3EE`, `#EDEAE3`): `#0099CC` (deeper cyan — maintains 4.5:1 contrast)
+- Mark is never rendered in the primary dark as a fill
 
 **Wordmark:**
-- Font: `Freight Display Pro`, weight Semibold (or substitute: `Playfair Display`, weight 600)
+- Font: Plus Jakarta Sans, weight 700
 - Text: `sixense` — all lowercase
-- Tracking (letter-spacing): 0.04em
-- Colour: `#1A1A18` on light backgrounds; `#F5F3EE` on dark backgrounds
-- Tagline: `connected thinking` — set in the body sans-serif (see Typography section), weight 400, 65% opacity, font-size approximately 38% of wordmark size
+- Tracking: 0.02em
+- Colour: `#F5F3EE` on dark backgrounds; `#1A1A18` on light backgrounds
+
+**Tagline:** None. Removed from all instances.
 
 **Proportions:**
-- Mark width : wordmark width ratio ≈ 1 : 2.2
-- Mark and wordmark are vertically centred
-- Clearspace: minimum padding equal to the height of the letter "s" in the wordmark on all sides
+- Mark width : wordmark width ≈ 1 : 2.2
+- Mark and wordmark vertically centred
+- Clearspace: minimum padding equal to the height of the letter "s" on all sides
 
 **Variants required:**
-- Full horizontal lockup (mark + wordmark + tagline) — for header and general use
-- Mark only — for favicon, app icon, small contexts
-- Reversed (white mark + white wordmark) — for dark backgrounds
-- Monochrome dark — single `#1A1A18` colour version
+- Full horizontal lockup (mark + wordmark) — nav and general use
+- Mark only — favicon, small contexts
+- Reversed (white mark + white wordmark) — dark backgrounds
+- Monochrome dark — single `#1A1A18` version
+
+**Nav sizing:** Minimum 140px wide on desktop, 110px on mobile. Set `flex-shrink: 0` on the logo container.
 
 **Favicon:**
-- 32×32px and 16×16px: mark only, rendered in `#C8A04A` on transparent background
-- 180×180px Apple touch icon: mark centred on `#1A1A18` background with 20px padding
+- 32×32px and 16×16px: mark only, `#00C2FF` on transparent background
+- 180×180px Apple touch icon: mark centred on `#1A1A18` with 20px padding
 
 ---
 
 ## 4. Typography
 
+### Fonts
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+```
+
+```css
+--font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+--font-body:    'DM Sans', system-ui, sans-serif;
+```
+
+**Plus Jakarta Sans** is the display and heading face — geometric, modern, confident. Applied to all H1/H2/H3, hero headline, card headings, stat numbers, pull quotes, CTA button text and the nav CTA button.
+
+**DM Sans** is the body and UI face — clean and legible. Applied to all body/paragraph text, section labels, tags, form elements, nav links and footer fine print.
+
 ### Type Scale
 
-| Role | Font | Weight | Size (desktop) | Size (mobile) | Line Height |
-|---|---|---|---|---|---|
-| Display / Hero | Freight Display Pro | 500 (Medium) | 56px | 36px | 1.1 |
-| H1 | Freight Display Pro | 500 | 44px | 30px | 1.15 |
-| H2 | Freight Display Pro | 500 | 32px | 24px | 1.2 |
-| H3 | Freight Display Pro | 500 | 22px | 20px | 1.3 |
-| Body Large | DM Sans | 400 | 18px | 16px | 1.7 |
-| Body | DM Sans | 400 | 16px | 15px | 1.7 |
-| Body Small / Caption | DM Sans | 400 | 13px | 13px | 1.6 |
-| Label / Tag | DM Sans | 500 | 11px | 11px | 1.4 |
-| Nav | DM Sans | 500 | 14px | 14px | 1 |
-| CTA Button | DM Sans | 500 | 15px | 15px | 1 |
+```css
+--text-hero:    clamp(38px, 5vw, 64px);
+--text-h1:      clamp(32px, 4vw, 52px);
+--text-h2:      clamp(26px, 3vw, 38px);
+--text-h3:      clamp(20px, 2.5vw, 26px);
+--text-body-lg: 18px;
+--text-body:    16px;
+--text-sm:      14px;
+--text-xs:      12px;
+--text-label:   13px;
+```
 
-**Freight Display Pro** is the primary display face — editorial, precise, with a quiet authority. Load via Adobe Fonts or purchase a web licence. Fallback stack: `'Playfair Display', Georgia, serif`.
+### Weights and Tracking
 
-**DM Sans** is the body and UI face — geometric, legible, neutral without being bland. Load via Google Fonts (`https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap`). Fallback: `'Inter', system-ui, sans-serif`.
+```css
+h1, h2          { font-weight: 700; letter-spacing: -0.01em; }
+h1.hero         { font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+h3              { font-weight: 600; }
+.cta-button     { font-weight: 600; }
+```
 
 ### Type Rules
 
 - Headings: sentence case throughout. Never all-caps, never title case.
-- Body text maximum line length: 68 characters (approximately 640px at 16px body). Use `max-width: 640px` on body copy containers within wide layouts.
-- Paragraph spacing: 1em between paragraphs.
-- No justified text. Left-aligned body. Centred only for short hero/section-heading contexts where explicitly noted.
+- Body text max line length: 68 characters (~640px at 16px). Use `max-width: 640px` on body copy containers within wide layouts.
+- Paragraph spacing: 1em.
+- No justified text. Left-aligned body. Centred only where explicitly noted.
+- No H2 element below 32px on desktop.
+
+### Section Label Style
+
+```css
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 16px;
+  background: var(--color-accent);
+  flex-shrink: 0;
+  border-radius: 0;
+}
+```
+
+Apply `.section-label` to every section label element across all pages.
 
 ---
 
 ## 5. Colour Palette
 
-### Core Palette
+### Core Tokens
 
-| Token | Hex | Usage |
-|---|---|---|
-| `--color-ink` | `#1A1A18` | Primary text, headings, dark backgrounds |
-| `--color-ink-secondary` | `#4A4A46` | Secondary text, captions |
-| `--color-ink-tertiary` | `#8A8A84` | Placeholders, fine print, metadata |
-| `--color-paper` | `#F5F3EE` | Primary background — warm off-white |
-| `--color-paper-secondary` | `#EDEAE3` | Subtle section backgrounds, card fills |
-| `--color-paper-dark` | `#1A1A18` | Dark section backgrounds |
-| `--color-gold` | `#C8A04A` | Accent — CTAs, highlights, logo mark, ruled lines |
-| `--color-gold-hover` | `#B08838` | Hover state for gold elements |
-| `--color-border` | `rgba(26,26,24,0.12)` | Default borders |
-| `--color-border-strong` | `rgba(26,26,24,0.25)` | Stronger borders, dividers |
+```css
+--color-ink:           #1A1A18;   /* Primary text, dark backgrounds */
+--color-ink-secondary: #4A4A46;   /* Secondary text, captions */
+--color-ink-tertiary:  #8A8A84;   /* Placeholders, fine print */
+--color-paper:         #F5F3EE;   /* Primary background — warm off-white */
+--color-paper-secondary: #EDEAE3; /* Subtle sections, card fills */
+--color-paper-dark:    #1A1A18;   /* Dark section backgrounds */
+--color-accent:        #00C2FF;   /* Electric cyan — primary accent, all contexts */
+--color-accent-deep:   #0099CC;   /* Logo mark on light backgrounds only */
+--color-accent-hover:  #00A8DC;   /* Hover state */
+--color-accent-glow:   rgba(0, 194, 255, 0.15); /* Focus rings */
+--color-border:        rgba(26, 26, 24, 0.12);  /* Default borders */
+--color-border-strong: rgba(26, 26, 24, 0.25);  /* Dividers */
+```
 
-### Colour Application Rules
+### Contrast Note
 
-- Background: `--color-paper` by default across all pages. Alternating sections use `--color-paper-secondary`. Dark sections (e.g. hero, closing CTA blocks) use `--color-paper-dark` with text in `--color-paper`.
-- Gold is used sparingly as an accent — never as a dominant background fill on large areas. Use for: CTA buttons, active states, horizontal rules/dividers, tag/label outlines, logo mark.
-- No blue, green or red used decoratively. This palette is intentionally restrained.
-- Text on `--color-paper-dark` (dark background): use `--color-paper` (`#F5F3EE`) for primary, `rgba(245,243,238,0.6)` for secondary.
+`#00C2FF` produces ~9.5:1 contrast against `#1A1A18`. A single accent token works across both light and dark backgrounds at all text sizes — no dark-mode variant required. Use `--color-accent-deep` (`#0099CC`) only for the logo mark SVG on light backgrounds.
 
-### Dark / Light Section Pattern
+### Colour Application
 
-The site alternates between light (`--color-paper`) and dark (`--color-paper-dark`) sections for visual rhythm. The hero is dark. The footer is dark. Sections in between alternate light / secondary-light. This creates contrast without requiring decorative imagery.
+**`--color-accent` used for:**
+- All section labels and their left-bar decorators
+- Nav active link and "Book a Fit Call" button (text: `#1A1A18`)
+- All CTA button backgrounds (text: `#1A1A18`)
+- Card top accent bars (3px)
+- Card hover border
+- Outcome card tag chip borders
+- All icons across all pages
+- Icon circle backgrounds: `rgba(0, 194, 255, 0.08)`
+- How We Build principle block left borders
+- Blockquote left border (About page)
+- Watermark SVG stroke (at low opacity)
+- Stat numbers on About page
+- Form input focus border and glow
+- Footer links on hover
+- Inline text links ("See our outcomes →" etc.)
+
+**Dark/light section pattern:**
+- Background alternates: `--color-paper-dark` (hero, closing CTAs, footer) and `--color-paper` / `--color-paper-secondary` (content sections)
+- Text on dark: primary `#F5F3EE`, secondary `rgba(245,243,238,0.6)`
 
 ---
 
@@ -177,31 +246,31 @@ The site alternates between light (`--color-paper`) and dark (`--color-paper-dar
 
 ### Grid
 
-- Desktop: 12-column grid, 1280px max content width, 24px gutters, 80px horizontal padding
-- Tablet (768px–1279px): 8-column grid, 32px horizontal padding
-- Mobile (< 768px): 4-column grid, 20px horizontal padding
+- Desktop: 12-column, 1280px max content width, 24px gutters, 80px horizontal padding
+- Tablet (768–1279px): 8-column, 32px horizontal padding
+- Mobile (<768px): 4-column, 20px horizontal padding
 
-### Spacing Scale (8px base)
+### Spacing Scale
 
-| Token | Value | Usage |
-|---|---|---|
-| `--space-1` | 8px | Tight element gaps (icon + label) |
-| `--space-2` | 16px | Component internal padding |
-| `--space-3` | 24px | Between related elements |
-| `--space-4` | 32px | Between components |
-| `--space-5` | 48px | Section sub-divisions |
-| `--space-6` | 64px | Narrow section vertical padding |
-| `--space-7` | 96px | Standard section vertical padding |
-| `--space-8` | 128px | Large section vertical padding |
+```css
+--space-1: 8px;   /* Tight gaps */
+--space-2: 16px;  /* Component internal */
+--space-3: 24px;  /* Related elements */
+--space-4: 32px;  /* Between components */
+--space-5: 48px;  /* Sub-divisions */
+--space-6: 64px;  /* Narrow section padding */
+--space-7: 96px;  /* Standard section padding */
+--space-8: 128px; /* Large section padding */
+```
 
 ### Border Radius
 
-| Token | Value | Usage |
-|---|---|---|
-| `--radius-sm` | 4px | Tags, labels, small chips |
-| `--radius-md` | 8px | Buttons, inputs, small cards |
-| `--radius-lg` | 16px | Cards, panels |
-| `--radius-xl` | 24px | Large feature cards |
+```css
+--radius-sm: 4px;   /* Tags, chips */
+--radius-md: 8px;   /* Buttons, inputs */
+--radius-lg: 16px;  /* Cards, panels */
+--radius-xl: 24px;  /* Feature cards */
+```
 
 ---
 
@@ -209,85 +278,128 @@ The site alternates between light (`--color-paper`) and dark (`--color-paper-dar
 
 ### 7.1 Buttons
 
-**Primary CTA button:**
-- Background: `--color-gold`
-- Text: `--color-ink` (`#1A1A18`)
-- Font: DM Sans 500, 15px
-- Padding: 14px 28px
-- Border radius: `--radius-md`
-- Hover: background `--color-gold-hover`, transition 200ms ease
-- No box shadow. No border.
+**Primary CTA:**
+```css
+background: var(--color-accent);
+color: var(--color-ink);
+font-family: var(--font-display);
+font-weight: 600;
+font-size: 15px;
+padding: 14px 28px;
+border-radius: var(--radius-md);
+border: none;
+cursor: pointer;
+transition: background 200ms ease;
+```
+Hover: `--color-accent-hover`. Focus: `outline: 2px solid var(--color-accent); outline-offset: 2px`.
 
-**Secondary button (ghost):**
-- Background: transparent
-- Border: 1.5px solid `--color-ink`
-- Text: `--color-ink`
-- Hover: background `rgba(26,26,24,0.06)`
+**Ghost (on light bg):**
+```css
+background: transparent;
+border: 1.5px solid var(--color-ink);
+color: var(--color-ink);
+```
+Hover: `background: rgba(26,26,24,0.06)`.
 
-**Ghost on dark backgrounds:**
-- Border: 1.5px solid `--color-paper`
-- Text: `--color-paper`
-- Hover: background `rgba(245,243,238,0.1)`
-
-**Button states:** All buttons have `cursor: pointer`, `transition: all 200ms ease`, and `outline: 2px solid --color-gold` on focus (accessibility).
+**Ghost (on dark bg):**
+```css
+border: 1.5px solid #F5F3EE;
+color: #F5F3EE;
+```
+Hover: `background: rgba(245,243,238,0.1)`.
 
 ### 7.2 Navigation
 
-**Desktop nav:**
-- Fixed to top. Background: `--color-paper` at 96% opacity with `backdrop-filter: blur(12px)`.
-- Height: 72px
-- Left: Logo (full horizontal lockup)
-- Right: Nav links — Home, What We Do, How We Work, Our Outcomes, About — followed by a Primary CTA button: "Book a Fit Call"
-- Nav link style: DM Sans 500, 14px, `--color-ink`, no underline. Hover: `--color-gold`. Active page: `--color-gold`.
-- Separator between links and button: a vertical line 1px `--color-border` with 8px vertical margin
-- On scroll: add `box-shadow: 0 1px 0 var(--color-border)`. No background colour change.
+**Desktop:**
+- Fixed to top. Background: `--color-paper` at 96% opacity + `backdrop-filter: blur(12px)`.
+- Height: 80px.
+- Permanent bottom border: `1px solid var(--color-border)`.
+- Left: Logo, minimum 140px, `flex-shrink: 0`.
+- Right: Nav links → vertical separator → "Book a Fit Call" button.
+- Nav link: DM Sans 500, 15px, `--color-ink`. Hover/active: `--color-accent`.
+- CTA button: `--color-accent` background, `--color-ink` text, Plus Jakarta Sans 600.
 
-**Mobile nav (< 768px):**
-- Hamburger icon (3 horizontal lines, 20px, `--color-ink`) at right
-- Tap to reveal full-screen overlay: background `--color-paper-dark`, nav links stacked vertically, 32px apart, in Freight Display Pro 500 28px, colour `--color-paper`
-- Close icon (×) at same position as hamburger
-- CTA button full-width at bottom of menu
+**Mobile (<768px):**
+- Hamburger icon (20px) at right.
+- Full-screen overlay: `--color-paper-dark` background. Links stacked vertically, 32px apart, Plus Jakarta Sans 700, 28px, `--color-paper`.
+- CTA button full-width at bottom.
 
-### 7.3 Cards (Outcomes / Service)
+**Nav links:**
+
+| Label | Path |
+|---|---|
+| Home | `/` |
+| What We Do | `/what-we-do` |
+| How We Work | `/how-we-work` |
+| Our Outcomes | `/our-outcomes` |
+| About | `/about` |
+| Book a Fit Call (button) | `/contact` |
+
+### 7.3 Cards
 
 **Outcome card:**
-- Background: `--color-paper`
-- Border: 1px solid `--color-border`
-- Border radius: `--radius-xl`
-- Padding: 32px
-- Sector tag: DM Sans 500, 11px, `--color-ink-tertiary`, uppercase letter-spacing 0.08em, no background
-- Heading (Challenge / Solution / Outcome): DM Sans 500, 11px, `--color-gold`, uppercase letter-spacing 0.08em — used as a label above each block
-- Body text: DM Sans 400, 15px, `--color-ink-secondary`
-- Tags (IoT · Real-time etc.): DM Sans 500, 11px, `--color-ink`, border 1px solid `--color-border`, radius `--radius-sm`, padding 4px 10px, displayed as inline chips at card bottom
-- Hover: `border-color: var(--color-gold)`, transition 200ms
+```css
+background: var(--color-paper);
+border: 1px solid var(--color-border);
+border-top: 3px solid var(--color-accent);
+border-radius: var(--radius-xl);
+padding: 32px;
+transition: transform 200ms ease, box-shadow 200ms ease;
+```
+Hover:
+```css
+transform: translateY(-4px);
+box-shadow: 0 8px 32px rgba(0, 194, 255, 0.08);
+border-color: var(--color-accent);
+```
+- Sector label: DM Sans 500, 13px, `--color-ink-tertiary`
+- Challenge / Solution / Outcome labels: DM Sans 600, 11px, `--color-accent`, uppercase, letter-spacing 0.08em
+- Body: DM Sans 400, 15px, `--color-ink-secondary`
+- Tags: DM Sans 500, 11px, border `1px solid rgba(0,194,255,0.35)`, `--radius-sm`, padding 4px 10px
 
-**Service area card (What We Do):**
-- Background: `--color-paper-secondary`
-- Border radius: `--radius-lg`
-- Padding: 28px 24px
-- Heading: Freight Display Pro 500, 18px, `--color-ink`
+**Service area card:**
+```css
+background: var(--color-paper-secondary);
+border-radius: var(--radius-lg);
+padding: 28px 24px;
+```
+- Icon: 32px, `--color-accent`, inside 48px circle `rgba(0,194,255,0.08)`
+- Heading: Plus Jakarta Sans 600, 16px, `--color-ink`
 - Body: DM Sans 400, 14px, `--color-ink-secondary`, line-height 1.6
 
-### 7.4 Section Divider / Rule
+### 7.4 Section Labels
 
-A 1px horizontal rule in `--color-gold` at 40% opacity (`rgba(200,160,74,0.4)`), used between major page sections. Width: 64px, left-aligned within content columns. Not full-width. This acts as a subtle punctuation mark, not a structural divider.
+See Section 4 — Typography. Apply `.section-label` class universally.
 
-### 7.5 Anchor/Tag Labels
+### 7.5 Icons
 
-For section labels (e.g. "How we work", "Our outcomes") appearing above section headings:
-- DM Sans 500, 11px
-- Text: `--color-gold`
-- Letter-spacing: 0.1em
-- Uppercase
-- No background, no border — plain text label, like a byline
+**Icon library:** Phosphor Icons outline set.
 
-### 7.6 Horizontal Rule Divider (between page sections)
+```html
+<script src="https://unpkg.com/phosphor-icons@1.4.2/src/index.js"></script>
+```
 
-A full-width 1px line in `--color-border` used between sections of the same background colour. Not used between light-to-dark transitions (those are implied by the background change).
+- Standard size: 32px
+- Compact size: 24px (inline, beside text)
+- Small size: 20px (stat rows, callouts)
+- Colour: `--color-accent` (`#00C2FF`)
+- Circle background: 56px diameter, `background: rgba(0,194,255,0.08)`, `border-radius: 50%`
 
-### 7.7 Forms (Contact page)
+### 7.6 Watermark
 
-See Section 9 for full form specification.
+See Amendment Section in 12 — Animations. Applies to all dark sections.
+
+### 7.7 How We Build — Principle Blocks
+
+```css
+background: var(--color-paper);
+border-left: 3px solid var(--color-accent);
+border-radius: var(--radius-md);
+padding: 24px;
+border-radius: 0;  /* left border only — no rounded corners */
+```
+- Heading: Plus Jakarta Sans 600, 18px, `--color-ink`
+- Body: DM Sans 400, 14px, `--color-ink-secondary`
 
 ---
 
@@ -299,67 +411,58 @@ See Section 9 for full form specification.
 
 #### Section 1 — Hero (dark)
 
-**Background:** `--color-paper-dark` (`#1A1A18`)  
+**Background:** `--color-paper-dark`  
 **Vertical padding:** 160px top, 120px bottom  
-**Layout:** Single column, content centred horizontally, max-width 760px
-
-**Content:**
+**Layout:** Single column, max-width 760px, left-aligned  
+**Watermark:** Yes — see Section 12
 
 ```
-[Section label — gold, uppercase, 11px, DM Sans 500]
+[.section-label]
 Automation & AI for operators
 
-[Headline — Freight Display Pro 500, 56px desktop / 36px mobile, --color-paper]
-You know exactly which parts of your business are slower,
-messier and more manual than they should be. So does your team.
-The question is why it's still that way.
+[H1 hero — Plus Jakarta Sans 700, --text-hero, #F5F3EE, letter-spacing -0.02em]
+Still running on
+manual and people?
 
-[Subheading — DM Sans 400, 20px, rgba(245,243,238,0.65), max-width 600px, margin-top 24px]
-Most business leaders we talk to have been living with the same operational 
-frustrations for years. They assumed fixing it would be too expensive, too 
-disruptive or too complex to hand to someone technical enough to help. 
-It's usually none of those things.
+[Body lg — DM Sans 400, 20px, rgba(245,243,238,0.65), max-width 520px, margin-top 24px]
+Most business leaders we talk to have been living with the same operational
+frustrations for years — assuming it would be too expensive or too complex
+to fix. It's usually none of those things.
 
-[CTA — Primary gold button, margin-top 40px]
+[Primary CTA button — margin-top 40px]
 Book a free Fit Call — no pitch, 30 minutes
 
-[Sub-note below button — DM Sans 400, 13px, rgba(245,243,238,0.4), margin-top 12px]
+[Sub-note — DM Sans 400, 13px, rgba(245,243,238,0.4), margin-top 12px]
 Free 30-minute conversation. No pitch.
 ```
-
-**Decorative detail:** A single thin horizontal line in `--color-gold` (40% opacity, 64px wide) sits above the section label, left-aligned within the content block. This is the only decorative element in the hero.
 
 ---
 
 #### Section 2 — The Problem (light)
 
 **Background:** `--color-paper`  
-**Vertical padding:** `--space-7` (96px)  
-**Layout:** Two-column on desktop (heading left, body right), single column mobile
+**Vertical padding:** `--space-7`  
+**Layout:** Two-column desktop (40% left / 55% right, 5% offset), single column mobile
 
-**Left column (40% width):**
+**Left:**
 ```
-[Section label — gold, uppercase, 11px]
-The problem
+[.section-label] The problem
 
-[H2 — Freight Display Pro 500, 32px, --color-ink]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 Growth adds people.
 It doesn't have to.
 ```
 
-**Right column (55% width, offset 5%):**
+**Right:**
 ```
 [Body — DM Sans 400, 18px, --color-ink-secondary, line-height 1.7]
-Many businesses scale by adding headcount to absorb the workload — 
-more staff handling more volume, doing things the way they've always 
-been done. It works, until it doesn't. The cracks show up as errors, 
-delays, key person dependencies and a growing sense that the business 
-is harder to run than it should be.
+Many businesses scale by adding headcount to absorb the workload — more staff
+handling more volume, doing things the way they've always been done. It works,
+until it doesn't. The cracks show up as errors, delays, key person dependencies
+and a growing sense that the business is harder to run than it should be.
 
-[Paragraph break]
-
-Automation and AI don't replace your people. They free them up to do 
-the work that actually needs them.
+Automation and AI don't replace your people. They free them up to do the work
+that actually needs them.
 ```
 
 ---
@@ -368,35 +471,30 @@ the work that actually needs them.
 
 **Background:** `--color-paper-secondary`  
 **Vertical padding:** `--space-7`  
-**Layout:** Single column, centred, max-width 700px
+**Layout:** Single column, left-aligned, max-width 700px
 
 ```
-[Section label — gold, uppercase, 11px, centred]
-Who we work with
+[.section-label] Who we work with
 
-[H2 — Freight Display Pro 500, 32px, --color-ink, centred]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 We work with operators, not IT departments.
 
-[Body — DM Sans 400, 18px, --color-ink-secondary, centred, line-height 1.7, margin-top 24px]
-Our clients are GMs, COOs, operations managers and business owners 
-in asset-heavy, service-intensive and operationally complex businesses. 
-They know their industry deeply. They don't need to know anything about 
+[Body — DM Sans 400, 18px, --color-ink-secondary, line-height 1.7, margin-top 24px]
+Our clients are GMs, COOs, operations managers and business owners in
+asset-heavy, service-intensive and operationally complex businesses.
+They know their industry deeply. They don't need to know anything about
 technology — that's our job.
 ```
 
-**Below the text — a three-column icon row:**
+**Icon row — three columns below text, margin-top 48px:**
 
-Three items displayed horizontally (stack vertically on mobile). Each item:
-- Icon: a simple outlined SVG icon (see notes below), 32px, `--color-gold`
-- Label: DM Sans 500, 14px, `--color-ink`
-- Description: DM Sans 400, 13px, `--color-ink-secondary`
+Each column: icon (40px) in 64px circle, label (Plus Jakarta Sans 600, 15px, `--color-ink`), sub-label (DM Sans 400, 13px, `--color-ink-secondary`).
 
-Items:
-1. Icon: factory/industrial building outline | Label: Asset-heavy businesses | Description: Transport, utilities, logistics, infrastructure
-2. Icon: gear/settings outline | Label: Service-intensive operations | Description: Healthcare, field service, maintenance
-3. Icon: org-chart/hierarchy outline | Label: Operationally complex | Description: Multi-site, multi-system, high-volume
-
-Use standard SVG outline icons (Heroicons or Phosphor outline set — developer to select from open-source library).
+| Icon | Label | Sub-label |
+|---|---|---|
+| `Truck` | Asset-heavy businesses | Transport, utilities, logistics, infrastructure |
+| `Wrench` | Service-intensive operations | Healthcare, field service, maintenance |
+| `TreeStructure` | Operationally complex | Multi-site, multi-system, high-volume |
 
 ---
 
@@ -404,42 +502,35 @@ Use standard SVG outline icons (Heroicons or Phosphor outline set — developer 
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column on desktop, single column mobile
+**Layout:** Two-column desktop (40% / 55%), single column mobile
 
-**Left column (40%):**
+**Left:**
 ```
-[Section label — gold, uppercase, 11px]
-Proven outcomes
+[.section-label] Proven outcomes
 
-[H2 — Freight Display Pro 500, 32px, --color-ink]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 We've done
 this before.
 
 [Body — DM Sans 400, 16px, --color-ink-secondary, margin-top 16px]
-From a national transport operator with no live fleet visibility, to a 
-utility managing thousands of contractors on high-voltage assets, to a 
-logistics business drowning in manual invoicing — we've built working 
-solutions across some of Australia's most operationally demanding businesses.
+From a national transport operator with no live fleet visibility, to a utility
+managing thousands of contractors on high-voltage assets, to a logistics
+business drowning in manual invoicing — we've built working solutions across
+some of Australia's most operationally demanding businesses.
 
-[Link — DM Sans 500, 15px, --color-gold, margin-top 24px, with right arrow →]
+[Link — DM Sans 500, 15px, --color-accent, margin-top 24px]
 See our outcomes →
 ```
 
-**Right column (55%, offset 5%):**
+**Right — three stat blocks, each separated by 1px --color-border line:**
 
-Three stat/proof blocks stacked vertically, separated by `--color-border` lines:
+Each block: icon (24px, `--color-accent`) + headline (Plus Jakarta Sans 600, 22px, `--color-ink`) + detail (DM Sans 400, 14px, `--color-ink-tertiary`).
 
-Block 1:
-- Headline: `Industry award winner` — Freight Display Pro 500, 22px, `--color-ink`
-- Detail: `Contractor authorisations platform — major Australian utility` — DM Sans 400, 14px, `--color-ink-tertiary`
-
-Block 2:
-- Headline: `Working prototype in 3 months` — Freight Display Pro 500, 22px
-- Detail: `Energy dispatch optimisation — after 3 years of stalled attempts` — DM Sans 400, 14px, `--color-ink-tertiary`
-
-Block 3:
-- Headline: `Live fleet visibility in under 30 days` — Freight Display Pro 500, 22px
-- Detail: `National passenger transport operator, 500+ vehicles` — DM Sans 400, 14px, `--color-ink-tertiary`
+| Icon | Headline | Detail |
+|---|---|---|
+| `Trophy` | Industry award winner | Contractor authorisations platform — major Australian utility |
+| `Timer` | Working prototype in 3 months | Energy dispatch optimisation — after 3 years of stalled attempts |
+| `Eye` | Live fleet visibility in 30 days | National passenger transport operator, 500+ vehicles |
 
 ---
 
@@ -447,17 +538,18 @@ Block 3:
 
 **Background:** `--color-paper-dark`  
 **Vertical padding:** `--space-7`  
-**Layout:** Centred, max-width 600px
+**Layout:** Centred, max-width 600px  
+**Watermark:** Yes
 
 ```
-[H2 — Freight Display Pro 500, 36px, --color-paper, centred]
+[H2 — Plus Jakarta Sans 700, --text-h2, #F5F3EE, centred]
 Not sure if this applies to you?
 
 [Body — DM Sans 400, 18px, rgba(245,243,238,0.65), centred, margin-top 16px]
-That's exactly what the Fit Call is for. Thirty minutes. No pitch. 
+That's exactly what the Fit Call is for. Thirty minutes. No pitch.
 Just an honest conversation about whether there's something worth solving.
 
-[CTA — Primary gold button, centred, margin-top 40px]
+[Primary CTA — centred, margin-top 40px]
 Book a free Fit Call
 
 [Secondary link — DM Sans 500, 14px, rgba(245,243,238,0.5), centred, margin-top 16px]
@@ -470,21 +562,19 @@ Or contact us →  (links to /contact)
 
 #### Section 1 — Hero (dark)
 
-**Background:** `--color-paper-dark`  
-**Vertical padding:** 120px top, 80px bottom
+**Watermark:** Yes
 
 ```
-[Section label — gold, uppercase, 11px]
-What we do
+[.section-label] What we do
 
-[H1 — Freight Display Pro 500, 44px, --color-paper, max-width 720px]
-We fix the operational problems that have been on your list too long. 
+[H1 — Plus Jakarta Sans 700, --text-h1, #F5F3EE, max-width 720px]
+We fix the operational problems that have been on your list too long.
 And we build the capabilities you haven't been able to reach.
 
 [Body — DM Sans 400, 18px, rgba(245,243,238,0.65), max-width 620px, margin-top 24px]
-Some of the businesses we work with have a specific problem they need fixed. 
-Others can see an opportunity — a new capability, a better way of operating, 
-something a competitor is doing that they can't yet — but have no way to build 
+Some of the businesses we work with have a specific problem they need fixed.
+Others can see an opportunity — a new capability, a better way of operating,
+something a competitor is doing that they can't yet — but have no way to build
 toward it. We do both.
 ```
 
@@ -496,64 +586,60 @@ toward it. We do both.
 **Vertical padding:** `--space-7`
 
 ```
-[Section label — gold, uppercase, 11px]
-Where we work
+[.section-label] Where we work
 
-[H2 — Freight Display Pro 500, 32px, --color-ink]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 If your team is doing any of the following manually,
 there's likely a better way.
 ```
 
-**Below:** A grid of service area cards. Desktop: 3 columns. Tablet: 2 columns. Mobile: 1 column.
+**Service area card grid — 3 columns desktop, 2 tablet, 1 mobile. Gap: 20px.**
 
-8 cards total (see Component 7.3 for card spec):
+Each card: icon (32px in 48px circle) top-left, heading (Plus Jakarta Sans 600, 16px), body (DM Sans 400, 14px, `--color-ink-secondary`).
 
-1. **Finance & accounts** — Invoice matching and approval workflows. Automated reconciliation. Payment follow-up and dunning. Month-end reporting without the scramble.
-2. **Procurement & supplier management** — Purchase order automation. Supplier onboarding and credential tracking. Contract expiry alerts. Spend visibility across fragmented systems.
-3. **Field service & scheduling** — Live job visibility and dispatch optimisation. Automated scheduling based on location, skills and availability. Real-time status updates without the phone calls.
-4. **Document processing** — Automated document classification and data extraction. Contract review and flagging. Forms processing without manual rekeying.
-5. **Warehouse & inventory** — Live inventory visibility across locations. Automated reorder triggers. Inbound and outbound reconciliation. Order status without chasing the warehouse.
-6. **Sales operations** — Live product, pricing and inventory access for field reps. Order submission without back-office delays. Pipeline reporting that doesn't require a spreadsheet.
-7. **Contact centre & service desk** — Intelligent triage and routing. Automated responses to common requests. Knowledge assistants that give agents the right answer faster.
-8. **Reporting & business intelligence** — Automated data pipelines from fragmented sources. Dashboards that update without someone building them each week. Alerts when something needs attention.
+| Icon | Heading | Body |
+|---|---|---|
+| `Receipt` | Finance & accounts | Invoice matching and approval workflows. Automated reconciliation. Payment follow-up and dunning. Month-end reporting without the scramble. |
+| `ClipboardText` | Procurement & supplier management | Purchase order automation. Supplier onboarding and credential tracking. Contract expiry alerts. Spend visibility across fragmented systems. |
+| `MapPin` | Field service & scheduling | Live job visibility and dispatch optimisation. Automated scheduling based on location, skills and availability. Real-time status updates without the phone calls. |
+| `FileText` | Document processing | Automated document classification and data extraction. Contract review and flagging. Forms processing without manual rekeying. |
+| `Package` | Warehouse & inventory | Live inventory visibility across locations. Automated reorder triggers. Inbound and outbound reconciliation. Order status without chasing the warehouse. |
+| `ChartLineUp` | Sales operations | Live product, pricing and inventory access for field reps. Order submission without back-office delays. Pipeline reporting without a spreadsheet. |
+| `Headset` | Contact centre & service desk | Intelligent triage and routing. Automated responses to common requests. Knowledge assistants that give agents the right answer faster. |
+| `ChartBar` | Reporting & business intelligence | Automated data pipelines from fragmented sources. Dashboards that update without someone building them each week. Alerts when something needs attention. |
 
 ---
 
-#### Section 3 — Not All Automation is the Same (secondary background)
+#### Section 3 — Not All Automation Is the Same (secondary background)
 
 **Background:** `--color-paper-secondary`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop (label left, content right), single column mobile
+**Layout:** Two-column desktop (30% left / 65% right), single column mobile
 
-**Left (30%):**
+**Left:**
 ```
-[Section label — gold, uppercase, 11px]
-The approach
+[.section-label] The approach
 
-[H2 — Freight Display Pro 500, 28px, --color-ink]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 Not all automation
 is the same.
 ```
 
-**Right (65%, offset 5%):**
+**Right — four approach blocks, separated by 1px --color-border lines:**
 
-Four approach blocks stacked, each separated by a thin border:
+Each block: icon (24px, `--color-accent`) + label (DM Sans 600, 11px, `--color-accent`, uppercase) + heading (Plus Jakarta Sans 600, 20px, `--color-ink`) + body (DM Sans 400, 15px, `--color-ink-secondary`).
 
-Each block format:
-- Label: DM Sans 500, 11px, `--color-gold`, uppercase, letter-spacing 0.1em
-- Heading: Freight Display Pro 500, 20px, `--color-ink`
-- Body: DM Sans 400, 15px, `--color-ink-secondary`
-
-Blocks:
-1. Label: `Rule-based` | Heading: Task & rule automation | Body: Handles repeatable logic — consistent, fast, predictable.
-2. Label: `Decision support` | Heading: Data analysis & recommendations | Body: Analyses data and surfaces recommendations for your team to act on.
-3. Label: `Language & context` | Heading: GenAI applications | Body: Understands language, documents and unstructured data.
-4. Label: `Autonomous` | Heading: Agentic systems | Body: Acts independently within defined boundaries — with human oversight built in.
+| Icon | Label | Heading | Body |
+|---|---|---|---|
+| `GitBranch` | Rule-based | Task & rule automation | Handles repeatable logic — consistent, fast, predictable. |
+| `Brain` | Decision support | Data analysis & recommendations | Analyses data and surfaces recommendations for your team to act on. |
+| `Sparkle` | Language & context | GenAI applications | Understands language, documents and unstructured data. |
+| `Robot` | Autonomous | Agentic systems | Acts independently within defined boundaries — with human oversight built in. |
 
 Below blocks:
 ```
-[DM Sans 400, 16px, --color-ink-secondary]
-We match the right approach to the right problem. 
+[DM Sans 400, 16px, --color-ink-secondary, margin-top 24px]
+We match the right approach to the right problem.
 Often a single solution draws on more than one.
 ```
 
@@ -565,26 +651,27 @@ Often a single solution draws on more than one.
 **Vertical padding:** `--space-7`
 
 ```
-[Section label — gold, uppercase, 11px]
-How we engage
+[.section-label] How we engage
 
-[H2 — Freight Display Pro 500, 32px, --color-ink]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 Every engagement starts small and builds with purpose.
 Nothing is open-ended.
 ```
 
-**Two engagement option panels** — displayed side by side on desktop, stacked on mobile. Each panel is a card (border, `--radius-xl`, 32px padding):
+**Two panels side-by-side desktop, stacked mobile. Each: border, --radius-xl, 32px padding.**
 
 Panel 1 — The Fit Call:
-- Tag: `Free · 30 minutes` — DM Sans 500, 11px, `--color-gold`, border 1px solid `--color-gold`, radius `--radius-sm`, padding 4px 10px
-- Heading: Freight Display Pro 500, 22px: `The Fit Call`
+- Icon: `Phone` (48px, `--color-accent`, in 72px circle) — top of card
+- Tag: `Free · 30 minutes` — DM Sans 600, 11px, `--color-accent`, border `1px solid --color-accent`, `--radius-sm`, padding 4px 10px
+- Heading: Plus Jakarta Sans 700, 22px: `The Fit Call`
 - Body: DM Sans 400, 15px: An honest conversation to find out if there's a real problem and whether we're the right fit. No pitch. If there's something worth solving, we'll say so. If there isn't, we'll say that too.
 - CTA: Ghost button `Book a Fit Call →`
 
 Panel 2 — The Discovery Sprint:
-- Tag: `Fixed time · Fixed price` — same style as above
-- Heading: Freight Display Pro 500, 22px: `The Discovery Sprint`
-- Body: DM Sans 400, 15px: A structured working session requiring up to four hours of your time across five days. We map your most pressing processes, assess where automation can make the biggest difference and hand you a clear, plain-English report. Most clients find the clarity alone is worth the fee.
+- Icon: `MagnifyingGlass` (48px) — top of card
+- Tag: `Fixed time · Fixed price`
+- Heading: `The Discovery Sprint`
+- Body: A structured working session requiring up to four hours of your time across five days. We map your most pressing processes, assess where automation can make the biggest difference and hand you a clear, plain-English report. Most clients find the clarity alone is worth the fee.
 - CTA: Ghost button `Learn more →` (links to /how-we-work)
 
 ---
@@ -595,35 +682,27 @@ Panel 2 — The Discovery Sprint:
 **Vertical padding:** `--space-7`
 
 ```
-[Section label — gold, uppercase, 11px]
-How we build
+[.section-label] How we build
 
-[H2 — Freight Display Pro 500, 32px, --color-ink, max-width 520px]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, max-width 520px]
 From targeted fixes to autonomous workflows.
 ```
 
-Three build-tier panels in a row on desktop, stacked on mobile. Each panel: no border, separated by subtle vertical dividers (1px `--color-border`) on desktop only.
+Three panels in a row desktop, stacked mobile. Separated by 1px `--color-border` vertical dividers on desktop only.
 
-Panel 1:
-- Label: DM Sans 500, 11px, `--color-gold`, uppercase: `Tier 1`
-- Heading: Freight Display Pro 500, 20px: `Task & workflow automation`
-- Body: DM Sans 400, 14px, `--color-ink-secondary`: Targeted automation of specific manual tasks, handoffs and data flows. Fast to deliver, immediate in impact.
+| Label | Heading | Body |
+|---|---|---|
+| Tier 1 | Task & workflow automation | Targeted automation of specific manual tasks, handoffs and data flows. Fast to deliver, immediate in impact. |
+| Tier 2 | Process & integrated automation | Connecting the dots across systems, teams and functions. Eliminates coordination overhead and gives management real visibility. |
+| Tier 3 | Agentic automation | Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building this now. |
 
-Panel 2:
-- Label: `Tier 2`
-- Heading: `Process & integrated automation`
-- Body: Connecting the dots across systems, teams and functions. Eliminates coordination overhead and gives management real visibility.
-
-Panel 3:
-- Label: `Tier 3`
-- Heading: `Agentic automation`
-- Body: Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building this now.
+Label: DM Sans 600, 11px, `--color-accent`, uppercase. Heading: Plus Jakarta Sans 600, 20px. Body: DM Sans 400, 14px.
 
 ---
 
 #### Section 6 — Closing CTA (dark)
 
-Same structure as Home page closing CTA, same content.
+Same structure as Home page Section 5.
 
 ---
 
@@ -631,15 +710,16 @@ Same structure as Home page closing CTA, same content.
 
 #### Section 1 — Hero (dark)
 
-```
-[Section label — gold, uppercase, 11px]
-How we work
+**Watermark:** Yes
 
-[H1 — Freight Display Pro 500, 44px, --color-paper]
+```
+[.section-label] How we work
+
+[H1 — Plus Jakarta Sans 700, --text-h1, #F5F3EE]
 We start with your business.
 Not the technology.
 
-[Three anchor lines — DM Sans 500, 14px, rgba(245,243,238,0.5), margin-top 24px, spaced 8px apart]
+[Anchor lines — DM Sans 500, 15px, rgba(245,243,238,0.5), margin-top 20px, 8px apart]
 Process first. Experience led. Real solutions.
 Start small. Prove value. Scale smart.
 ```
@@ -650,39 +730,40 @@ Start small. Prove value. Scale smart.
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop. Left: text. Right: image. Stack on mobile (image below text).
+**Layout:** Two-column desktop — text left (50%), image right (45%, offset 5%). `align-items: flex-start`. Single column mobile (image below text).
 
-**Left (50%):**
+**Left:**
 ```
-[Section label — gold, uppercase, 11px]
-Our approach
+[.section-label] Our approach
 
-[H2 — Freight Display Pro 500, 32px, --color-ink]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 We work backwards
 from the outcome.
 
 [Body — DM Sans 400, 17px, --color-ink-secondary, margin-top 20px]
-Every engagement starts with a clear picture of what better looks like 
-for your business — not a system requirement, not a features list. 
-From there we work back through your processes, people, systems and 
-data to understand what needs to change and what the right path forward 
-looks like.
+Every engagement starts with a clear picture of what better looks like for
+your business — not a system requirement, not a features list. From there
+we work back through your processes, people, systems and data to understand
+what needs to change and what the right path forward looks like.
 
-[Second paragraph]
-This keeps solutions grounded in how your business actually works from 
-day one. It also keeps scope honest — we're building toward a defined 
-outcome, not generating work.
+This keeps solutions grounded in how your business actually works from day one.
+It also keeps scope honest — we're building toward a defined outcome,
+not generating work.
 ```
 
-**Right (45%, offset 5%):**
+**Three callout icons below body text — horizontal row, margin-top 32px:**
 
-Display the supplied image: `Working_backwards.avif`
+Each: icon (20px, `--color-accent`) + label (DM Sans 500, 13px, `--color-accent`).
 
-- Display as-is, no filters or overlays
-- Contained within a rounded container: `--radius-xl`, `overflow: hidden`
-- Background of container: `--color-paper-secondary`
-- Padding around image within container: 32px
-- Image max-width: 100% of container
+- `Target` — Outcome-first
+- `ArrowsClockwise` — Iterative
+- `UsersThree` — Collaborative
+
+**Right (image):**
+- Asset: `Working_backwards.avif`
+- Container: `background: --color-paper-secondary`, `border-radius: --radius-xl`, padding 32px
+- `align-self: flex-start`
+- Image: `max-width: 100%`, `height: auto`, `display: block`
 - Alt text: `Diagram illustrating working backwards from a defined outcome`
 
 ---
@@ -691,36 +772,31 @@ Display the supplied image: `Working_backwards.avif`
 
 **Background:** `--color-paper-secondary`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop. Left: image. Right: text. Stack on mobile (image below text).
+**Layout:** Two-column desktop — image left (45%), text right (50%, offset 5%). `align-items: flex-start`. Single column mobile.
 
-**Left (45%):**
-
-Display the supplied image: `Start-small-prove-value-scale-smart.avif`
-
-- Same display treatment as above image
+**Left (image):**
+- Asset: `Start-small-prove-value-scale-smart.avif`
+- Same display treatment as above
+- `align-self: flex-start`
 - Alt text: `Diagram illustrating the agile approach: start small, prove value, scale smart`
 
-**Right (50%, offset 5%):**
+**Right:**
 ```
-[Section label — gold, uppercase, 11px]
-Our method
+[.section-label] Our method
 
-[H2 — Freight Display Pro 500, 32px, --color-ink]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 We build in short cycles,
 not long ones.
 
 [Body — DM Sans 400, 17px, --color-ink-secondary, margin-top 20px]
-We don't disappear for months and return with something finished. 
-We build in short cycles, put working solutions in your hands quickly 
-and improve from there. Every increment delivers something usable. 
-Every milestone is a decision point — you stay in control of pace 
-and investment throughout.
+We don't disappear for months and return with something finished. We build in
+short cycles, put working solutions in your hands quickly and improve from
+there. Every increment delivers something usable. Every milestone is a
+decision point — you stay in control of pace and investment throughout.
 
-[Second paragraph]
-It gets value into your hands fast. It surfaces the things that are 
-hard to specify on paper but obvious the moment you can see something 
-real. And it means everything we build can be extended and scaled 
-without starting again.
+It gets value into your hands fast. It surfaces the things that are hard to
+specify on paper but obvious the moment you can see something real. And it
+means everything we build can be extended and scaled without starting again.
 ```
 
 ---
@@ -729,36 +805,39 @@ without starting again.
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop, single column mobile
+**Layout:** Two-column desktop (40% / 55%), single column mobile
 
-**Left (40%):**
+**Left:**
 ```
-[Section label — gold, uppercase, 11px]
-Our team
+[.section-label] Our team
 
-[H2 — Freight Display Pro 500, 32px, --color-ink]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 Senior people.
 Competitive cost.
 No handoffs.
 ```
 
-**Right (55%, offset 5%):**
+**Right:**
 ```
 [Body — DM Sans 400, 17px, --color-ink-secondary]
-Our client-facing team is local and senior — experienced automation 
-designers and engineers who understand both the technology and the 
-business context behind it. They scope the work, lead the engagement 
-and stay accountable for the outcome. You deal with the same people 
-throughout. No account managers. No handoffs once the contract is signed.
+Our client-facing team is local and senior — experienced automation designers
+and engineers who understand both the technology and the business context
+behind it. They scope the work, lead the engagement and stay accountable for
+the outcome. You deal with the same people throughout. No account managers.
+No handoffs once the contract is signed.
 
-[Second paragraph]
-Behind them is an offshore delivery centre of 30-plus people, working 
-under direct supervision of our local engineers to the same standards. 
-It's what lets us deliver at a quality level that would otherwise cost 
-significantly more.
+[Icon callout — UserCircle 24px + DM Sans 400 14px, margin-top 20px]
+The same people throughout. No account managers.
 
-[Third paragraph — Freight Display Pro 500, 18px, --color-ink, margin-top 32px]
-The quality and accountability of a senior local firm, at a price point 
+Behind them is an offshore delivery centre of 30-plus people, working under
+direct supervision of our local engineers to the same standards. It's what lets
+us deliver at a quality level that would otherwise cost significantly more.
+
+[Icon callout — Buildings 24px + DM Sans 400 14px]
+30+ person offshore delivery centre under direct local supervision.
+
+[Pull quote — Plus Jakarta Sans 600, 18px, --color-ink, margin-top 32px]
+The quality and accountability of a senior local firm, at a price point
 that makes sense for a mid-sized business.
 ```
 
@@ -770,21 +849,26 @@ that makes sense for a mid-sized business.
 **Vertical padding:** `--space-7`
 
 ```
-[H2 — Freight Display Pro 500, 32px, --color-ink, centred, margin-bottom 48px]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, centred, margin-bottom 48px]
 How we build
 ```
 
-Four principle blocks in a 2×2 grid (desktop), stacked (mobile):
+**2×2 grid desktop, stacked mobile. Each block:**
+```css
+background: var(--color-paper);
+border-left: 3px solid var(--color-accent);
+padding: 24px;
+border-radius: 0;
+```
 
-Each block: no card border, just padding and a left border accent (3px solid `--color-gold`) on a light container (`--color-paper`, `--radius-md`, 24px padding):
+Icon (28px, `--color-accent`) above heading. Heading: Plus Jakarta Sans 600, 18px. Body: DM Sans 400, 14px.
 
-1. **Heading:** We start with your process, not a template — **Body:** Every solution is designed around how your business actually works — not a generic workflow from another industry or a platform's default settings.
-2. **Heading:** We build in components, not monoliths — **Body:** Solutions are assembled from small, connected parts. Easier to change, extend and integrate. What we build today doesn't become a ceiling on what you can do tomorrow.
-3. **Heading:** We pick the right tool for the job — **Body:** We're not advocates for any single platform. We select what fits your specific situation — weighing cost, performance, security and reliability.
-4. **Heading:** We build AI responsibly — **Body:** Data privacy, security and responsible AI practices are built in from the start. Your data stays yours. AI is introduced where it genuinely adds value.
-
-Heading style: Freight Display Pro 500, 18px, `--color-ink`  
-Body style: DM Sans 400, 14px, `--color-ink-secondary`
+| Icon | Heading | Body |
+|---|---|---|
+| `Sliders` | We start with your process, not a template | Every solution is designed around how your business actually works — not a generic workflow or a platform's default settings. |
+| `Puzzle` | We build in components, not monoliths | Solutions are assembled from small, connected parts. Easier to change, extend and integrate. What we build today doesn't become a ceiling on what you can do tomorrow. |
+| `Wrench` | We pick the right tool for the job | We're not advocates for any single platform. We select what fits — weighing cost, performance, security and reliability. |
+| `ShieldCheck` | We build AI responsibly | Data privacy, security and responsible AI practices are built in from the start. Your data stays yours. AI is introduced where it genuinely adds value. |
 
 ---
 
@@ -795,27 +879,26 @@ Body style: DM Sans 400, 14px, `--color-ink-secondary`
 **Layout:** Centred, max-width 680px
 
 ```
-[Section label — gold, uppercase, 11px, centred]
-What to expect
+[.section-label — centred] What to expect
 
-[H2 — Freight Display Pro 500, 32px, --color-ink, centred]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, centred]
 What working with us looks like.
 
 [Body — DM Sans 400, 17px, --color-ink-secondary, centred, line-height 1.7, margin-top 24px]
-We're a small, senior team — which means you get direct access to the 
-people doing the work, not a layer of management between you and the delivery. 
-We communicate plainly, flag problems early and don't generate unnecessary complexity.
+We're a small, senior team — which means you get direct access to the people
+doing the work, not a layer of management between you and the delivery.
+We communicate plainly, flag problems early and don't generate unnecessary
+complexity.
 
-[Second paragraph]
-We're not here to make ourselves indispensable. We're here to build 
-something that works, prove it quickly and earn the right to do more.
+We're not here to make ourselves indispensable. We're here to build something
+that works, prove it quickly and earn the right to do more.
 ```
 
 ---
 
 #### Section 7 — CTA (dark)
 
-Same closing CTA structure as Home.
+Same structure as Home page Section 5.
 
 ---
 
@@ -823,39 +906,43 @@ Same closing CTA structure as Home.
 
 #### Section 1 — Hero (dark)
 
-```
-[Section label — gold, uppercase, 11px]
-Our outcomes
+**Watermark:** Yes
 
-[H1 — Freight Display Pro 500, 44px, --color-paper]
+```
+[.section-label] Our outcomes
+
+[H1 — Plus Jakarta Sans 700, --text-h1, #F5F3EE]
 Work we're proud of.
 
 [Body — DM Sans 400, 18px, rgba(245,243,238,0.65), max-width 580px, margin-top 20px]
-Every engagement here started with a business leader who could see a 
-problem or an opportunity — and needed a team to build toward it. 
-These are some of the solutions we've delivered.
+Every engagement here started with a business leader who could see a problem or
+an opportunity — and needed a team to build toward it. These are some of the
+solutions we've delivered.
 ```
+
+**Stat row — 4 columns, below intro text, margin-top 48px:**
+
+Each stat: icon (20px, `--color-accent`) + number (Plus Jakarta Sans 700, 22px, `#F5F3EE`) + label (DM Sans 400, 12px, `rgba(245,243,238,0.55)`).
+
+| Icon | Number | Label |
+|---|---|---|
+| `Buildings` | 6 | Case studies |
+| `Trophy` | 1 | Industry award |
+| `Timer` | <30 days | Fastest delivery |
+| `MapPin` | Australia-wide | Where we operate |
 
 ---
 
 #### Section 2 — Outcome Cards (light)
 
 **Background:** `--color-paper`  
-**Vertical padding:** `--space-7`
+**Vertical padding:** `--space-7`  
+**Layout:** 2-column grid desktop, 1 column tablet/mobile. Gap: 24px.
 
-**Card layout:** 2-column grid on desktop (cards span equal width), single column on tablet/mobile. Gap: 24px.
-
-**6 outcome cards** (see Component 7.3 for card spec). Each card contains:
-
-- **Sector** (top of card, `--color-ink-tertiary`, DM Sans 400, 13px)
-- **Challenge** label + body
-- **Solution** label + body
-- **Outcome** label + body
-- **Tags** (chips at bottom)
-
-Card content:
+Each card uses the Outcome card spec from Section 7.3. Icon (20px, `--color-accent`) sits beside the card title.
 
 **Card 1 — Fleet visibility & dispatch intelligence**
+- Icon: `Truck`
 - Sector: National passenger transport operator — ~1,000 staff, 500+ vehicles
 - Challenge: No live visibility of fleet position, driver status or fare availability. Dispatch operated blind.
 - Solution: Built a real-time IoT telemetry platform ingesting live vehicle data, processed through an event-driven pipeline and surfaced via an interactive web portal. Designed as a composable data layer for future AI capabilities.
@@ -863,6 +950,7 @@ Card content:
 - Tags: IoT · Real-time data pipeline · Web platform · AI-ready foundation
 
 **Card 2 — Integrated billing operations**
+- Icon: `Receipt`
 - Sector: National private healthcare operator
 - Challenge: Two billing systems with no integration. Staff manually bridging the gap — rekeying, reconciling and chasing errors.
 - Solution: Automated data integration pipeline connecting both systems. AI document understanding extracts billing data from unstructured sources, feeding intelligent reconciliation that matches and routes records without manual handling.
@@ -870,6 +958,7 @@ Card content:
 - Tags: System integration · Data pipeline · AI document understanding
 
 **Card 3 — Energy dispatch optimisation platform**
+- Icon: `Lightning`
 - Sector: Major Australian utility — national grid operations
 - Challenge: Three years of planning with no working solution. Dispatch decisions made without real-time inputs. Stakeholders losing confidence.
 - Solution: High-frequency data ingestion platform pulling live forecasts, grid state and outage data, feeding an optimisation engine that models dispatch scenarios and surfaces least-cost recommendations automatically.
@@ -877,13 +966,15 @@ Card content:
 - Tags: Real-time data ingestion · Optimisation engine · Decision support
 
 **Card 4 — Contractor authorisations platform**
+- Icon: `ShieldCheck`
 - Sector: Major Australian utility — thousands of contractors on high-voltage assets
-- Challenge: Paper-based credential management across thousands of contractors. Expired licences and lapsed insurances creating serious safety, legal and compliance exposure.
+- Challenge: Paper-based credential management. Expired licences and lapsed insurances creating serious safety, legal and compliance exposure.
 - Solution: Self-service portal for contractor credential submission. AI-assisted document verification validates licences and insurance documents. Agentic expiry management monitors continuously and triggers automated renewal workflows.
 - Outcome: Compliance staff shifted from chasing paperwork to managing exceptions. Real-time credential visibility. Industry award winner — now critical operational infrastructure.
 - Tags: Workflow automation · Self-service portal · AI document verification · Agentic expiry management
 
 **Card 5 — Digital field sales platform**
+- Icon: `DeviceMobile`
 - Sector: National beverage & distribution company — 100+ mobile sales reps
 - Challenge: Over 100 field reps operating from printed order books and static inventory lists — outdated before they arrived on site.
 - Solution: Mobile-first platform with live integration to inventory and pricing systems. Order submission triggers automated back-office workflows end to end.
@@ -891,6 +982,7 @@ Card content:
 - Tags: Mobile platform · Live system integration · Workflow automation
 
 **Card 6 — Invoicing & reconciliation automation**
+- Icon: `CurrencyDollar`
 - Sector: National logistics provider
 - Challenge: Entire invoicing cycle managed through manual email exchanges. Order matching, invoice distribution and reconciliation all dependent on people — slow, error-prone and unscalable.
 - Solution: Agentic automation workflow handling order scanning and matching, invoice generation, dunning sequences and payment reconciliation autonomously. AI interprets documents and orchestrates actions across systems.
@@ -901,16 +993,17 @@ Card content:
 
 #### Section 3 — Closing CTA (dark)
 
+**Watermark:** Yes
+
 ```
-[H2 — Freight Display Pro 500, 36px, --color-paper, centred]
+[H2 — Plus Jakarta Sans 700, --text-h2, #F5F3EE, centred]
 See something that looks familiar?
 
 [Body — DM Sans 400, 18px, rgba(245,243,238,0.65), centred, margin-top 16px]
-Most of our clients came to us with a problem they'd been living with 
-for a long time. The Fit Call is the fastest way to find out 
-if we can help.
+Most of our clients came to us with a problem they'd been living with for a
+long time. The Fit Call is the fastest way to find out if we can help.
 
-[CTA — gold button, centred, margin-top 40px]
+[Primary CTA — centred, margin-top 40px]
 Book a free Fit Call →
 ```
 
@@ -920,11 +1013,12 @@ Book a free Fit Call →
 
 #### Section 1 — Hero (dark)
 
-```
-[Section label — gold, uppercase, 11px]
-About
+**Watermark:** Yes
 
-[H1 — Freight Display Pro 500, 44px, --color-paper, max-width 660px]
+```
+[.section-label] About
+
+[H1 — Plus Jakarta Sans 700, --text-h1, #F5F3EE, max-width 660px]
 We've always built things.
 The question was who for.
 ```
@@ -935,27 +1029,25 @@ The question was who for.
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop (left narrower), single column mobile
+**Layout:** Two-column desktop (30% left / 65% right), single column mobile
 
-**Left (30%):**
+**Left:**
 ```
-[Section label — gold, uppercase, 11px]
-Our story
+[.section-label] Our story
 ```
 
-**Right (65%, offset 5%):**
+**Right:**
 ```
 [Body — DM Sans 400, 18px, --color-ink-secondary, line-height 1.75]
-Sixense started in 2012 working with large enterprises. We were capable — 
-but the fit was wrong. Those environments were slow, heavily process-driven 
-and far removed from the sharp end of the business. The people we worked 
-with were often too distant from the front line to make fast decisions or 
+Sixense started in 2012 working with large enterprises. We were capable —
+but the fit was wrong. Those environments were slow, heavily process-driven
+and far removed from the sharp end of the business. The people we worked
+with were often too distant from the front line to make fast decisions or
 feel the real cost of delay.
 
-[Second paragraph]
-We moved towards mid-market businesses — where the operations manager lives 
-with the inefficiency every day, where the owner sees it on the P&L every 
-month, where decisions get made by people who feel the consequences. 
+We moved towards mid-market businesses — where the operations manager lives
+with the inefficiency every day, where the owner sees it on the P&L every
+month, where decisions get made by people who feel the consequences.
 That's where we do our best work — and where we've stayed.
 ```
 
@@ -965,39 +1057,36 @@ That's where we do our best work — and where we've stayed.
 
 **Background:** `--color-paper-secondary`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop, single column mobile
+**Layout:** Two-column desktop (30% / 65%), single column mobile
 
-**Left (30%):**
+**Left:**
 ```
-[Section label — gold, uppercase, 11px]
-Our structure
+[.section-label] Our structure
 ```
 
-**Right (65%, offset 5%):**
+**Right:**
 ```
-[H2 — Freight Display Pro 500, 28px, --color-ink]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 How we're built.
 
 [Body — DM Sans 400, 17px, --color-ink-secondary, margin-top 20px]
-Our Australian team is small and senior — automation designers and 
-engineers, all hands-on. The people you meet are the people who do the work.
+Our Australian team is small and senior — automation designers and engineers,
+all hands-on. The people you meet are the people who do the work.
 
-[Second paragraph]
-Behind them is an offshore delivery centre of 30-plus people, working 
-under direct supervision of our local engineers to the same standards. 
-It's what lets us deliver at a quality level that would otherwise cost 
-significantly more.
+Behind them is an offshore delivery centre of 30-plus people, working under
+direct supervision of our local engineers to the same standards. It's what
+lets us deliver at a quality level that would otherwise cost significantly more.
 ```
 
-**Below text — a two-column stat block:**
+**Three-column stat row, margin-top 40px:**
 
-Left stat:
-- Number: `30+` — Freight Display Pro 500, 48px, `--color-gold`
-- Label: `Delivery team members` — DM Sans 400, 14px, `--color-ink-secondary`
+Each: icon (24px, above number), number (Plus Jakarta Sans 700, 48px, `--color-accent`), label (DM Sans 400, 14px, `--color-ink-secondary`).
 
-Right stat:
-- Number: `13+` — same style
-- Label: `Years delivering for Australian businesses` — DM Sans 400, 14px
+| Icon | Number | Label |
+|---|---|---|
+| `Users` | 30+ | Delivery team members |
+| `Calendar` | 13+ | Years in Australian businesses |
+| `Buildings` | 6 | Industries served |
 
 ---
 
@@ -1005,30 +1094,31 @@ Right stat:
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop, single column mobile
+**Layout:** Two-column desktop (30% / 65%), single column mobile
 
-**Left (30%):**
+**Left:**
 ```
-[Section label — gold, uppercase, 11px]
-What we believe
+[.section-label] What we believe
 ```
 
-**Right (65%, offset 5%):**
+**Right:**
 ```
 [Body — DM Sans 400, 18px, --color-ink-secondary, line-height 1.75]
-We work alongside our clients, not above them. We follow through on 
-what we say. We understand that cost, time and disruption are real 
-constraints and we design around them.
-
-[Second paragraph]
-We over-index on execution over strategy. Working solutions in your 
-hands beat elegant ones on a roadmap. We measure ourselves by what 
-actually changes in your business — not what we delivered on paper.
-
-[Pull quote — Freight Display Pro 500, 22px, --color-ink, border-left 3px solid --color-gold, padding-left 24px, margin-top 32px]
-"Bang for buck, we get more from you than anyone else" and "I didn't 
-think that was possible in that timeframe." That makes us proud.
 ```
+
+Three belief paragraphs, each with a small icon (24px, `--color-accent`) to the left of the opening line:
+
+- `HandshakeSimple` — We work alongside our clients, not above them. We follow through on what we say. We understand that cost, time and disruption are real constraints and we design around them.
+- `Rocket` — We over-index on execution over strategy. Working solutions in your hands beat elegant ones on a roadmap. We measure ourselves by what actually changes in your business — not what we delivered on paper.
+- `CheckCircle` — The feedback we hear most: "bang for buck, we get more from you than anyone else" and "I didn't think that was possible in that timeframe." That makes us proud.
+
+**Blockquote — below paragraphs, margin-top 32px:**
+```css
+border-left: 3px solid var(--color-accent);
+padding-left: 24px;
+border-radius: 0;
+```
+Text: Plus Jakarta Sans 600, 20px, `--color-ink`.
 
 ---
 
@@ -1039,18 +1129,16 @@ think that was possible in that timeframe." That makes us proud.
 **Layout:** Centred, max-width 640px
 
 ```
-[Section label — gold, uppercase, 11px, centred]
-Why the name
+[.section-label — centred] Why the name
 
-[H2 — Freight Display Pro 500, 32px, --color-ink, centred]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, centred]
 A sixth sense for operational problems.
 
 [Body — DM Sans 400, 17px, --color-ink-secondary, centred, line-height 1.7, margin-top 20px]
-Sixense is a take on sixth sense — connected, intuitive thinking. 
-Seeing the shape of a problem before it's been fully described.
+Sixense is a take on sixth sense — connected, intuitive thinking. Seeing the
+shape of a problem before it's been fully described.
 
-[Second paragraph]
-We think that's what good looks like. After all these years, 
+We think that's what good looks like. After all these years,
 we'd like to think we've earned the name.
 ```
 
@@ -1058,11 +1146,13 @@ we'd like to think we've earned the name.
 
 #### Section 6 — CTA (dark)
 
+**Watermark:** Yes
+
 ```
-[H2 — Freight Display Pro 500, 36px, --color-paper, centred]
+[H2 — Plus Jakarta Sans 700, --text-h2, #F5F3EE, centred]
 If this sounds like what you've been looking for, let's talk.
 
-[CTA — gold button, centred, margin-top 40px]
+[Primary CTA — centred, margin-top 40px]
 Book a free Fit Call →
 ```
 
@@ -1072,15 +1162,16 @@ Book a free Fit Call →
 
 #### Section 1 — Hero (dark)
 
-```
-[Section label — gold, uppercase, 11px]
-Contact
+**Watermark:** Yes
 
-[H1 — Freight Display Pro 500, 44px, --color-paper]
+```
+[.section-label] Contact
+
+[H1 — Plus Jakarta Sans 700, --text-h1, #F5F3EE]
 Let's have an honest conversation.
 
 [Body — DM Sans 400, 18px, rgba(245,243,238,0.65), max-width 540px, margin-top 16px]
-Whether you have a specific problem or you're not sure where to start — 
+Whether you have a specific problem or you're not sure where to start —
 the Fit Call is free, 30 minutes and completely obligation-free.
 ```
 
@@ -1090,40 +1181,20 @@ the Fit Call is free, 30 minutes and completely obligation-free.
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop. Left: form. Right: additional contact info. Single column mobile (form first).
+**Layout:** Two-column desktop (55% form / 40% contact info). Single column mobile.
 
-**Left — Form (55% width):**
-
-See Section 9 for full form specification. Summary:
-- Fields: First name, Last name, Company, Role, Email, Phone (optional), Inquiry details (textarea), How did you hear about us (optional select)
-- Submit button: Primary gold CTA
-- Success state: inline confirmation message (no page reload)
-
-**Right — Contact details (40%, offset 5%):**
+**Right column — contact details:**
 
 ```
-[H3 — Freight Display Pro 500, 22px, --color-ink]
-Other ways to get in touch.
-
-[Body — DM Sans 400, 16px, --color-ink-secondary, margin-top 16px]
-Prefer email? Reach us directly at:
-
-[Email link — DM Sans 500, 16px, --color-gold]
-rodney.ellias@sixense.com.au
-
-[Body — DM Sans 400, 16px, --color-ink-secondary, margin-top 24px]
-Based in Australia. Working across the country.
+[H3 — Plus Jakarta Sans 600, --text-h3, --color-ink]
+Other ways to reach us.
 ```
 
-Below:
-```
-[Section — margin-top 40px]
-[Label — DM Sans 500, 11px, --color-ink-tertiary, uppercase, letter-spacing 0.1em]
-Response time
+Three icon+text rows (icon 20px, `--color-accent`; label DM Sans 400, 15px, `--color-ink-secondary`):
 
-[Body — DM Sans 400, 15px, --color-ink-secondary]
-We respond to all enquiries within one business day.
-```
+- `Envelope` — automate@sixense.com.au (rendered as `--color-accent` link)
+- `MapPin` — Based in Australia. Working across the country.
+- `Clock` — We respond to all enquiries within one business day.
 
 ---
 
@@ -1133,62 +1204,86 @@ We respond to all enquiries within one business day.
 
 | Field | Type | Required | Placeholder |
 |---|---|---|---|
-| First name | Text input | Yes | First name |
-| Last name | Text input | Yes | Last name |
-| Company | Text input | Yes | Company name |
-| Role / Title | Text input | No | Your role (optional) |
-| Email address | Email input | Yes | your@email.com |
-| Phone number | Tel input | No | Phone (optional) |
-| Tell us about your situation | Textarea | Yes | Describe the problem or opportunity you're working with... |
-| How did you hear about us | Select | No | Options: Google search, Referral, LinkedIn, Word of mouth, Other |
+| First name | Text | Yes | First name |
+| Last name | Text | Yes | Last name |
+| Company | Text | Yes | Company name |
+| Role / Title | Text | No | Your role (optional) |
+| Email address | Email | Yes | your@email.com |
+| Phone number | Tel | No | Phone (optional) |
+| Tell us about your situation | Textarea | Yes | Describe the problem or opportunity... |
+| How did you hear about us | Select | No | Google search / Referral / LinkedIn / Word of mouth / Other |
+
+First name + last name: side-by-side on desktop (50/50, 16px gap), stacked on mobile.
 
 ### Form Styling
 
-- Label: DM Sans 500, 13px, `--color-ink`, displayed above each input
-- Input/Textarea: 
-  - Background: `--color-paper`
-  - Border: 1px solid `--color-border-strong`
-  - Border radius: `--radius-md`
-  - Padding: 12px 16px
-  - Font: DM Sans 400, 15px, `--color-ink`
-  - Placeholder: `--color-ink-tertiary`
-  - Focus state: border-color `--color-gold`, outline none, box-shadow `0 0 0 3px rgba(200,160,74,0.15)`
-- Textarea height: 140px minimum, user-resizable vertically
-- Error state: border-color `#C0392B`, error message below field in DM Sans 400, 13px, `#C0392B`
-- Field spacing: 20px between fields
-- First and Last name displayed side-by-side on desktop (50%/50%, 16px gap), stacked on mobile
+```css
+label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink);
+  display: block;
+  margin-bottom: 6px;
+}
+
+input, select, textarea {
+  width: 100%;
+  background: var(--color-paper);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-ink);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-glow);
+}
+
+input.error, textarea.error {
+  border-color: #C0392B;
+}
+
+.error-message {
+  font-size: 13px;
+  color: #C0392B;
+  margin-top: 4px;
+}
+```
+
+Textarea: min-height 140px, user-resizable vertically. Field spacing: 20px.
 
 ### Submit Button
 
-- Full-width on mobile, left-aligned on desktop
-- Label: `Send enquiry`
-- Loading state: replace label with a spinner and `Sending...`
-- Disabled state during submission
+Full-width on mobile. Label: `Send enquiry`. Loading state: spinner + `Sending...`. Disabled during submission.
 
 ### Email Delivery
 
-**Method:** Use a server-side form handler or a transactional email service (e.g. EmailJS, Formspree, Resend, or a lightweight backend endpoint). Developer to confirm implementation approach.
+**Recipient:** `automate@sixense.com.au`  
+**Reply-to:** Submitter's email address  
+**Method:** Server-side handler or transactional service (Resend, Formspree, EmailJS — developer to confirm)
 
-**Recipient:** `rodney.ellias@sixense.com.au`  
-**Reply-to:** Set to the submitter's email address so replies go directly to them.
-
-**Email subject line:**
+**Subject line:**
 ```
-New enquiry from [First Name] [Last Name] — [Company]
+New enquiry from [Company] via sixense.com.au
 ```
 
-**Email body (plain text format):**
+**Body:**
 ```
 New enquiry received via sixense.com.au
 
-Name: [First Name] [Last Name]
 Company: [Company]
+Name: [First Name] [Last Name]
 Role: [Role]
 Email: [Email]
 Phone: [Phone]
-How they heard about us: [Source]
+How they found us: [Source]
 
-Their message:
+Message:
 ---
 [Inquiry Details]
 ---
@@ -1198,12 +1293,10 @@ Reply directly to this email to respond.
 
 ### Success State
 
-After successful submission (no page reload):
-- Replace the form with:
-
+Replace form with:
 ```
-[Gold checkmark icon — 32px]
-[H3 — Freight Display Pro 500, 22px, --color-ink, margin-top 16px]
+[Cyan checkmark icon — 32px]
+[H3 — Plus Jakarta Sans 600, 22px, --color-ink, margin-top 16px]
 Thanks, [First Name]. We'll be in touch.
 [Body — DM Sans 400, 16px, --color-ink-secondary, margin-top 8px]
 Expect to hear from us within one business day.
@@ -1211,11 +1304,17 @@ Expect to hear from us within one business day.
 
 ### Validation
 
-- Client-side validation before submission
-- Required fields show error on blur if empty
-- Email field validates format
-- No submission until all required fields are valid
-- Honeypot field included for basic spam protection (hidden input, auto-rejected if populated)
+- Client-side, on blur for required fields
+- Email format validated
+- Honeypot hidden field for spam protection
+- No submission until all required fields valid
+
+**Privacy consent note — below submit button:**
+```
+[DM Sans 400, 12px, --color-ink-tertiary]
+By submitting this form, you agree to Sixense contacting you regarding your
+enquiry. We don't share your details with third parties.
+```
 
 ---
 
@@ -1223,60 +1322,40 @@ Expect to hear from us within one business day.
 
 ### Global Navigation
 
-See Component 7.2 for full navigation specification.
-
-**Navigation links and destinations:**
-
-| Label | Path |
-|---|---|
-| Home | `/` |
-| What We Do | `/what-we-do` |
-| How We Work | `/how-we-work` |
-| Our Outcomes | `/our-outcomes` |
-| About | `/about` |
-| Book a Fit Call (button) | `/contact` |
-
-**Active state:** Current page link uses `--color-gold` text.
+See Component 7.2.
 
 ### Footer
 
 **Background:** `--color-paper-dark`  
 **Vertical padding:** 64px top, 40px bottom
 
-**Layout (desktop):** Three columns
+**Three-column layout desktop:**
 
 **Column 1 — Brand:**
-- Logo: reversed variant (white mark, white wordmark)
-- Tagline below logo: `connected thinking` — DM Sans 400, 13px, `rgba(245,243,238,0.45)`
-- Below tagline (margin-top 24px): DM Sans 400, 13px, `rgba(245,243,238,0.4)`:
-  `© 2026 Sixense Pty Ltd. All rights reserved.`  
+- Logo: reversed variant (mark + wordmark, no tagline), 110px wide, mark in `#00C2FF`
+- Below logo (margin-top 24px): DM Sans 400, 13px, `rgba(245,243,238,0.4)`:
+  `© 2026 Sixense Pty Ltd. All rights reserved.`
   `ABN: [TO BE SUPPLIED BY CLIENT]`
 
 **Column 2 — Navigation:**
-- Heading: `Site` — DM Sans 500, 11px, `rgba(245,243,238,0.4)`, uppercase, letter-spacing 0.1em
-- Links stacked, DM Sans 400, 14px, `rgba(245,243,238,0.65)`, hover `--color-paper`:
-  - Home
-  - What We Do
-  - How We Work
-  - Our Outcomes
-  - About
-  - Contact
+- Heading: `Site` — DM Sans 600, 11px, `rgba(245,243,238,0.4)`, uppercase, letter-spacing 0.1em
+- Links: DM Sans 400, 14px, `rgba(245,243,238,0.65)`. Hover: `--color-accent`
+- Home / What We Do / How We Work / Our Outcomes / About / Contact
 
 **Column 3 — Contact:**
-- Heading: `Get in touch` — same style as Column 2 heading
-- Email: `rodney.ellias@sixense.com.au` — DM Sans 400, 14px, `--color-gold`
+- Heading: `Get in touch` — same style
+- Email: `automate@sixense.com.au` — DM Sans 400, 14px, `--color-accent`
 - Below (margin-top 16px): `Book a free Fit Call →` — ghost-on-dark button
 
-**Bottom bar (below a 1px `rgba(245,243,238,0.1)` divider, margin-top 40px):**
+**Bottom bar** (below 1px `rgba(245,243,238,0.1)` divider, margin-top 40px):
 
-Fine print — DM Sans 400, 12px, `rgba(245,243,238,0.3)`, displayed as a single row on desktop, wrapped on mobile:
-
+DM Sans 400, 12px, `rgba(245,243,238,0.3)`, single row desktop, wrapped mobile:
 ```
-Privacy Policy  ·  Terms of Use  ·  This site does not use cookies for tracking.  
+Privacy Policy  ·  Terms of Use  ·  This site does not use cookies for tracking.
 Sixense is committed to the responsible and ethical use of AI.
 ```
 
-Privacy Policy and Terms of Use should link to `/privacy` and `/terms` respectively. These pages can be minimal placeholder pages initially with standard boilerplate text — developer to supply or client to provide content.
+Privacy Policy → `/privacy`. Terms of Use → `/terms`.
 
 ---
 
@@ -1284,29 +1363,17 @@ Privacy Policy and Terms of Use should link to `/privacy` and `/terms` respectiv
 
 ### Supplied Assets
 
-The following image files are provided by the client and must be embedded as-is. No filters, colour treatments or overlays should be applied.
-
-| File | Usage | Page | Section |
+| File | Usage | Page | Notes |
 |---|---|---|---|
-| `Sixense-Transparent.avif` | Logo source reference (for rework — see Section 3) | All pages | Header & footer |
-| `Working_backwards.avif` | Inline illustrative image | How We Work | "We work backwards from the outcome" section |
-| `Start-small-prove-value-scale-smart.avif` | Inline illustrative image | How We Work | "We build in short cycles" section |
+| `Sixense-Transparent.avif` | Logo source reference | All pages | Rework per Section 3 |
+| `Working_backwards.avif` | Inline illustration | How We Work | Section 2 — displayed as-is |
+| `Start-small-prove-value-scale-smart.avif` | Inline illustration | How We Work | Section 3 — displayed as-is |
 
-**Image display spec for the two How We Work images:**
-
-Both images are hand-drawn sketch-style illustrations on a white/light background. Display within a contained rounded panel:
-
-- Container: `background: --color-paper-secondary`, `border-radius: --radius-xl`, `padding: 32px`
+**Image display for the two How We Work illustrations:**
+- Container: `background: --color-paper-secondary`, `border-radius: --radius-xl`, padding 32px
+- `align-self: flex-start` — critical for correct vertical alignment with adjacent text
 - Image: `max-width: 100%`, `height: auto`, `display: block`
-- No border on the image itself
-- No caption required
-
-### Placeholder / Stock Photography
-
-No additional photography has been specified. The design intentionally avoids photography as a primary visual device, using typographic hierarchy, whitespace and section colour contrast instead. If the client wishes to add photography in future, the following zones have been reserved:
-
-- Hero sections (full-bleed behind dark overlay)
-- About page team section (if headshots are supplied)
+- No filters, overlays or colour treatments
 
 ---
 
@@ -1314,35 +1381,142 @@ No additional photography has been specified. The design intentionally avoids ph
 
 ### Principles
 
-- Animations serve clarity, not decoration.
-- All motion respects `prefers-reduced-motion` — if enabled, all animations are disabled.
-- No parallax. No scroll-jacking. Standard page scroll only.
+- Animation serves clarity, not decoration.
+- All motion respects `prefers-reduced-motion`.
+- No parallax. No scroll-jacking.
+
+### Watermark Animation
+
+Applied to all dark sections (hero and closing CTA on every page).
+
+```html
+<div class="section-watermark" aria-hidden="true">
+  <svg class="watermark-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <!-- Use exact traced SVG paths from Sixense-Transparent.avif -->
+    <!-- Approximate geometry shown — replace with traced logo paths -->
+    <polygon class="hex hex-1" points="100,18 122,31 122,57 100,70 78,57 78,31"
+      stroke="#00C2FF" stroke-width="1.5"/>
+    <polygon class="hex hex-2" points="126,62 148,75 148,101 126,114 104,101 104,75"
+      stroke="#00C2FF" stroke-width="1.5"/>
+    <polygon class="hex hex-3" points="74,62 96,75 96,101 74,114 52,101 52,75"
+      stroke="#00C2FF" stroke-width="1.5"/>
+    <circle class="hub" cx="100" cy="88" r="3" fill="#00C2FF"/>
+    <line class="spoke spoke-1" x1="100" y1="85" x2="100" y2="68" stroke="#00C2FF" stroke-width="1"/>
+    <line class="spoke spoke-2" x1="100" y1="88" x2="118" y2="95" stroke="#00C2FF" stroke-width="1"/>
+    <line class="spoke spoke-3" x1="100" y1="88" x2="82" y2="95" stroke="#00C2FF" stroke-width="1"/>
+  </svg>
+</div>
+```
+
+```css
+.section-watermark {
+  position: absolute;
+  right: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 520px;
+  height: 520px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.watermark-mark {
+  width: 100%;
+  height: 100%;
+  opacity: 0.07;
+}
+
+.hex {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: hexDraw 5s ease-in-out infinite;
+}
+.hex-1 { animation-delay: 0s; }
+.hex-2 { animation-delay: 0.7s; }
+.hex-3 { animation-delay: 1.4s; }
+
+.hub {
+  opacity: 0;
+  animation: hubAppear 5s ease-in-out infinite;
+  animation-delay: 2.1s;
+}
+
+.spoke {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: spokeDraw 0.6s ease-out infinite;
+}
+.spoke-1 { animation-delay: 2.2s; }
+.spoke-2 { animation-delay: 2.4s; }
+.spoke-3 { animation-delay: 2.6s; }
+
+@keyframes hexDraw {
+  0%   { stroke-dashoffset: 300; opacity: 0; }
+  15%  { opacity: 1; }
+  50%  { stroke-dashoffset: 0; opacity: 1; }
+  80%  { stroke-dashoffset: 0; opacity: 0.6; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes hubAppear {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes spokeDraw {
+  0%   { stroke-dashoffset: 40; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@media (max-width: 767px) {
+  .section-watermark {
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 260px;
+    height: 260px;
+  }
+  .watermark-mark { opacity: 0.04; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hex, .hub, .spoke {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 0.07;
+  }
+}
+```
+
+Dark section containers must have `position: relative; overflow: hidden`. All content inside at `z-index: 1`.
 
 ### Scroll-triggered Entrance Animations
 
-Apply a simple fade-up entrance to:
-- Section headings (on entering viewport)
-- Body text blocks (slight delay after heading)
-- Cards (staggered, 80ms delay between each in a grid)
+```css
+/* Starting state applied via JS on page load */
+.animate-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.animate-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+```
 
-Fade-up spec:
-- Starting state: `opacity: 0; transform: translateY(20px)`
-- End state: `opacity: 1; transform: translateY(0)`
-- Duration: `500ms`
-- Easing: `cubic-bezier(0.25, 0.46, 0.45, 0.94)`
-- Trigger: element 10% into viewport (IntersectionObserver, threshold 0.1)
+Apply to: section headings, body text blocks, cards (staggered 80ms per card). Trigger via IntersectionObserver at 10% visibility threshold.
 
 ### Hover States
 
-- Nav links: colour transition to `--color-gold`, `200ms ease`
-- Cards (Outcome and service cards): border-color to `--color-gold`, `200ms ease`
-- Buttons: background/border colour, `200ms ease`
-- Footer links: opacity from 0.65 to 1.0, `150ms ease`
-- Logo mark: a subtle 200ms rotation of 5° on hover (mark only, not wordmark) — optional, implement only if achievable cleanly
+- Nav links: colour → `--color-accent`, 200ms ease
+- Cards: border-color → `--color-accent`, translateY(-4px), 200ms ease
+- Buttons: background/border colour, 200ms ease
+- Footer links: opacity 0.65 → 1.0, 150ms ease
 
 ### Page Transitions
 
-Simple fade: outgoing page fades to 0 opacity over 150ms, incoming fades in over 250ms. Implement using CSS transitions on a root wrapper or a lightweight JS router approach.
+Fade out 150ms, fade in 250ms on root wrapper.
 
 ---
 
@@ -1350,24 +1524,16 @@ Simple fade: outgoing page fades to 0 opacity over 150ms, incoming fades in over
 
 ### Stack
 
-Developer is free to choose stack. The following guidance applies:
-
-- **Static site generator or lightweight framework preferred.** Astro, Next.js (static export) or plain HTML/CSS/JS are all acceptable. No WordPress or heavy CMS required unless the client requests one in future.
-- **No client-side framework required** — the site is largely static content with one interactive form.
-- **CSS:** Use CSS custom properties (variables) for all palette tokens and spacing. No CSS-in-JS required.
-- **Fonts:** Load DM Sans from Google Fonts. Freight Display Pro requires an Adobe Fonts account (or equivalent licence). Use `font-display: swap` on all web fonts.
+Static site generator preferred — Astro, Next.js (static export) or plain HTML/CSS/JS. No CMS required. CSS custom properties for all tokens. `font-display: swap` on all web fonts.
 
 ### Performance
 
-- Lighthouse score targets: Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95, SEO ≥ 95
-- All images served in modern formats (AVIF/WebP with fallback)
-- Images lazy-loaded below the fold
-- Core Web Vitals targets: LCP < 2.5s, CLS < 0.1, FID/INP < 200ms
-- No unnecessary JavaScript. Keep JS payload minimal.
+- Lighthouse targets: Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 95, SEO ≥ 95
+- Images: AVIF/WebP with fallback, lazy-loaded below fold
+- Core Web Vitals: LCP < 2.5s, CLS < 0.1, INP < 200ms
+- Minimal JS payload
 
-### SEO
-
-**Meta titles and descriptions (per page):**
+### SEO — Meta per page
 
 | Page | Title | Description |
 |---|---|---|
@@ -1378,9 +1544,7 @@ Developer is free to choose stack. The following guidance applies:
 | About | `About Sixense — automation & AI consultancy` | `We've been building for Australian businesses since 2012. A small, senior local team backed by a 30-person delivery centre.` |
 | Contact | `Contact Sixense — book a free Fit Call` | `Get in touch to book a free 30-minute Fit Call. No pitch — just an honest conversation about whether there's something worth solving.` |
 
-**Canonical URLs:** Set `<link rel="canonical">` on all pages.  
-**Open Graph:** Include `og:title`, `og:description`, `og:image` (use logo mark on dark background as default OG image, 1200×630px).  
-**Structured data:** Add `Organization` schema markup on the home page.
+Canonical URLs on all pages. Open Graph tags. `Organization` schema markup on home page.
 
 ### Responsive Breakpoints
 
@@ -1390,21 +1554,15 @@ Developer is free to choose stack. The following guidance applies:
 | Tablet | 768px–1279px |
 | Desktop | ≥ 1280px |
 
-All layouts must be fully functional and visually correct at all three breakpoints. Test at 375px (iPhone SE), 768px (iPad portrait) and 1440px (standard desktop).
+Test at 375px, 768px and 1440px.
 
 ### Browser Support
 
-- Chrome (last 2 versions)
-- Safari (last 2 versions)
-- Firefox (last 2 versions)
-- Edge (last 2 versions)
-- iOS Safari 15+
-- Android Chrome (last 2 versions)
+Chrome, Safari, Firefox, Edge (last 2 versions each). iOS Safari 15+. Android Chrome (last 2 versions).
 
-### Hosting & Domain
+### Hosting
 
-- Developer to confirm with client. Recommended: Vercel, Netlify or Cloudflare Pages for a static/Astro build. All support HTTPS by default.
-- Domain: `sixense.com.au` (client to manage DNS)
+Vercel, Netlify or Cloudflare Pages recommended. Domain: `sixense.com.au` (client manages DNS). HTTPS required.
 
 ---
 
@@ -1414,38 +1572,39 @@ All layouts must be fully functional and visually correct at all three breakpoin
 
 - All interactive elements keyboard-navigable in logical order
 - All images have descriptive `alt` text (specified per section above)
-- Colour contrast ratios meet WCAG AA: minimum 4.5:1 for body text, 3:1 for large text and UI elements
-- Focus indicators visible on all interactive elements (gold outline specified in button spec)
-- Form fields have associated `<label>` elements (not placeholder-only)
-- Screen reader landmarks: `<header>`, `<nav>`, `<main>`, `<footer>`, `<section>` with `aria-label` where needed
+- WCAG AA contrast: minimum 4.5:1 body text, 3:1 large text and UI elements
+- `#00C2FF` on `#1A1A18`: ~9.5:1 ✓. `#0099CC` on `#F5F3EE`: ~4.6:1 ✓
+- Focus indicators visible on all interactive elements
+- Form fields have associated `<label>` elements
+- Screen reader landmarks: `<header>`, `<nav>`, `<main>`, `<footer>`, `<section>` with `aria-label`
 - Skip-to-main-content link at top of page (visually hidden until focused)
+- Watermark SVG has `aria-hidden="true"`
 
 ### Legal Pages
 
-**Required pages (minimal):**
+`/privacy` — Privacy Policy (client to supply content)  
+`/terms` — Terms of Use (client to supply content)
 
-`/privacy` — Privacy Policy  
-`/terms` — Terms of Use
+Both use standard site template (nav + footer).
 
-Both pages should use the standard site template (nav + footer). Body content can be boilerplate text initially. Client to supply final legal copy or engage a legal copywriter.
+### Footer Fine Print
 
-**Footer fine print (see Section 10):**
-- © 2026 Sixense Pty Ltd. All rights reserved.
-- ABN: [CLIENT TO SUPPLY]
-- Privacy Policy link
-- Terms of Use link
-- Cookie notice: `This site does not use cookies for tracking.`
+```
+© 2026 Sixense Pty Ltd. All rights reserved.
+ABN: [CLIENT TO SUPPLY]
+Privacy Policy  ·  Terms of Use  ·  This site does not use cookies for tracking.
+Sixense is committed to the responsible and ethical use of AI.
+```
 
-**Trademark:** The Sixense name and logo are proprietary to Sixense Pty Ltd. The footer ™ notation is not required unless the client has registered the trademark — client to advise.
+### Form Data & Privacy
 
-### Forms & Data
-
-- Contact form submissions should not be stored in a client-side database unless the developer implements a secure backend
-- If using a third-party form service (Formspree, EmailJS, etc.), ensure the service's privacy policy is referenced in the Sixense Privacy Policy
-- GDPR/Australian Privacy Act compliance: the contact form should include a brief consent note: `By submitting this form, you agree to Sixense contacting you regarding your enquiry. We don't share your details with third parties.` — displayed below the submit button in DM Sans 400, 12px, `--color-ink-tertiary`.
+- Contact form submissions not stored client-side
+- If using third-party form service, reference its privacy policy in Sixense Privacy Policy
+- Consent note on form: `By submitting this form, you agree to Sixense contacting you regarding your enquiry. We don't share your details with third parties.`
+- Australian Privacy Act compliant
 
 ---
 
-*End of specification.*
-
-*For questions regarding this brief, contact rodney.ellias@sixense.com.au*
+*End of specification.*  
+*Single source of truth — all previous versions superseded.*  
+*Questions: automate@sixense.com.au*

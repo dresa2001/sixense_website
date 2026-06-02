@@ -42,7 +42,6 @@ const currentPath = Astro.url.pathname;
     </button>
   </nav>
 
-  <!-- Mobile overlay -->
   <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
     <div class="mobile-menu-inner">
       <div class="mobile-menu-links">
@@ -58,21 +57,15 @@ const currentPath = Astro.url.pathname;
 <style>
   header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
     background: rgba(245, 243, 238, 0.96);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    height: 72px;
+    height: 80px;
     display: flex;
     align-items: center;
-    transition: box-shadow 200ms ease;
-  }
-
-  header.scrolled {
-    box-shadow: 0 1px 0 var(--color-border);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .nav-inner {
@@ -91,17 +84,14 @@ const currentPath = Astro.url.pathname;
   .nav-link {
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--color-ink);
     text-decoration: none;
     transition: color 200ms ease;
     white-space: nowrap;
   }
-
   .nav-link:hover,
-  .nav-link.active {
-    color: var(--color-gold);
-  }
+  .nav-link.active { color: var(--color-accent); }
 
   .nav-sep {
     display: block;
@@ -111,16 +101,15 @@ const currentPath = Astro.url.pathname;
     margin-inline: -4px;
   }
 
+  .nav-cta { font-size: 14px; padding: 10px 20px; }
+
   .hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
     padding: 8px;
     cursor: pointer;
-    background: none;
-    border: none;
   }
-
   .hamburger span {
     display: block;
     width: 20px;
@@ -130,7 +119,6 @@ const currentPath = Astro.url.pathname;
     transition: all 200ms ease;
   }
 
-  /* Mobile menu */
   .mobile-menu {
     position: fixed;
     inset: 0;
@@ -139,10 +127,7 @@ const currentPath = Astro.url.pathname;
     display: flex;
     flex-direction: column;
   }
-
-  .mobile-menu[hidden] {
-    display: none;
-  }
+  .mobile-menu[hidden] { display: none; }
 
   .mobile-menu-inner {
     display: flex;
@@ -161,17 +146,13 @@ const currentPath = Astro.url.pathname;
 
   .mobile-link {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 700;
     font-size: 28px;
     color: var(--color-paper);
     text-decoration: none;
   }
 
-  .mobile-cta {
-    width: 100%;
-    text-align: center;
-    margin-top: auto;
-  }
+  .mobile-cta { width: 100%; text-align: center; margin-top: auto; }
 
   @media (max-width: 767px) {
     .nav-links { display: none; }
@@ -181,10 +162,10 @@ const currentPath = Astro.url.pathname;
 
 <script>
   const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
+  const menu   = document.getElementById('mobile-menu');
 
   toggle?.addEventListener('click', () => {
-    const isOpen = menu?.hasAttribute('hidden') === false;
+    const isOpen = !menu?.hasAttribute('hidden');
     if (isOpen) {
       menu?.setAttribute('hidden', '');
       toggle.setAttribute('aria-expanded', 'false');

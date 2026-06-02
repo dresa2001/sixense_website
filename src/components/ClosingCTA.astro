@@ -1,4 +1,6 @@
 ---
+import Watermark from './Watermark.astro';
+
 interface Props {
   heading?: string;
   body?: string;
@@ -15,12 +17,13 @@ const {
 ---
 
 <section class="section section-dark closing-cta" aria-labelledby="cta-heading">
+  <Watermark />
   <div class="container cta-inner">
-    <h2 id="cta-heading" class="fade-up">{heading}</h2>
-    <p class="fade-up" data-delay="80ms">{body}</p>
-    <a href="/contact" class="btn btn-primary fade-up" data-delay="160ms">{ctaLabel}</a>
+    <h2 id="cta-heading" class="animate-in">{heading}</h2>
+    <p class="animate-in" data-delay="80ms">{body}</p>
+    <a href="/contact" class="btn btn-primary animate-in" data-delay="160ms">{ctaLabel}</a>
     {showContactLink && (
-      <a href="/contact" class="contact-link fade-up" data-delay="200ms">Or contact us →</a>
+      <a href="/contact" class="contact-link animate-in" data-delay="200ms">Or contact us →</a>
     )}
   </div>
 </section>
@@ -42,18 +45,17 @@ const {
 
   .cta-inner h2 {
     color: var(--color-paper);
-    font-size: 36px;
+    font-size: var(--text-h2);
   }
 
   .cta-inner p {
     color: rgba(245, 243, 238, 0.65);
     font-size: 18px;
     line-height: 1.7;
+    margin: 0;
   }
 
-  .cta-inner .btn {
-    margin-top: var(--space-2);
-  }
+  .cta-inner .btn { margin-top: var(--space-2); }
 
   .contact-link {
     font-family: var(--font-body);
@@ -63,8 +65,5 @@ const {
     text-decoration: none;
     transition: color 200ms ease;
   }
-
-  .contact-link:hover {
-    color: var(--color-paper);
-  }
+  .contact-link:hover { color: var(--color-paper); }
 </style>

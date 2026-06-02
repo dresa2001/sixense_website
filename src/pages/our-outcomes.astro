@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ClosingCTA from '../components/ClosingCTA.astro';
+import Watermark from '../components/Watermark.astro';
 
 const outcomes = [
   {
+    icon: 'truck',
     sector: 'National passenger transport operator — ~1,000 staff, 500+ vehicles',
     heading: 'Fleet visibility & dispatch intelligence',
     challenge: 'No live visibility of fleet position, driver status or fare availability. Dispatch operated blind.',
@@ -12,6 +14,7 @@ const outcomes = [
     tags: ['IoT', 'Real-time data pipeline', 'Web platform', 'AI-ready foundation'],
   },
   {
+    icon: 'receipt',
     sector: 'National private healthcare operator',
     heading: 'Integrated billing operations',
     challenge: 'Two billing systems with no integration. Staff manually bridging the gap — rekeying, reconciling and chasing errors.',
@@ -20,6 +23,7 @@ const outcomes = [
     tags: ['System integration', 'Data pipeline', 'AI document understanding'],
   },
   {
+    icon: 'lightning',
     sector: 'Major Australian utility — national grid operations',
     heading: 'Energy dispatch optimisation platform',
     challenge: 'Three years of planning with no working solution. Dispatch decisions made without real-time inputs. Stakeholders losing confidence.',
@@ -28,14 +32,16 @@ const outcomes = [
     tags: ['Real-time data ingestion', 'Optimisation engine', 'Decision support'],
   },
   {
+    icon: 'shield-check',
     sector: 'Major Australian utility — thousands of contractors on high-voltage assets',
     heading: 'Contractor authorisations platform',
-    challenge: 'Paper-based credential management across thousands of contractors. Expired licences and lapsed insurances creating serious safety, legal and compliance exposure.',
+    challenge: 'Paper-based credential management. Expired licences and lapsed insurances creating serious safety, legal and compliance exposure.',
     solution: 'Self-service portal for contractor credential submission. AI-assisted document verification validates licences and insurance documents. Agentic expiry management monitors continuously and triggers automated renewal workflows.',
     outcome: 'Compliance staff shifted from chasing paperwork to managing exceptions. Real-time credential visibility. Industry award winner — now critical operational infrastructure.',
     tags: ['Workflow automation', 'Self-service portal', 'AI document verification', 'Agentic expiry management'],
   },
   {
+    icon: 'device-mobile',
     sector: 'National beverage & distribution company — 100+ mobile sales reps',
     heading: 'Digital field sales platform',
     challenge: 'Over 100 field reps operating from printed order books and static inventory lists — outdated before they arrived on site.',
@@ -44,6 +50,7 @@ const outcomes = [
     tags: ['Mobile platform', 'Live system integration', 'Workflow automation'],
   },
   {
+    icon: 'currency-dollar',
     sector: 'National logistics provider',
     heading: 'Invoicing & reconciliation automation',
     challenge: 'Entire invoicing cycle managed through manual email exchanges. Order matching, invoice distribution and reconciliation all dependent on people — slow, error-prone and unscalable.',
@@ -51,6 +58,13 @@ const outcomes = [
     outcome: 'End-to-end finance operations with minimal human intervention. Faster invoicing, fewer errors, better cashflow visibility.',
     tags: ['Finance workflow automation', 'Agentic AI', 'Document intelligence'],
   },
+];
+
+const stats = [
+  { icon: 'buildings', number: '6', label: 'Case studies' },
+  { icon: 'trophy', number: '1', label: 'Industry award' },
+  { icon: 'timer', number: '<30 days', label: 'Fastest delivery' },
+  { icon: 'map-pin', number: 'Australia-wide', label: 'Where we operate' },
 ];
 ---
 
@@ -60,16 +74,27 @@ const outcomes = [
 >
   <!-- Hero -->
   <section class="hero section-dark" aria-labelledby="outcomes-heading">
+    <Watermark />
     <div class="container">
       <span class="section-label">Our outcomes</span>
-      <h1 id="outcomes-heading" class="fade-up" style="color:var(--color-paper)">
+      <h1 id="outcomes-heading" class="animate-in" style="color:var(--color-paper)">
         Work we're proud of.
       </h1>
-      <p class="fade-up" data-delay="80ms" style="font-size:18px;color:rgba(245,243,238,0.65);max-width:580px;margin-top:var(--space-3);line-height:1.7">
-        Every engagement here started with a business leader who could see a
-        problem or an opportunity — and needed a team to build toward it.
-        These are some of the solutions we've delivered.
+      <p class="animate-in" data-delay="80ms" style="font-size:18px;color:rgba(245,243,238,0.65);max-width:580px;margin-top:var(--space-3);line-height:1.7">
+        Every engagement here started with a business leader who could see a problem or
+        an opportunity — and needed a team to build toward it. These are some of the
+        solutions we've delivered.
       </p>
+
+      <div class="stats-row animate-in" data-delay="160ms">
+        {stats.map(stat => (
+          <div class="stat-item">
+            <ph-icon name={stat.icon} size="20" color="#00C2FF"></ph-icon>
+            <span class="stat-num">{stat.number}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -78,10 +103,12 @@ const outcomes = [
     <div class="container">
       <div class="outcomes-grid">
         {outcomes.map((card, i) => (
-          <article class="outcome-card fade-up" data-delay={`${(i % 2) * 80}ms`} aria-labelledby={`outcome-${i}`}>
+          <article class="outcome-card animate-in" data-delay={`${(i % 2) * 80}ms`} aria-labelledby={`outcome-${i}`}>
             <p class="card-sector">{card.sector}</p>
-            <h2 id={`outcome-${i}`} class="outcome-heading">{card.heading}</h2>
-
+            <h2 id={`outcome-${i}`} class="outcome-heading">
+              <ph-icon name={card.icon} size="20" color="#00C2FF" style="display:inline;vertical-align:middle;margin-right:8px"></ph-icon>
+              {card.heading}
+            </h2>
             <div class="outcome-block">
               <span class="card-label">Challenge</span>
               <p class="outcome-body">{card.challenge}</p>
@@ -94,11 +121,8 @@ const outcomes = [
               <span class="card-label">Outcome</span>
               <p class="outcome-body">{card.outcome}</p>
             </div>
-
             <div class="card-tags">
-              {card.tags.map(tag => (
-                <span class="tag">{tag}</span>
-              ))}
+              {card.tags.map(tag => <span class="tag">{tag}</span>)}
             </div>
           </article>
         ))}
@@ -106,7 +130,6 @@ const outcomes = [
     </div>
   </section>
 
-  <!-- Closing CTA -->
   <ClosingCTA
     heading="See something that looks familiar?"
     body="Most of our clients came to us with a problem they'd been living with for a long time. The Fit Call is the fastest way to find out if we can help."
@@ -116,9 +139,28 @@ const outcomes = [
 </BaseLayout>
 
 <style>
-  .hero {
-    padding-top: 120px;
-    padding-bottom: 80px;
+  .hero { padding-top: 120px; padding-bottom: 80px; }
+
+  .stats-row {
+    display: flex;
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    color: #F5F3EE;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: rgba(245, 243, 238, 0.55);
   }
 
   .outcomes-grid {
@@ -129,26 +171,18 @@ const outcomes = [
 
   .outcome-heading {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 600;
     font-size: 20px;
     color: var(--color-ink);
     margin-bottom: var(--space-3);
     line-height: 1.3;
   }
-
-  .outcome-block {
-    margin-bottom: var(--space-2);
-  }
-
-  .outcome-body {
-    font-size: 15px;
-    color: var(--color-ink-secondary);
-    line-height: 1.6;
-    margin: 0;
-  }
+  .outcome-block { margin-bottom: var(--space-2); }
+  .outcome-body { font-size: 15px; color: var(--color-ink-secondary); line-height: 1.6; margin: 0; }
 
   @media (max-width: 767px) {
     .hero { padding-top: 112px; }
     .outcomes-grid { grid-template-columns: 1fr; }
+    .stats-row { gap: var(--space-3); }
   }
 </style>
