@@ -32,6 +32,7 @@ const principles = [
 
   <!-- We Work Backwards -->
   <section class="section" aria-labelledby="backwards-heading">
+    <Watermark variant="light" side="right" />
     <div class="container two-col two-col-50-50">
       <div>
         <span class="section-label">Our approach</span>
@@ -75,6 +76,7 @@ const principles = [
 
   <!-- Short Cycles -->
   <section class="section section-secondary" aria-labelledby="cycles-heading">
+    <Watermark variant="light" side="left" />
     <div class="container two-col two-col-50-50">
       <div class="image-container animate-in">
         <img
@@ -105,6 +107,7 @@ const principles = [
 
   <!-- Team Structure -->
   <section class="section" aria-labelledby="team-heading">
+    <Watermark variant="light" side="right" />
     <div class="container two-col two-col-40-55">
       <div>
         <span class="section-label">Our team</span>
@@ -143,6 +146,7 @@ const principles = [
 
   <!-- How We Build -->
   <section class="section section-secondary" aria-labelledby="build-heading">
+    <Watermark variant="light" side="left" />
     <div class="container">
       <h2 id="build-heading" class="animate-in" style="text-align:center;margin-bottom:var(--space-5)">
         How we build
@@ -161,6 +165,7 @@ const principles = [
 
   <!-- What Working With Us Looks Like -->
   <section class="section" aria-labelledby="expect-heading">
+    <Watermark variant="light" side="right" />
     <div class="container expect-inner">
       <span class="section-label" style="justify-content:center">What to expect</span>
       <h2 id="expect-heading" class="animate-in" style="text-align:center">
@@ -178,7 +183,12 @@ const principles = [
     </div>
   </section>
 
-  <ClosingCTA />
+  <ClosingCTA
+    heading="Sound familiar?"
+    body=""
+    ctaLabel="Book a free Fit Call →"
+    showContactLink={false}
+  />
 </BaseLayout>
 
 <style>

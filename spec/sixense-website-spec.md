@@ -1,5 +1,5 @@
 # Sixense Website — Complete Design & Development Specification
-**Version:** 3.0 (Final)  
+**Version:** 4.0 (Final)  
 **Date:** June 2026  
 **Contact:** automate@sixense.com.au  
 **Note:** This is the single source of truth. All previous spec versions are superseded.
@@ -79,36 +79,67 @@ The supplied file `Sixense-Transparent.avif` is the source reference. The mark (
 ### Mark Rework
 
 **Geometry:**
-- Three hexagons, each rotated 120° from one another, overlapping at a central point
-- Stroke weight: 2px, no fill, precision corners with corner radius 2px maximum
-- Central hub: filled circle, 6px diameter, at intersection of all three hexagons
-- Three spokes: 1.5px lines radiating from the hub to each hexagon's inner vertex
+- Three hexagons arranged in a trefoil, each rotated 120° from one another, meeting at a central hub
+- Stroke weight: 2.5px, no fill, rounded corners (corner radius: 5px using quadratic Bezier curves — not sharp mitre joins)
+- The connecting spokes must radiate cleanly from the hub centre to the inner vertex of each hexagon. Spokes should be trimmed so they terminate just inside the hexagon perimeter — they must not visually float between hexagons. This is a critical geometry fix: spokes meet the hexagons at their inner edge, not in mid-air
+- Central hub: filled circle, 7px diameter, at the exact intersection point of all three hexagon inner vertices
+- Three spokes: 1.5px lines from hub to each hexagon inner vertex, trimmed to ~55% of the hub-to-centre distance
 
 **Colour:**
 - Mark on dark backgrounds (`#1A1A18`): `#00C2FF`
 - Mark on light backgrounds (`#F5F3EE`, `#EDEAE3`): `#0099CC` (deeper cyan — maintains 4.5:1 contrast)
-- Mark is never rendered in the primary dark as a fill
+- Mark is never rendered as a flat dark fill
 
 **Wordmark:**
 - Font: Plus Jakarta Sans, weight 700
 - Text: `sixense` — all lowercase
 - Tracking: 0.02em
 - Colour: `#F5F3EE` on dark backgrounds; `#1A1A18` on light backgrounds
+- **The dot above the letter "i" in "sixense" must be rendered in `#00C2FF` (electric cyan).** This requires the wordmark to be implemented as SVG text with a custom glyph override or as a layered SVG where the tittle (dot) of the "i" is separately coloured. This is a distinctive brand detail and must be present in all logo instances including nav, footer, and any rendered image assets.
 
 **Tagline:** None. Removed from all instances.
 
 **Proportions:**
-- Mark width : wordmark width ≈ 1 : 2.2
+- Mark width : wordmark width ≈ 1 : 2.4 (mark should feel prominent, not undersized relative to text)
 - Mark and wordmark vertically centred
 - Clearspace: minimum padding equal to the height of the letter "s" on all sides
 
 **Variants required:**
-- Full horizontal lockup (mark + wordmark) — nav and general use
+- Full horizontal lockup (mark + wordmark with cyan "i" dot) — nav and general use
 - Mark only — favicon, small contexts
-- Reversed (white mark + white wordmark) — dark backgrounds
-- Monochrome dark — single `#1A1A18` version
+- Reversed (white mark + white wordmark, cyan "i" dot retained) — dark backgrounds
+- Monochrome dark — single `#1A1A18` version (cyan "i" dot becomes dark ink)
 
-**Nav sizing:** Minimum 140px wide on desktop, 110px on mobile. Set `flex-shrink: 0` on the logo container.
+**Nav sizing:** Minimum 160px wide on desktop, 130px on mobile. Set `flex-shrink: 0` on the logo container. The logo must feel prominent in the nav — not tucked away.
+
+### Logo Hover Animation
+
+When a user hovers over the logo in the nav, animate the hexagonal mark only (not the wordmark). Two options — implement whichever is cleaner at the chosen stack:
+
+**Option A — Pulse:**
+```css
+.nav-logo:hover .logo-mark {
+  animation: logoPulse 600ms ease-in-out;
+}
+@keyframes logoPulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+```
+
+**Option B — Spin:**
+```css
+.nav-logo:hover .logo-mark {
+  animation: logoSpin 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes logoSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(120deg); }
+}
+```
+
+120° rotation is preferred for spin as it returns the trefoil mark to a visually identical position (rotational symmetry). Apply `transform-origin: center` on the mark SVG group. The wordmark must not move during this animation.
 
 **Favicon:**
 - 32×32px and 16×16px: mark only, `#00C2FF` on transparent background
@@ -387,7 +418,19 @@ See Section 4 — Typography. Apply `.section-label` class universally.
 
 ### 7.6 Watermark
 
-See Amendment Section in 12 — Animations. Applies to all dark sections.
+The watermark appears **across all pages and all section types** — not only dark sections. It is always subtle and never competes with content.
+
+**Two opacity levels:**
+- Dark sections (`--color-paper-dark`): `opacity: 0.07` — cyan stroke on dark background
+- Light sections (`--color-paper`, `--color-paper-secondary`): `opacity: 0.04` — use `--color-accent-deep` (`#0099CC`) stroke on light backgrounds for subtlety
+
+**Placement rules:**
+- Every dark section (hero, closing CTAs, footer): right side, partially bleeding off-screen
+- Every light content section: positioned to the far right or far left, alternating per section, partially clipped by `overflow: hidden`. Never centred over text content.
+- The watermark is always `position: absolute`, `z-index: 0`. All content is `z-index: 1`.
+- On mobile: reduce to 240px, centred, opacity halved again
+
+See Section 12 for full CSS and animation code.
 
 ### 7.7 How We Build — Principle Blocks
 
@@ -413,28 +456,27 @@ border-radius: 0;  /* left border only — no rounded corners */
 
 **Background:** `--color-paper-dark`  
 **Vertical padding:** 160px top, 120px bottom  
-**Layout:** Single column, max-width 760px, left-aligned  
-**Watermark:** Yes — see Section 12
+**Layout:** Full viewport width — no max-width constraint on the section itself. Content inside is left-aligned with standard horizontal padding (80px desktop, 32px tablet, 20px mobile). The hero bleeds edge-to-edge.  
+**Watermark:** Yes — right side, large (520px), opacity 0.07
 
 ```
 [.section-label]
-Automation & AI for operators
+Automation & AI for operations leaders
 
-[H1 hero — Plus Jakarta Sans 700, --text-hero, #F5F3EE, letter-spacing -0.02em]
-Still running on
-manual and people?
+[H1 hero — Plus Jakarta Sans 700, --text-hero, #F5F3EE, letter-spacing -0.02em, max-width 800px]
+You already know what better looks like.
+What's the hold up?
 
-[Body lg — DM Sans 400, 20px, rgba(245,243,238,0.65), max-width 520px, margin-top 24px]
+[Body lg — DM Sans 400, 20px, rgba(245,243,238,0.65), max-width 560px, margin-top 24px]
 Most business leaders we talk to have been living with the same operational
 frustrations for years — assuming it would be too expensive or too complex
 to fix. It's usually none of those things.
 
 [Primary CTA button — margin-top 40px]
 Book a free Fit Call — no pitch, 30 minutes
-
-[Sub-note — DM Sans 400, 13px, rgba(245,243,238,0.4), margin-top 12px]
-Free 30-minute conversation. No pitch.
 ```
+
+No sub-note below the button. The button stands alone.
 
 ---
 
@@ -471,8 +513,9 @@ that actually needs them.
 
 **Background:** `--color-paper-secondary`  
 **Vertical padding:** `--space-7`  
-**Layout:** Single column, left-aligned, max-width 700px
+**Layout:** Two-column desktop — left column (55%) contains the label, heading and body text; right column (40%, offset 5%) contains the three icon blocks stacked vertically. Single column mobile (text first, icons below).
 
+**Left column:**
 ```
 [.section-label] Who we work with
 
@@ -486,15 +529,20 @@ They know their industry deeply. They don't need to know anything about
 technology — that's our job.
 ```
 
-**Icon row — three columns below text, margin-top 48px:**
+**Right column — three icon blocks stacked vertically, spaced 32px apart:**
 
-Each column: icon (40px) in 64px circle, label (Plus Jakarta Sans 600, 15px, `--color-ink`), sub-label (DM Sans 400, 13px, `--color-ink-secondary`).
+Each block: icon (36px, `--color-accent`) in a 56px circle (`rgba(0,194,255,0.08)`), with label and sub-label to the right of the icon (horizontal inline layout within each block).
+
+Icons must be rendered as actual Phosphor icons — not blank circles. Ensure the icon component script is loaded before these render.
 
 | Icon | Label | Sub-label |
 |---|---|---|
-| `Truck` | Asset-heavy businesses | Transport, utilities, logistics, infrastructure |
-| `Wrench` | Service-intensive operations | Healthcare, field service, maintenance |
-| `TreeStructure` | Operationally complex | Multi-site, multi-system, high-volume |
+| `Buildings` | Asset-heavy businesses | Real estate, construction, fleet |
+| `Storefront` | Service-intensive operations | Retail, logistics, supply chain |
+| `FolderOpen` | Data & document-rich operations | Finance ops, HR ops, compliance, safety |
+
+**Label:** Plus Jakarta Sans 600, 15px, `--color-ink`  
+**Sub-label:** DM Sans 400, 13px, `--color-ink-secondary`
 
 ---
 
@@ -502,7 +550,7 @@ Each column: icon (40px) in 64px circle, label (Plus Jakarta Sans 600, 15px, `--
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop (40% / 55%), single column mobile
+**Layout:** Two-column desktop (40% / 55%), `align-items: center` on the row — both columns vertically centred relative to each other. Single column mobile.
 
 **Left:**
 ```
@@ -522,9 +570,11 @@ some of Australia's most operationally demanding businesses.
 See our outcomes →
 ```
 
-**Right — three stat blocks, each separated by 1px --color-border line:**
+**Right — three stat blocks, stacked vertically with equal spacing:**
 
-Each block: icon (24px, `--color-accent`) + headline (Plus Jakarta Sans 600, 22px, `--color-ink`) + detail (DM Sans 400, 14px, `--color-ink-tertiary`).
+The right column must be vertically centred relative to the left column content. Use `align-self: center` on the right column container. Each stat block is separated by a 1px `--color-border` line. Padding above the first block and below the last block: 8px minimum so the border lines don't sit flush against the column edges.
+
+Each block: icon (24px, `--color-accent`) + headline (Plus Jakarta Sans 600, 22px, `--color-ink`) + detail (DM Sans 400, 14px, `--color-ink-tertiary`). Padding per block: 20px 0.
 
 | Icon | Headline | Detail |
 |---|---|---|
@@ -568,14 +618,18 @@ Or contact us →  (links to /contact)
 [.section-label] What we do
 
 [H1 — Plus Jakarta Sans 700, --text-h1, #F5F3EE, max-width 720px]
-We fix the operational problems that have been on your list too long.
-And we build the capabilities you haven't been able to reach.
+Fix what's broken. Build what's missing.
 
 [Body — DM Sans 400, 18px, rgba(245,243,238,0.65), max-width 620px, margin-top 24px]
 Some of the businesses we work with have a specific problem they need fixed.
 Others can see an opportunity — a new capability, a better way of operating,
 something a competitor is doing that they can't yet — but have no way to build
 toward it. We do both.
+
+We design and build automation and AI solutions that eliminate operational drag
+and unlock capabilities that were previously out of reach. Each solution is built
+to stand alone and connect forward — so what we build today becomes the
+foundation for something more powerful tomorrow.
 ```
 
 ---
@@ -700,9 +754,47 @@ Label: DM Sans 600, 11px, `--color-accent`, uppercase. Heading: Plus Jakarta San
 
 ---
 
-#### Section 6 — Closing CTA (dark)
+#### Section 6 — The Growth Program (light)
 
-Same structure as Home page Section 5.
+**Background:** `--color-paper`  
+**Vertical padding:** `--space-6` (64px — slightly tighter than standard, this is a short section)  
+**Layout:** Two-column desktop (30% left label / 65% right content), single column mobile
+
+**Left:**
+```
+[.section-label] Ongoing engagement
+```
+
+**Right:**
+```
+[H3 — Plus Jakarta Sans 600, --text-h3, --color-ink]
+The Growth Program
+
+[Body — DM Sans 400, 17px, --color-ink-secondary, margin-top 16px]
+Once we've delivered something together and you know how we work, we can stay
+engaged — continuously improving what's been built and finding the next
+opportunity. This isn't something we lead with. It's something clients ask for.
+```
+
+---
+
+#### Section 7 — Closing CTA (dark)
+
+**Background:** `--color-paper-dark`  
+**Vertical padding:** `--space-7`  
+**Layout:** Centred, max-width 600px  
+**Watermark:** Yes
+
+```
+[H2 — Plus Jakarta Sans 700, --text-h2, #F5F3EE, centred]
+Not sure where you sit?
+
+[Body — DM Sans 400, 18px, rgba(245,243,238,0.65), centred, margin-top 16px]
+Start with the Fit Call. It's free and it'll be obvious pretty quickly.
+
+[Primary CTA — centred, margin-top 40px]
+Book a free Fit Call →
+```
 
 ---
 
@@ -898,7 +990,18 @@ that works, prove it quickly and earn the right to do more.
 
 #### Section 7 — CTA (dark)
 
-Same structure as Home page Section 5.
+**Background:** `--color-paper-dark`  
+**Vertical padding:** `--space-7`  
+**Layout:** Centred, max-width 600px  
+**Watermark:** Yes
+
+```
+[H2 — Plus Jakarta Sans 700, --text-h2, #F5F3EE, centred]
+Sound familiar?
+
+[Primary CTA — centred, margin-top 32px]
+Book a free Fit Call →
+```
 
 ---
 
@@ -1332,10 +1435,10 @@ See Component 7.2.
 **Three-column layout desktop:**
 
 **Column 1 — Brand:**
-- Logo: reversed variant (mark + wordmark, no tagline), 110px wide, mark in `#00C2FF`
+- Logo: reversed variant (mark + wordmark, no tagline), 110px wide, mark in `#00C2FF`, cyan dot on "i" retained
 - Below logo (margin-top 24px): DM Sans 400, 13px, `rgba(245,243,238,0.4)`:
   `© 2026 Sixense Pty Ltd. All rights reserved.`
-  `ABN: [TO BE SUPPLIED BY CLIENT]`
+  `ABN: 19 643 253 122`
 
 **Column 2 — Navigation:**
 - Heading: `Site` — DM Sans 600, 11px, `rgba(245,243,238,0.4)`, uppercase, letter-spacing 0.1em
@@ -1387,29 +1490,42 @@ Privacy Policy → `/privacy`. Terms of Use → `/terms`.
 
 ### Watermark Animation
 
-Applied to all dark sections (hero and closing CTA on every page).
+The watermark appears on **all sections across all pages** — dark and light. Two variants with different opacities and stroke colours.
+
+**Dark section watermark** (hero, closing CTAs, footer):
+- Stroke: `#00C2FF`
+- Opacity: `0.07`
+- Position: right side, partially off-screen, vertically centred
+
+**Light section watermark** (`--color-paper`, `--color-paper-secondary`):
+- Stroke: `#0099CC`
+- Opacity: `0.04`
+- Position: alternates left/right per section (first light section: right; second: left; third: right; etc.)
+- Always partially clipped by section `overflow: hidden` — never fully visible
+
+**All section containers** must have `position: relative; overflow: hidden`. All content inside at `z-index: 1`. Watermark at `z-index: 0`.
 
 ```html
 <div class="section-watermark" aria-hidden="true">
   <svg class="watermark-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
     <!-- Use exact traced SVG paths from Sixense-Transparent.avif -->
-    <!-- Approximate geometry shown — replace with traced logo paths -->
     <polygon class="hex hex-1" points="100,18 122,31 122,57 100,70 78,57 78,31"
-      stroke="#00C2FF" stroke-width="1.5"/>
+      stroke="currentColor" stroke-width="1.5"/>
     <polygon class="hex hex-2" points="126,62 148,75 148,101 126,114 104,101 104,75"
-      stroke="#00C2FF" stroke-width="1.5"/>
+      stroke="currentColor" stroke-width="1.5"/>
     <polygon class="hex hex-3" points="74,62 96,75 96,101 74,114 52,101 52,75"
-      stroke="#00C2FF" stroke-width="1.5"/>
-    <circle class="hub" cx="100" cy="88" r="3" fill="#00C2FF"/>
-    <line class="spoke spoke-1" x1="100" y1="85" x2="100" y2="68" stroke="#00C2FF" stroke-width="1"/>
-    <line class="spoke spoke-2" x1="100" y1="88" x2="118" y2="95" stroke="#00C2FF" stroke-width="1"/>
-    <line class="spoke spoke-3" x1="100" y1="88" x2="82" y2="95" stroke="#00C2FF" stroke-width="1"/>
+      stroke="currentColor" stroke-width="1.5"/>
+    <circle class="hub" cx="100" cy="88" r="3" fill="currentColor"/>
+    <line class="spoke spoke-1" x1="100" y1="85" x2="100" y2="68" stroke="currentColor" stroke-width="1"/>
+    <line class="spoke spoke-2" x1="100" y1="88" x2="118" y2="95" stroke="currentColor" stroke-width="1"/>
+    <line class="spoke spoke-3" x1="100" y1="88" x2="82" y2="95" stroke="currentColor" stroke-width="1"/>
   </svg>
 </div>
 ```
 
 ```css
-.section-watermark {
+/* Dark section variant */
+.section-dark .section-watermark {
   position: absolute;
   right: -80px;
   top: 50%;
@@ -1418,14 +1534,36 @@ Applied to all dark sections (hero and closing CTA on every page).
   height: 520px;
   pointer-events: none;
   z-index: 0;
+  color: #00C2FF;
 }
-
-.watermark-mark {
+.section-dark .watermark-mark {
   width: 100%;
   height: 100%;
   opacity: 0.07;
 }
 
+/* Light section variant */
+.section-light .section-watermark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 480px;
+  height: 480px;
+  pointer-events: none;
+  z-index: 0;
+  color: #0099CC;
+}
+.section-light .watermark-mark {
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+}
+
+/* Alternate left/right placement for light sections */
+.section-light:nth-of-type(odd)  .section-watermark { right: -60px; left: auto; }
+.section-light:nth-of-type(even) .section-watermark { left: -60px; right: auto; }
+
+/* Animation — same keyframes for both */
 .hex {
   stroke-dasharray: 300;
   stroke-dashoffset: 300;
@@ -1470,24 +1608,25 @@ Applied to all dark sections (hero and closing CTA on every page).
 
 @media (max-width: 767px) {
   .section-watermark {
-    right: 50%;
+    right: 50% !important;
+    left: auto !important;
     transform: translate(50%, -50%);
-    width: 260px;
-    height: 260px;
+    width: 240px;
+    height: 240px;
   }
-  .watermark-mark { opacity: 0.04; }
+  .section-dark .watermark-mark  { opacity: 0.04; }
+  .section-light .watermark-mark { opacity: 0.025; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hex, .hub, .spoke {
     animation: none;
     stroke-dashoffset: 0;
-    opacity: 0.07;
+    opacity: 1;
   }
+  .watermark-mark { opacity: 0.04 !important; }
 }
 ```
-
-Dark section containers must have `position: relative; overflow: hidden`. All content inside at `z-index: 1`.
 
 ### Scroll-triggered Entrance Animations
 
@@ -1587,11 +1726,13 @@ Vercel, Netlify or Cloudflare Pages recommended. Domain: `sixense.com.au` (clien
 
 Both use standard site template (nav + footer).
 
+**Contact email on Privacy Policy and Terms of Use pages:** Any contact reference within the Privacy Policy or Terms of Use page content must use `admin@sixense.com.au` — not `automate@sixense.com.au` or any other address. This applies to any "contact us about this policy" or data request references within those pages.
+
 ### Footer Fine Print
 
 ```
 © 2026 Sixense Pty Ltd. All rights reserved.
-ABN: [CLIENT TO SUPPLY]
+ABN: 19 643 253 122
 Privacy Policy  ·  Terms of Use  ·  This site does not use cookies for tracking.
 Sixense is committed to the responsible and ethical use of AI.
 ```

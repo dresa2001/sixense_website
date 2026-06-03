@@ -3,9 +3,9 @@ interface Props {
   variant?: 'light' | 'dark';
   width?: number;
 }
-const { variant = 'light', width = 140 } = Astro.props;
-const markColor  = variant === 'dark' ? '#00C2FF' : '#0099CC';
-const textColor  = variant === 'dark' ? '#F5F3EE' : '#1A1A18';
+const { variant = 'light', width = 160 } = Astro.props;
+const markColor = variant === 'dark' ? '#00C2FF' : '#0099CC';
+const textColor = variant === 'dark' ? '#F5F3EE' : '#1A1A18';
 ---
 
 <a href="/" class="logo" aria-label="Sixense — home" style={`min-width:${width}px; flex-shrink:0`}>
@@ -30,7 +30,7 @@ const textColor  = variant === 'dark' ? '#F5F3EE' : '#1A1A18';
     <circle cx="24" cy="29" r="2.5" fill={markColor}/>
   </svg>
 
-  <span class="logo-wordmark" style={`color:${textColor}`}>sixense</span>
+  <span class="logo-wordmark" style={`color:${textColor}`}>s<span class="i-cyan">i</span>xense</span>
 </a>
 
 <style>
@@ -42,9 +42,10 @@ const textColor  = variant === 'dark' ? '#F5F3EE' : '#1A1A18';
   }
   .logo-mark {
     flex-shrink: 0;
-    transition: transform 200ms ease;
+    transform-origin: center;
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .logo:hover .logo-mark { transform: rotate(5deg); }
+  .logo:hover .logo-mark { transform: rotate(120deg); }
   .logo-wordmark {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     font-weight: 700;
@@ -52,4 +53,5 @@ const textColor  = variant === 'dark' ? '#F5F3EE' : '#1A1A18';
     letter-spacing: 0.02em;
     line-height: 1;
   }
+  .i-cyan { color: #00C2FF; }
 </style>

@@ -20,7 +20,9 @@ const {
   <Watermark />
   <div class="container cta-inner">
     <h2 id="cta-heading" class="animate-in">{heading}</h2>
-    <p class="animate-in" data-delay="80ms">{body}</p>
+    {body && (
+      <p class="animate-in" data-delay="80ms">{body}</p>
+    )}
     <a href="/contact" class="btn btn-primary animate-in" data-delay="160ms">{ctaLabel}</a>
     {showContactLink && (
       <a href="/contact" class="contact-link animate-in" data-delay="200ms">Or contact us →</a>

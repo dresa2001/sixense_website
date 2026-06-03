@@ -38,8 +38,7 @@ const buildTiers = [
     <div class="container">
       <span class="section-label">What we do</span>
       <h1 id="wwd-heading" class="animate-in" style="max-width:720px;color:var(--color-paper)">
-        We fix the operational problems that have been on your list too long.
-        And we build the capabilities you haven't been able to reach.
+        Fix what's broken. Build what's missing.
       </h1>
       <p class="hero-sub animate-in" data-delay="80ms">
         Some of the businesses we work with have a specific problem they need fixed.
@@ -47,11 +46,18 @@ const buildTiers = [
         something a competitor is doing that they can't yet — but have no way to build
         toward it. We do both.
       </p>
+      <p class="hero-sub animate-in" data-delay="120ms" style="margin-top:1em">
+        We design and build automation and AI solutions that eliminate operational drag
+        and unlock capabilities that were previously out of reach. Each solution is built
+        to stand alone and connect forward — so what we build today becomes the
+        foundation for something more powerful tomorrow.
+      </p>
     </div>
   </section>
 
   <!-- Where We Work -->
   <section class="section" aria-labelledby="service-heading">
+    <Watermark variant="light" side="right" />
     <div class="container">
       <span class="section-label">Where we work</span>
       <h2 id="service-heading" class="animate-in">
@@ -73,6 +79,7 @@ const buildTiers = [
 
   <!-- The Approach -->
   <section class="section section-secondary" aria-labelledby="approach-heading">
+    <Watermark variant="light" side="left" />
     <div class="container two-col" style="grid-template-columns:30% 65%">
       <div>
         <span class="section-label">The approach</span>
@@ -101,6 +108,7 @@ const buildTiers = [
 
   <!-- How We Engage -->
   <section class="section" aria-labelledby="engage-heading">
+    <Watermark variant="light" side="right" />
     <div class="container">
       <span class="section-label">How we engage</span>
       <h2 id="engage-heading" class="animate-in" style="max-width:560px">
@@ -141,6 +149,7 @@ const buildTiers = [
 
   <!-- How We Build -->
   <section class="section section-secondary" aria-labelledby="build-heading">
+    <Watermark variant="light" side="left" />
     <div class="container">
       <span class="section-label">How we build</span>
       <h2 id="build-heading" class="animate-in" style="max-width:520px">
@@ -158,7 +167,30 @@ const buildTiers = [
     </div>
   </section>
 
-  <ClosingCTA />
+  <!-- The Growth Program -->
+  <section class="section" aria-labelledby="growth-heading" style="padding-block:var(--space-6)">
+    <Watermark variant="light" side="right" />
+    <div class="container two-col" style="grid-template-columns:30% 65%">
+      <div>
+        <span class="section-label">Ongoing engagement</span>
+      </div>
+      <div>
+        <h3 id="growth-heading" class="animate-in">The Growth Program</h3>
+        <p class="animate-in" data-delay="80ms" style="font-size:17px;color:var(--color-ink-secondary);margin-top:var(--space-2);line-height:1.7">
+          Once we've delivered something together and you know how we work, we can stay
+          engaged — continuously improving what's been built and finding the next
+          opportunity. This isn't something we lead with. It's something clients ask for.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ClosingCTA
+    heading="Not sure where you sit?"
+    body="Start with the Fit Call. It's free and it'll be obvious pretty quickly."
+    ctaLabel="Book a free Fit Call →"
+    showContactLink={false}
+  />
 </BaseLayout>
 
 <style>

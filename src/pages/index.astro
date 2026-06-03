@@ -13,9 +13,9 @@ import Watermark from '../components/Watermark.astro';
   <section class="hero section-dark" aria-labelledby="hero-heading">
     <Watermark />
     <div class="container hero-inner">
-      <span class="section-label">Automation &amp; AI for operators</span>
-      <h1 id="hero-heading" class="hero-heading animate-in">
-        Still running on<br />manual and people?
+      <span class="section-label">Automation &amp; AI for operations leaders</span>
+      <h1 id="hero-heading" class="hero-heading animate-in" style="color:var(--color-paper);max-width:800px">
+        You already know what better looks like.<br />What's the hold up?
       </h1>
       <p class="hero-sub animate-in" data-delay="80ms">
         Most business leaders we talk to have been living with the same operational
@@ -24,13 +24,13 @@ import Watermark from '../components/Watermark.astro';
       </p>
       <div class="hero-actions animate-in" data-delay="160ms">
         <a href="/contact" class="btn btn-primary">Book a free Fit Call — no pitch, 30 minutes</a>
-        <p class="hero-sub-note">Free 30-minute conversation. No pitch.</p>
       </div>
     </div>
   </section>
 
   <!-- Section 2: The Problem -->
   <section class="section" aria-labelledby="problem-heading">
+    <Watermark variant="light" side="right" />
     <div class="container two-col two-col-40-55">
       <div>
         <span class="section-label">The problem</span>
@@ -55,39 +55,47 @@ import Watermark from '../components/Watermark.astro';
 
   <!-- Section 3: Who We Work With -->
   <section class="section section-secondary" aria-labelledby="who-heading">
-    <div class="container">
-      <span class="section-label">Who we work with</span>
-      <h2 id="who-heading" class="animate-in" style="max-width:700px">
-        We work with operators, not IT departments.
-      </h2>
-      <p class="animate-in body-large" data-delay="80ms" style="color:var(--color-ink-secondary);max-width:640px;margin-top:var(--space-3)">
-        Our clients are GMs, COOs, operations managers and business owners in
-        asset-heavy, service-intensive and operationally complex businesses.
-        They know their industry deeply. They don't need to know anything about
-        technology — that's our job.
-      </p>
-
-      <div class="who-icons animate-in" data-delay="160ms">
+    <Watermark variant="light" side="left" />
+    <div class="container who-layout">
+      <div class="who-left">
+        <span class="section-label">Who we work with</span>
+        <h2 id="who-heading" class="animate-in">
+          We work with operators, not IT departments.
+        </h2>
+        <p class="animate-in body-large" data-delay="80ms" style="color:var(--color-ink-secondary);margin-top:var(--space-3)">
+          Our clients are GMs, COOs, operations managers and business owners in
+          asset-heavy, service-intensive and operationally complex businesses.
+          They know their industry deeply. They don't need to know anything about
+          technology — that's our job.
+        </p>
+      </div>
+      <div class="who-right animate-in" data-delay="120ms">
         <div class="who-item">
           <div class="icon-circle icon-circle-md">
-            <ph-icon name="truck" size="40" color="#00C2FF"></ph-icon>
+            <ph-icon name="buildings" size="36" color="#00C2FF"></ph-icon>
           </div>
-          <p class="who-label">Asset-heavy businesses</p>
-          <p class="who-desc">Transport, utilities, logistics, infrastructure</p>
+          <div>
+            <p class="who-label">Asset-heavy businesses</p>
+            <p class="who-desc">Real estate, construction, fleet</p>
+          </div>
         </div>
         <div class="who-item">
           <div class="icon-circle icon-circle-md">
-            <ph-icon name="wrench" size="40" color="#00C2FF"></ph-icon>
+            <ph-icon name="storefront" size="36" color="#00C2FF"></ph-icon>
           </div>
-          <p class="who-label">Service-intensive operations</p>
-          <p class="who-desc">Healthcare, field service, maintenance</p>
+          <div>
+            <p class="who-label">Service-intensive operations</p>
+            <p class="who-desc">Retail, logistics, supply chain</p>
+          </div>
         </div>
         <div class="who-item">
           <div class="icon-circle icon-circle-md">
-            <ph-icon name="tree-structure" size="40" color="#00C2FF"></ph-icon>
+            <ph-icon name="folder-open" size="36" color="#00C2FF"></ph-icon>
           </div>
-          <p class="who-label">Operationally complex</p>
-          <p class="who-desc">Multi-site, multi-system, high-volume</p>
+          <div>
+            <p class="who-label">Data &amp; document-rich operations</p>
+            <p class="who-desc">Finance ops, HR ops, compliance, safety</p>
+          </div>
         </div>
       </div>
     </div>
@@ -95,7 +103,8 @@ import Watermark from '../components/Watermark.astro';
 
   <!-- Section 4: Proof Signal -->
   <section class="section" aria-labelledby="proof-heading">
-    <div class="container two-col two-col-40-55">
+    <Watermark variant="light" side="right" />
+    <div class="container two-col two-col-40-55" style="align-items:center">
       <div>
         <span class="section-label">Proven outcomes</span>
         <h2 id="proof-heading" class="animate-in">
@@ -112,7 +121,7 @@ import Watermark from '../components/Watermark.astro';
         </a>
       </div>
 
-      <div class="proof-blocks animate-in" data-delay="80ms">
+      <div class="proof-blocks animate-in" data-delay="80ms" style="align-self:center">
         <div class="proof-block">
           <ph-icon name="trophy" size="24" color="#00C2FF" style="flex-shrink:0;margin-top:2px"></ph-icon>
           <div class="proof-block-text">
@@ -147,44 +156,39 @@ import Watermark from '../components/Watermark.astro';
     padding-bottom: 120px;
   }
   .hero-inner {
-    max-width: 760px;
     display: flex;
     flex-direction: column;
     gap: 0;
   }
-  .hero-heading { color: var(--color-paper); margin-bottom: var(--space-3); }
   .hero-sub {
     font-size: 20px;
     line-height: 1.7;
     color: rgba(245, 243, 238, 0.65);
-    max-width: 520px;
+    max-width: 560px;
     margin-top: var(--space-3);
   }
   .hero-actions {
     margin-top: var(--space-5);
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
-  }
-  .hero-sub-note {
-    font-size: 13px;
-    color: rgba(245, 243, 238, 0.4);
-    margin: 0;
   }
 
-  /* Who icons */
-  .who-icons {
+  /* Who We Work With — 2-col layout */
+  .who-layout {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-5);
-    margin-top: var(--space-6);
-    max-width: 800px;
+    grid-template-columns: 55% 40%;
+    gap: var(--space-6);
+    align-items: center;
+  }
+  .who-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
   }
   .who-item {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
+    align-items: center;
+    gap: var(--space-3);
   }
   .who-label {
     font-family: var(--font-display);
@@ -198,6 +202,6 @@ import Watermark from '../components/Watermark.astro';
   @media (max-width: 767px) {
     .hero { padding-top: 112px; padding-bottom: 80px; }
     .hero-sub { font-size: 16px; }
-    .who-icons { grid-template-columns: 1fr; }
+    .who-layout { grid-template-columns: 1fr; }
   }
 </style>
