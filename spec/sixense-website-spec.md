@@ -95,7 +95,7 @@ The supplied file `Sixense-Transparent.avif` is the source reference. The mark (
 - Text: `sixense` — all lowercase
 - Tracking: 0.02em
 - Colour: `#F5F3EE` on dark backgrounds; `#1A1A18` on light backgrounds
-- **The dot above the letter "i" in "sixense" must be rendered in `#00C2FF` (electric cyan).** This requires the wordmark to be implemented as SVG text with a custom glyph override or as a layered SVG where the tittle (dot) of the "i" is separately coloured. This is a distinctive brand detail and must be present in all logo instances including nav, footer, and any rendered image assets.
+- **The tittle (dot) above the letter "i" in "sixense" must be coloured `#00C2FF` — the same cyan used for the hexagonal mark.** The stem and body of the "i" remain the standard wordmark colour. Only the dot is recoloured. The cyan used for the dot must be the exact same hex value as the mark stroke colour (`#00C2FF` on dark, `#0099CC` on light) — they must be visually identical. Implement by rendering the wordmark as an SVG where the tittle is a separately positioned filled circle or ellipse in the accent colour, overlaid precisely on the default "i" tittle position. The font's native tittle should be masked or the glyph decomposed so the replacement dot sits in exactly the right position. This detail must be consistent across nav, footer and all rendered logo assets.
 
 **Tagline:** None. Removed from all instances.
 
@@ -410,6 +410,15 @@ See Section 4 — Typography. Apply `.section-label` class universally.
 <script src="https://unpkg.com/phosphor-icons@1.4.2/src/index.js"></script>
 ```
 
+**CRITICAL — Icons rendering as blank circles:**  
+This is a known issue when the Phosphor web component script loads after the DOM has rendered. To fix it:
+
+1. Load the Phosphor script in the `<head>` of the document, not at the bottom of `<body>`.
+2. If using a framework (Astro, Next.js etc.), ensure the script is included with `strategy="beforeInteractive"` or equivalent so it executes before hydration.
+3. Alternatively, replace the web component approach entirely with inline SVG icons using the Phosphor SVG sprite or individual icon imports. This is the most reliable method and the recommended approach for production.
+4. Do not use `<ph-icon>` or `<i class="ph-...">` unless the script is confirmed loading correctly. Test on first render — not after a hot reload.
+5. After implementing the fix, verify every icon on every page in a fresh browser window (cleared cache, no dev server) before sign-off.
+
 - Standard size: 32px
 - Compact size: 24px (inline, beside text)
 - Small size: 20px (stat rows, callouts)
@@ -418,17 +427,20 @@ See Section 4 — Typography. Apply `.section-label` class universally.
 
 ### 7.6 Watermark
 
-The watermark appears **across all pages and all section types** — not only dark sections. It is always subtle and never competes with content.
+The watermark appears **across all pages and all section types** — dark and light. Multiple instances appear within each section, not just one. Always subtle, never competing with content.
 
-**Two opacity levels:**
-- Dark sections (`--color-paper-dark`): `opacity: 0.07` — cyan stroke on dark background
-- Light sections (`--color-paper`, `--color-paper-secondary`): `opacity: 0.04` — use `--color-accent-deep` (`#0099CC`) stroke on light backgrounds for subtlety
+**Dark section watermark** (hero, closing CTAs, footer):
+- Stroke: `#00C2FF`, opacity `0.07`
+- Each dark section contains **two watermark instances**: one right (partially off-screen), one left (partially off-screen). They animate independently with offset delays — never pulsing in sync. Add `.section-watermark--secondary` to the second instance (see Section 12 for CSS).
 
-**Placement rules:**
-- Every dark section (hero, closing CTAs, footer): right side, partially bleeding off-screen
-- Every light content section: positioned to the far right or far left, alternating per section, partially clipped by `overflow: hidden`. Never centred over text content.
-- The watermark is always `position: absolute`, `z-index: 0`. All content is `z-index: 1`.
-- On mobile: reduce to 240px, centred, opacity halved again
+**Light section watermark** (`--color-paper`, `--color-paper-secondary`):
+- Stroke: `#0099CC`, opacity `0.04`
+- Each light section contains **one instance**, alternating left/right placement per section
+- Always partially clipped by `overflow: hidden` — never fully visible in frame
+
+**All section containers** must have `position: relative; overflow: hidden`. All content at `z-index: 1`. Watermarks at `z-index: 0`.
+
+On mobile: reduce to 240px, centred, opacity halved. Dark sections: one instance only on mobile.
 
 See Section 12 for full CSS and animation code.
 
@@ -500,8 +512,10 @@ It doesn't have to.
 [Body — DM Sans 400, 18px, --color-ink-secondary, line-height 1.7]
 Many businesses scale by adding headcount to absorb the workload — more staff
 handling more volume, doing things the way they've always been done. It works,
-until it doesn't. The cracks show up as errors, delays, key person dependencies
-and a growing sense that the business is harder to run than it should be.
+but it erodes productivity. The cracks show up in myriad ways — errors, delays,
+key person dependencies, missed opportunities, knowledge siloes, frustrated
+customers and a growing sense that the business is harder to run than it
+should be.
 
 Automation and AI don't replace your people. They free them up to do the work
 that actually needs them.
@@ -537,9 +551,9 @@ Icons must be rendered as actual Phosphor icons — not blank circles. Ensure th
 
 | Icon | Label | Sub-label |
 |---|---|---|
-| `Buildings` | Asset-heavy businesses | Real estate, construction, fleet |
-| `Storefront` | Service-intensive operations | Retail, logistics, supply chain |
-| `FolderOpen` | Data & document-rich operations | Finance ops, HR ops, compliance, safety |
+| `Buildings` | Asset-heavy businesses | Transport, utilities, logistics, infrastructure, real estate, construction, fleet |
+| `Storefront` | Service-intensive operations | Healthcare, field service, maintenance, retail, logistics, supply chain |
+| `FolderOpen` | Data & document-rich domains | Finance ops, HR ops, compliance, safety |
 
 **Label:** Plus Jakarta Sans 600, 15px, `--color-ink`  
 **Sub-label:** DM Sans 400, 13px, `--color-ink-secondary`
@@ -557,8 +571,7 @@ Icons must be rendered as actual Phosphor icons — not blank circles. Ensure th
 [.section-label] Proven outcomes
 
 [H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
-We've done
-this before.
+We've done this before.
 
 [Body — DM Sans 400, 16px, --color-ink-secondary, margin-top 16px]
 From a national transport operator with no live fleet visibility, to a utility
@@ -572,15 +585,19 @@ See our outcomes →
 
 **Right — three stat blocks, stacked vertically with equal spacing:**
 
-The right column must be vertically centred relative to the left column content. Use `align-self: center` on the right column container. Each stat block is separated by a 1px `--color-border` line. Padding above the first block and below the last block: 8px minimum so the border lines don't sit flush against the column edges.
+The right column must be vertically centred relative to the left column content. Use `align-self: center` on the right column container. Each stat block is separated by a 1px `--color-border` line. Padding above the first block and below the last: 8px minimum.
 
-Each block: icon (24px, `--color-accent`) + headline (Plus Jakarta Sans 600, 22px, `--color-ink`) + detail (DM Sans 400, 14px, `--color-ink-tertiary`). Padding per block: 20px 0.
+Each block layout (horizontal): icon (28px, `--color-accent`, in 44px circle `rgba(0,194,255,0.08)`) on the left, then headline and detail stacked to the right. Gap between icon and text: 16px. Padding per block: 20px 0.
+
+**Icons must render as actual Phosphor icons. Ensure Phosphor script is loaded.**
 
 | Icon | Headline | Detail |
 |---|---|---|
 | `Trophy` | Industry award winner | Contractor authorisations platform — major Australian utility |
 | `Timer` | Working prototype in 3 months | Energy dispatch optimisation — after 3 years of stalled attempts |
 | `Eye` | Live fleet visibility in 30 days | National passenger transport operator, 500+ vehicles |
+
+Headline: Plus Jakarta Sans 600, 22px, `--color-ink`. Detail: DM Sans 400, 14px, `--color-ink-tertiary`.
 
 ---
 
@@ -606,13 +623,15 @@ Book a free Fit Call
 Or contact us →  (links to /contact)
 ```
 
+**Note to developer:** "Not sure if this applies to you?" is a single-line heading — do not break it across two lines in the markup.
+
 ---
 
 ### 8.2 What We Do Page (`/what-we-do`)
 
 #### Section 1 — Hero (dark)
 
-**Watermark:** Yes
+**Watermark:** Yes — all sections on this page carry the watermark per global spec (Section 7.6 and Section 12). No further per-section notes needed.
 
 ```
 [.section-label] What we do
@@ -634,22 +653,24 @@ foundation for something more powerful tomorrow.
 
 ---
 
-#### Section 2 — Where We Work (light)
+#### Section 2 — Outcomes We Enable (light)
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`
 
 ```
-[.section-label] Where we work
+[.section-label] Outcomes we enable
 
 [H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 If your team is doing any of the following manually,
 there's likely a better way.
 ```
 
-**Service area card grid — 3 columns desktop, 2 tablet, 1 mobile. Gap: 20px.**
+**Card grid — 3 columns desktop, 2 tablet, 1 mobile. Gap: 20px.**
 
-Each card: icon (32px in 48px circle) top-left, heading (Plus Jakarta Sans 600, 16px), body (DM Sans 400, 14px, `--color-ink-secondary`).
+Each card: icon (32px, `--color-accent`) in a 48px circle (`rgba(0,194,255,0.08)`) top-left, heading (Plus Jakarta Sans 600, 16px, `--color-ink`), body (DM Sans 400, 14px, `--color-ink-secondary`, line-height 1.6).
+
+**All 9 icons must render as actual Phosphor outline icons.** Ensure the Phosphor script is loaded. Do not render blank circles.
 
 | Icon | Heading | Body |
 |---|---|---|
@@ -661,6 +682,9 @@ Each card: icon (32px in 48px circle) top-left, heading (Plus Jakarta Sans 600, 
 | `ChartLineUp` | Sales operations | Live product, pricing and inventory access for field reps. Order submission without back-office delays. Pipeline reporting without a spreadsheet. |
 | `Headset` | Contact centre & service desk | Intelligent triage and routing. Automated responses to common requests. Knowledge assistants that give agents the right answer faster. |
 | `ChartBar` | Reporting & business intelligence | Automated data pipelines from fragmented sources. Dashboards that update without someone building them each week. Alerts when something needs attention. |
+| `Wrench` | Asset operations | Failure prediction and maintenance optimisation. Work order scheduling automation. Language-first work execution via voice or text. Document intelligence for maintenance records and compliance. |
+
+The 9 cards form a 3×3 grid on desktop. The grid must be symmetrical — no orphaned single card at the end.
 
 ---
 
@@ -668,31 +692,36 @@ Each card: icon (32px in 48px circle) top-left, heading (Plus Jakarta Sans 600, 
 
 **Background:** `--color-paper-secondary`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop (30% left / 65% right), single column mobile
+**Layout:** Full-width heading block above, then four equal columns in a single row below. Single column mobile (stacked).
 
-**Left:**
+**Heading block (centred, margin-bottom 48px):**
 ```
-[.section-label] The approach
+[.section-label — centred] The approach
 
-[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
-Not all automation
-is the same.
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, centred]
+Not all automation is the same.
 ```
 
-**Right — four approach blocks, separated by 1px --color-border lines:**
+**Four-column row — desktop: 4 equal columns, gap 24px. Tablet: 2×2 grid. Mobile: stacked.**
 
-Each block: icon (24px, `--color-accent`) + label (DM Sans 600, 11px, `--color-accent`, uppercase) + heading (Plus Jakarta Sans 600, 20px, `--color-ink`) + body (DM Sans 400, 15px, `--color-ink-secondary`).
+Each column is a card: `background: --color-paper`, `border-radius: --radius-lg`, `padding: 28px 24px`, `border-top: 3px solid --color-accent`.
+
+Each card structure (top to bottom):
+1. Icon: 36px, `--color-accent`, in 56px circle `rgba(0,194,255,0.08)`, margin-bottom 20px
+2. Label: DM Sans 600, 11px, `--color-accent`, uppercase, letter-spacing 0.1em, margin-bottom 8px
+3. Heading: Plus Jakarta Sans 700, 18px, `--color-ink`, margin-bottom 12px
+4. Body: DM Sans 400, 14px, `--color-ink-secondary`, line-height 1.65
 
 | Icon | Label | Heading | Body |
 |---|---|---|---|
-| `GitBranch` | Rule-based | Task & rule automation | Handles repeatable logic — consistent, fast, predictable. |
-| `Brain` | Decision support | Data analysis & recommendations | Analyses data and surfaces recommendations for your team to act on. |
-| `Sparkle` | Language & context | GenAI applications | Understands language, documents and unstructured data. |
-| `Robot` | Autonomous | Agentic systems | Acts independently within defined boundaries — with human oversight built in. |
+| `GitBranch` | Rule-based | Task & rule automation | Handles repeatable logic — consistent, fast and predictable. The right foundation for any process that follows defined steps every time. |
+| `ChartLine` | Decision support & insights | Data analysis & recommendations | Analyses data from across your systems and surfaces clear recommendations for your team to act on. Turns information overload into decision clarity. |
+| `Sparkle` | AI | Agents and bots | Understands and generates language, documents, images, audio and other unstructured data. Handles the interactions and processing that used to require a person. |
+| `Robot` | Autonomous | Agentic systems | Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building and delivering this now. |
 
-Below blocks:
+**Below the four columns (centred, margin-top 40px):**
 ```
-[DM Sans 400, 16px, --color-ink-secondary, margin-top 24px]
+[DM Sans 400, 16px, --color-ink-secondary, centred, max-width 560px]
 We match the right approach to the right problem.
 Often a single solution draws on more than one.
 ```
@@ -712,21 +741,21 @@ Every engagement starts small and builds with purpose.
 Nothing is open-ended.
 ```
 
-**Two panels side-by-side desktop, stacked mobile. Each: border, --radius-xl, 32px padding.**
+**Two panels side-by-side desktop, stacked mobile. Each panel: border `1px solid --color-border`, `--radius-xl`, padding 32px.**
 
 Panel 1 — The Fit Call:
-- Icon: `Phone` (48px, `--color-accent`, in 72px circle) — top of card
-- Tag: `Free · 30 minutes` — DM Sans 600, 11px, `--color-accent`, border `1px solid --color-accent`, `--radius-sm`, padding 4px 10px
-- Heading: Plus Jakarta Sans 700, 22px: `The Fit Call`
-- Body: DM Sans 400, 15px: An honest conversation to find out if there's a real problem and whether we're the right fit. No pitch. If there's something worth solving, we'll say so. If there isn't, we'll say that too.
-- CTA: Ghost button `Book a Fit Call →`
+- Icon: `Phone` — 48px, `--color-accent`, centred inside a 72px circle `rgba(0,194,255,0.08)`, displayed at top of card, margin-bottom 20px. **Must render as the Phosphor Phone icon — not a blank circle.**
+- Tag: `Free · 30 minutes` — DM Sans 600, 11px, `--color-accent`, border `1px solid --color-accent`, `--radius-sm`, padding 4px 10px, margin-bottom 16px
+- Heading: Plus Jakarta Sans 700, 22px, `--color-ink`: `The Fit Call`
+- Body: DM Sans 400, 15px, `--color-ink-secondary`: An honest conversation to find out if there's a real problem and whether we're the right fit. No pitch. If there's something worth solving, we'll say so. If there isn't, we'll say that too.
+- CTA: Ghost button `Book a Fit Call →`, margin-top 24px
 
 Panel 2 — The Discovery Sprint:
-- Icon: `MagnifyingGlass` (48px) — top of card
+- Icon: `MagnifyingGlass` — 48px, `--color-accent`, same circle treatment as above. **Must render as actual icon.**
 - Tag: `Fixed time · Fixed price`
-- Heading: `The Discovery Sprint`
-- Body: A structured working session requiring up to four hours of your time across five days. We map your most pressing processes, assess where automation can make the biggest difference and hand you a clear, plain-English report. Most clients find the clarity alone is worth the fee.
-- CTA: Ghost button `Learn more →` (links to /how-we-work)
+- Heading: Plus Jakarta Sans 700, 22px, `--color-ink`: `The Discovery Sprint`
+- Body: DM Sans 400, 15px, `--color-ink-secondary`: A structured working session requiring up to four hours of your time across five days. We map your most pressing processes, assess where automation can make the biggest difference and hand you a clear, plain-English report. Most clients find the clarity alone is worth the fee.
+- CTA: Ghost button `Learn more →`, links to `/how-we-work`, margin-top 24px
 
 ---
 
@@ -1541,6 +1570,23 @@ The watermark appears on **all sections across all pages** — dark and light. T
   height: 100%;
   opacity: 0.07;
 }
+
+/* Second watermark instance in dark sections — left side, offset animation */
+.section-dark .section-watermark--secondary {
+  right: auto;
+  left: -80px;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 420px;
+  height: 420px;
+}
+.section-dark .section-watermark--secondary .hex-1 { animation-delay: 2.5s; }
+.section-dark .section-watermark--secondary .hex-2 { animation-delay: 3.2s; }
+.section-dark .section-watermark--secondary .hex-3 { animation-delay: 3.9s; }
+.section-dark .section-watermark--secondary .hub   { animation-delay: 4.6s; }
+.section-dark .section-watermark--secondary .spoke-1 { animation-delay: 4.7s; }
+.section-dark .section-watermark--secondary .spoke-2 { animation-delay: 4.9s; }
+.section-dark .section-watermark--secondary .spoke-3 { animation-delay: 5.1s; }
 
 /* Light section variant */
 .section-light .section-watermark {

@@ -12,6 +12,7 @@ import Watermark from '../components/Watermark.astro';
   <!-- Section 1: Hero -->
   <section class="hero section-dark" aria-labelledby="hero-heading">
     <Watermark />
+    <Watermark secondary={true} />
     <div class="container hero-inner">
       <span class="section-label">Automation &amp; AI for operations leaders</span>
       <h1 id="hero-heading" class="hero-heading animate-in" style="color:var(--color-paper);max-width:800px">
@@ -42,8 +43,9 @@ import Watermark from '../components/Watermark.astro';
         <p class="body-large" style="color:var(--color-ink-secondary)">
           Many businesses scale by adding headcount to absorb the workload — more staff
           handling more volume, doing things the way they've always been done. It works,
-          until it doesn't. The cracks show up as errors, delays, key person dependencies
-          and a growing sense that the business is harder to run than it should be.
+          but it erodes productivity. The cracks show up in myriad ways — errors, delays,
+          key person dependencies, missed opportunities, knowledge siloes, frustrated
+          customers and a growing sense that the business is harder to run than it should be.
         </p>
         <p class="body-large" style="color:var(--color-ink-secondary);margin-top:1em">
           Automation and AI don't replace your people. They free them up to do the work
@@ -76,7 +78,7 @@ import Watermark from '../components/Watermark.astro';
           </div>
           <div>
             <p class="who-label">Asset-heavy businesses</p>
-            <p class="who-desc">Real estate, construction, fleet</p>
+            <p class="who-desc">Transport, utilities, logistics, infrastructure, real estate, construction, fleet</p>
           </div>
         </div>
         <div class="who-item">
@@ -85,7 +87,7 @@ import Watermark from '../components/Watermark.astro';
           </div>
           <div>
             <p class="who-label">Service-intensive operations</p>
-            <p class="who-desc">Retail, logistics, supply chain</p>
+            <p class="who-desc">Healthcare, field service, maintenance, retail, logistics, supply chain</p>
           </div>
         </div>
         <div class="who-item">
@@ -93,7 +95,7 @@ import Watermark from '../components/Watermark.astro';
             <ph-icon name="folder-open" size="36" color="#00C2FF"></ph-icon>
           </div>
           <div>
-            <p class="who-label">Data &amp; document-rich operations</p>
+            <p class="who-label">Data &amp; document-rich domains</p>
             <p class="who-desc">Finance ops, HR ops, compliance, safety</p>
           </div>
         </div>
@@ -108,7 +110,7 @@ import Watermark from '../components/Watermark.astro';
       <div>
         <span class="section-label">Proven outcomes</span>
         <h2 id="proof-heading" class="animate-in">
-          We've done<br />this before.
+          We've done this before.
         </h2>
         <p class="animate-in" data-delay="80ms" style="color:var(--color-ink-secondary);margin-top:var(--space-2);font-size:16px;line-height:1.7">
           From a national transport operator with no live fleet visibility, to a utility
@@ -123,21 +125,27 @@ import Watermark from '../components/Watermark.astro';
 
       <div class="proof-blocks animate-in" data-delay="80ms" style="align-self:center">
         <div class="proof-block">
-          <ph-icon name="trophy" size="24" color="#00C2FF" style="flex-shrink:0;margin-top:2px"></ph-icon>
+          <div class="icon-circle proof-icon-wrap">
+            <ph-icon name="trophy" size="28" color="#00C2FF"></ph-icon>
+          </div>
           <div class="proof-block-text">
             <p class="proof-headline">Industry award winner</p>
             <p class="proof-detail">Contractor authorisations platform — major Australian utility</p>
           </div>
         </div>
         <div class="proof-block">
-          <ph-icon name="timer" size="24" color="#00C2FF" style="flex-shrink:0;margin-top:2px"></ph-icon>
+          <div class="icon-circle proof-icon-wrap">
+            <ph-icon name="timer" size="28" color="#00C2FF"></ph-icon>
+          </div>
           <div class="proof-block-text">
             <p class="proof-headline">Working prototype in 3 months</p>
             <p class="proof-detail">Energy dispatch optimisation — after 3 years of stalled attempts</p>
           </div>
         </div>
         <div class="proof-block">
-          <ph-icon name="eye" size="24" color="#00C2FF" style="flex-shrink:0;margin-top:2px"></ph-icon>
+          <div class="icon-circle proof-icon-wrap">
+            <ph-icon name="eye" size="28" color="#00C2FF"></ph-icon>
+          </div>
           <div class="proof-block-text">
             <p class="proof-headline">Live fleet visibility in 30 days</p>
             <p class="proof-detail">National passenger transport operator, 500+ vehicles</p>
@@ -198,6 +206,9 @@ import Watermark from '../components/Watermark.astro';
     margin: 0;
   }
   .who-desc { font-size: 13px; color: var(--color-ink-secondary); margin: 0; }
+
+  /* Proof icon circle */
+  .proof-icon-wrap { width: 44px; height: 44px; flex-shrink: 0; }
 
   @media (max-width: 767px) {
     .hero { padding-top: 112px; padding-bottom: 80px; }

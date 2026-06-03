@@ -2,10 +2,16 @@
 interface Props {
   variant?: 'dark' | 'light';
   side?: 'left' | 'right';
+  secondary?: boolean;
 }
-const { variant = 'dark', side = 'right' } = Astro.props;
+const { variant = 'dark', side = 'right', secondary = false } = Astro.props;
+const classes = [
+  'section-watermark',
+  `section-watermark--${variant}`,
+  secondary ? 'section-watermark--secondary' : `section-watermark--${side}`,
+].join(' ');
 ---
-<div class={`section-watermark section-watermark--${variant} section-watermark--${side}`} aria-hidden="true">
+<div class={classes} aria-hidden="true">
   <svg class="watermark-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
     <polygon class="hex hex-1" points="100,18 122,31 122,57 100,70 78,57 78,31"
       stroke="currentColor" stroke-width="1.5" fill="none"/>
