@@ -90,7 +90,7 @@ const stats = [
       <div class="stats-row animate-in" data-delay="160ms">
         {stats.map(stat => (
           <div class="stat-item">
-            <ph-icon name={stat.icon} size="20" color="#00C2FF"></ph-icon>
+            <i class={`ph ph-${stat.icon}`} style="font-size:20px;color:#00C2FF;" aria-hidden="true"></i>
             <span class="stat-num">{stat.number}</span>
             <span class="stat-label">{stat.label}</span>
           </div>
@@ -108,7 +108,7 @@ const stats = [
           <article class="outcome-card animate-in" data-delay={`${(i % 2) * 80}ms`} aria-labelledby={`outcome-${i}`}>
             <p class="card-sector">{card.sector}</p>
             <h2 id={`outcome-${i}`} class="outcome-heading">
-              <ph-icon name={card.icon} size="20" color="#00C2FF" style="display:inline;vertical-align:middle;margin-right:8px"></ph-icon>
+              <i class={`ph ph-${card.icon}`} style="font-size:20px;color:#00C2FF;display:inline;vertical-align:middle;margin-right:8px" aria-hidden="true"></i>
               {card.heading}
             </h2>
             <div class="outcome-block">

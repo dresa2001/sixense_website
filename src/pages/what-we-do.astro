@@ -89,7 +89,7 @@ const buildTiers = [
         {serviceCards.map((card, i) => (
           <div class="service-card animate-in" data-delay={`${(i % 3) * 80}ms`}>
             <div class="icon-circle icon-circle-sm">
-              <ph-icon name={card.icon} size="32" color="#00C2FF"></ph-icon>
+              <i class={`ph ph-${card.icon}`} style="font-size:32px;color:#00C2FF;" aria-hidden="true"></i>
             </div>
             <h3 class="svc-heading">{card.heading}</h3>
             <p class="svc-body">{card.body}</p>
@@ -113,7 +113,7 @@ const buildTiers = [
         {approachCards.map((card, i) => (
           <div class="approach-card animate-in" data-delay={`${i * 80}ms`}>
             <div class="icon-circle icon-circle-md" style="margin-bottom:var(--space-3)">
-              <ph-icon name={card.icon} size="36" color="#00C2FF"></ph-icon>
+              <i class={`ph ph-${card.icon}`} style="font-size:36px;color:#00C2FF;" aria-hidden="true"></i>
             </div>
             <span class="approach-label">{card.label}</span>
             <h3 class="approach-card-heading">{card.heading}</h3>
@@ -140,7 +140,7 @@ const buildTiers = [
       <div class="engage-panels">
         <div class="engage-panel animate-in">
           <div class="icon-circle icon-circle-lg">
-            <ph-icon name="phone" size="48" color="#00C2FF"></ph-icon>
+            <i class="ph ph-phone" style="font-size:48px;color:#00C2FF;" aria-hidden="true"></i>
           </div>
           <span class="engage-tag">Free · 30 minutes</span>
           <h3 class="engage-heading">The Fit Call</h3>
@@ -153,7 +153,7 @@ const buildTiers = [
         </div>
         <div class="engage-panel animate-in" data-delay="80ms">
           <div class="icon-circle icon-circle-lg">
-            <ph-icon name="magnifying-glass" size="48" color="#00C2FF"></ph-icon>
+            <i class="ph ph-magnifying-glass" style="font-size:48px;color:#00C2FF;" aria-hidden="true"></i>
           </div>
           <span class="engage-tag">Fixed time · Fixed price</span>
           <h3 class="engage-heading">The Discovery Sprint</h3>

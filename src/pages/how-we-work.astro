@@ -52,15 +52,15 @@ const principles = [
         </p>
         <div class="callout-row animate-in" data-delay="160ms" style="margin-top:var(--space-4)">
           <div class="callout-item">
-            <ph-icon name="target" size="20" color="#00C2FF"></ph-icon>
+            <i class="ph ph-target" style="font-size:20px;color:#00C2FF;" aria-hidden="true"></i>
             <span>Outcome-first</span>
           </div>
           <div class="callout-item">
-            <ph-icon name="arrows-clockwise" size="20" color="#00C2FF"></ph-icon>
+            <i class="ph ph-arrows-clockwise" style="font-size:20px;color:#00C2FF;" aria-hidden="true"></i>
             <span>Iterative</span>
           </div>
           <div class="callout-item">
-            <ph-icon name="users-three" size="20" color="#00C2FF"></ph-icon>
+            <i class="ph ph-users-three" style="font-size:20px;color:#00C2FF;" aria-hidden="true"></i>
             <span>Collaborative</span>
           </div>
         </div>
@@ -125,7 +125,7 @@ const principles = [
           No handoffs once the contract is signed.
         </p>
         <div class="team-callout animate-in" data-delay="80ms">
-          <ph-icon name="user-circle" size="24" color="#00C2FF"></ph-icon>
+          <i class="ph ph-user-circle" style="font-size:24px;color:#00C2FF;" aria-hidden="true"></i>
           <p>The same people throughout. No account managers.</p>
         </div>
         <p class="animate-in" data-delay="100ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:var(--space-3);line-height:1.7">
@@ -134,7 +134,7 @@ const principles = [
           us deliver at a quality level that would otherwise cost significantly more.
         </p>
         <div class="team-callout animate-in" data-delay="120ms">
-          <ph-icon name="buildings" size="24" color="#00C2FF"></ph-icon>
+          <i class="ph ph-buildings" style="font-size:24px;color:#00C2FF;" aria-hidden="true"></i>
           <p>30+ person offshore delivery centre under direct local supervision.</p>
         </div>
         <p class="pull-quote animate-in" data-delay="160ms">
@@ -155,7 +155,7 @@ const principles = [
       <div class="principles-grid">
         {principles.map((p, i) => (
           <div class="principle animate-in" data-delay={`${i * 80}ms`}>
-            <ph-icon name={p.icon} size="28" color="#00C2FF"></ph-icon>
+            <i class={`ph ph-${p.icon}`} style="font-size:28px;color:#00C2FF;" aria-hidden="true"></i>
             <h3 class="principle-heading">{p.heading}</h3>
             <p class="principle-body">{p.body}</p>
           </div>
