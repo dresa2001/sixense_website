@@ -35,9 +35,9 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- Phosphor Icons — must load as module (src/index.js uses ES module syntax) -->
-  <script type="module" is:inline>
-    import 'https://unpkg.com/phosphor-icons@1.4.2/src/index.js';
+  <!-- Phosphor Icons — bundled by Vite so module resolution is handled correctly -->
+  <script>
+    import 'phosphor-icons';
   </script>
 
   <!-- Favicon -->
