@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ClosingCTA from '../components/ClosingCTA.astro';
 import Watermark from '../components/Watermark.astro';
 ---
 
@@ -20,22 +19,20 @@ import Watermark from '../components/Watermark.astro';
     </div>
   </section>
 
-  <!-- Story -->
-  <section class="section" aria-labelledby="story-heading">
+  <!-- Our Story — magazine two-column text layout -->
+  <section class="section" aria-labelledby="story-label">
     <Watermark variant="light" side="right" />
-    <div class="container two-col" style="grid-template-columns:30% 65%">
-      <div>
-        <span class="section-label">Our story</span>
-      </div>
-      <div>
-        <p class="animate-in" style="font-size:18px;color:var(--color-ink-secondary);line-height:1.75">
+    <div class="container">
+      <span id="story-label" class="section-label">Our story</span>
+      <div class="story-columns">
+        <p class="animate-in" style="font-size:18px;color:var(--color-ink-secondary);line-height:1.8">
           Sixense started in 2012 working with large enterprises. We were capable —
           but the fit was wrong. Those environments were slow, heavily process-driven
           and far removed from the sharp end of the business. The people we worked
           with were often too distant from the front line to make fast decisions or
           feel the real cost of delay.
         </p>
-        <p class="animate-in" data-delay="80ms" style="font-size:18px;color:var(--color-ink-secondary);line-height:1.75;margin-top:1em">
+        <p class="animate-in" data-delay="80ms" style="font-size:18px;color:var(--color-ink-secondary);line-height:1.8">
           We moved towards mid-market businesses — where the operations manager lives
           with the inefficiency every day, where the owner sees it on the P&amp;L every
           month, where decisions get made by people who feel the consequences.
@@ -45,82 +42,95 @@ import Watermark from '../components/Watermark.astro';
     </div>
   </section>
 
-  <!-- How We're Built -->
+  <!-- Our Structure — large stats left, text right -->
   <section class="section section-secondary" aria-labelledby="structure-heading">
     <Watermark variant="light" side="left" />
-    <div class="container two-col" style="grid-template-columns:30% 65%">
-      <div>
-        <span class="section-label">Our structure</span>
+    <div class="container two-col" style="grid-template-columns:40% 55%">
+      <div class="stats-col animate-in">
+        <div class="stat-item">
+          <span class="stat-big">30+</span>
+          <p class="stat-desc">People in our delivery team</p>
+        </div>
+        <div class="stat-item">
+          <span class="stat-big">13+</span>
+          <p class="stat-desc">Years building for Australian businesses</p>
+        </div>
+        <div class="stat-item">
+          <span class="stat-big">6</span>
+          <p class="stat-desc">Industries we've worked across</p>
+        </div>
       </div>
       <div>
+        <span class="section-label">Our structure</span>
         <h2 id="structure-heading" class="animate-in">How we're built.</h2>
-        <p class="animate-in" data-delay="80ms" style="font-size:17px;color:var(--color-ink-secondary);margin-top:var(--space-3);line-height:1.7">
-          Our Australian team is small and senior — automation designers and
-          engineers, all hands-on. The people you meet are the people who do the work.
+        <p class="animate-in" data-delay="80ms" style="font-size:17px;color:var(--color-ink-secondary);margin-top:var(--space-3);line-height:1.75">
+          Our Australian team is small and senior — automation designers and engineers,
+          all hands-on. The people you meet are the people who do the work.
         </p>
-        <p class="animate-in" data-delay="120ms" style="font-size:17px;color:var(--color-ink-secondary);margin-top:1em;line-height:1.7">
-          Behind them is an offshore delivery centre of 30-plus people, working
-          under direct supervision of our local engineers to the same standards.
-          It's what lets us deliver at a quality level that would otherwise cost
-          significantly more.
+        <p class="animate-in" data-delay="120ms" style="font-size:17px;color:var(--color-ink-secondary);margin-top:1em;line-height:1.75">
+          Behind them is an offshore delivery centre of 30-plus people, working under
+          direct supervision of our local engineers to the same standards. It's what
+          lets us deliver at a quality level that would otherwise cost significantly more.
         </p>
-
-        <div class="stats animate-in" data-delay="160ms">
-          <div class="stat">
-            <i class="ph ph-users" style="font-size:24px;color:#D4881A;" aria-hidden="true"></i>
-            <span class="stat-number">30+</span>
-            <p class="stat-label">Delivery team members</p>
-          </div>
-          <div class="stat">
-            <i class="ph ph-calendar" style="font-size:24px;color:#D4881A;" aria-hidden="true"></i>
-            <span class="stat-number">13+</span>
-            <p class="stat-label">Years in Australian businesses</p>
-          </div>
-          <div class="stat">
-            <i class="ph ph-buildings" style="font-size:24px;color:#D4881A;" aria-hidden="true"></i>
-            <span class="stat-number">6</span>
-            <p class="stat-label">Industries served</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- What We Believe -->
+  <!-- What We Believe — centred heading, 3 pillar cards, dark quote block -->
   <section class="section" aria-labelledby="believe-heading">
     <Watermark variant="light" side="right" />
-    <div class="container two-col" style="grid-template-columns:30% 65%">
-      <div>
-        <span class="section-label">What we believe</span>
+    <div class="container">
+      <div class="believe-header animate-in">
+        <span class="section-label" style="justify-content:center">What we believe</span>
+        <h2 id="believe-heading" style="text-align:center">How we work with our clients.</h2>
       </div>
-      <div>
-        <div class="belief animate-in">
-          <i class="ph ph-handshake-simple" style="font-size:24px;color:#D4881A;flex-shrink:0;margin-top:3px" aria-hidden="true"></i>
-          <p style="font-size:18px;color:var(--color-ink-secondary);line-height:1.75;margin:0">
-            We work alongside our clients, not above them. We follow through on
-            what we say. We understand that cost, time and disruption are real
-            constraints and we design around them.
+
+      <div class="pillars animate-in" data-delay="80ms">
+        <div class="pillar">
+          <div class="icon-circle icon-circle-md" style="margin-bottom:var(--space-3)">
+            <i class="ph ph-handshake-simple" style="font-size:36px;color:#D4881A;" aria-hidden="true"></i>
+          </div>
+          <h3 class="pillar-heading">Your operations. Your outcomes.</h3>
+          <p class="pillar-body">
+            We work alongside our clients, not above them. Your operations and your experience
+            are the centre of our solutions. We follow through on what we say and design
+            around the real constraints of cost, time and disruption.
           </p>
         </div>
-        <div class="belief animate-in" data-delay="80ms">
-          <i class="ph ph-rocket" style="font-size:24px;color:#D4881A;flex-shrink:0;margin-top:3px" aria-hidden="true"></i>
-          <p style="font-size:18px;color:var(--color-ink-secondary);line-height:1.75;margin:0">
-            We over-index on execution over strategy. Working solutions in your
-            hands beat elegant ones on a roadmap. We measure ourselves by what
-            actually changes in your business — not what we delivered on paper.
+        <div class="pillar">
+          <div class="icon-circle icon-circle-md" style="margin-bottom:var(--space-3)">
+            <i class="ph ph-rocket" style="font-size:36px;color:#D4881A;" aria-hidden="true"></i>
+          </div>
+          <h3 class="pillar-heading">Execution over strategy.</h3>
+          <p class="pillar-body">
+            Working solutions in your hands beat elegant ones on a roadmap. We over-index
+            on delivery. We measure ourselves by what actually changes in your business —
+            not what we delivered on paper.
           </p>
         </div>
-        <div class="belief animate-in" data-delay="120ms">
-          <i class="ph ph-check-circle" style="font-size:24px;color:#D4881A;flex-shrink:0;margin-top:3px" aria-hidden="true"></i>
-          <p style="font-size:18px;color:var(--color-ink-secondary);line-height:1.75;margin:0">
-            The feedback we hear most: "bang for buck, we get more from you than anyone else"
-            and "I didn't think that was possible in that timeframe." That makes us proud.
+        <div class="pillar">
+          <div class="icon-circle icon-circle-md" style="margin-bottom:var(--space-3)">
+            <i class="ph ph-target" style="font-size:36px;color:#D4881A;" aria-hidden="true"></i>
+          </div>
+          <h3 class="pillar-heading">Unashamedly pragmatic.</h3>
+          <p class="pillar-body">
+            Specific and focused increments of work, with regular demos and tight feedback
+            loops, ensure the focus is always on tangible outcomes and value to your business.
           </p>
         </div>
-        <blockquote class="pull-quote animate-in" data-delay="200ms">
-          "Bang for buck, we get more from you than anyone else." ·
-          "I didn't think that was possible in that timeframe."
-        </blockquote>
+      </div>
+
+      <div class="quote-block animate-in" data-delay="160ms">
+        <Watermark />
+        <Watermark secondary={true} />
+        <div class="quote-inner">
+          <span class="quote-mark" aria-hidden="true">"</span>
+          <p class="quote-text">Bang for buck, I love what you did for us.</p>
+          <p class="quote-attr">
+            The best thing a customer ever said to us.<br />
+            Our yardstick for every engagement.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -144,64 +154,135 @@ import Watermark from '../components/Watermark.astro';
     </div>
   </section>
 
-  <ClosingCTA
-    heading="If this sounds like what you've been looking for, let's talk."
-    showContactLink={false}
-    ctaLabel="Book a free Fit Call →"
-  />
+  <!-- CTA — custom dark section with section label, no body text -->
+  <section class="section section-dark about-cta" aria-labelledby="about-cta-heading">
+    <Watermark />
+    <Watermark secondary={true} />
+    <div class="container cta-inner">
+      <span class="section-label" style="justify-content:center">Work with us</span>
+      <h2 id="about-cta-heading" class="animate-in">
+        If this sounds like what you've been looking for, let's talk.
+      </h2>
+      <a href="/contact" class="btn btn-primary animate-in" data-delay="80ms">Book a free Fit Call →</a>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
   .hero { padding-top: 120px; padding-bottom: 80px; }
 
-  .belief {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: var(--space-4);
+  /* Our Story — magazine two-column text */
+  .story-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5%;
+    margin-top: var(--space-3);
   }
 
-  .stats {
+  /* Our Structure — large stats */
+  .stats-col {
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+  }
+  .stat-item {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .stat-item:first-child { padding-top: 0; }
+  .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .stat-big {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 64px;
+    color: var(--color-accent-deep);
+    line-height: 1;
+    display: block;
+  }
+  .stat-desc {
+    font-size: 15px;
+    color: var(--color-ink-secondary);
+    margin-top: 4px;
+    margin-bottom: 0;
+  }
+
+  /* What We Believe */
+  .believe-header {
+    text-align: center;
+    margin-bottom: var(--space-7);
+  }
+  .pillars {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-4);
-    margin-top: var(--space-5);
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--color-border);
   }
-
-  .stat {
+  .pillar {
+    background: var(--color-paper-secondary);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    border-top: 3px solid var(--color-accent-deep);
     display: flex;
     flex-direction: column;
-    gap: 8px;
   }
-
-  .stat-number {
+  .pillar-heading {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 48px;
-    line-height: 1;
-    color: var(--color-accent);
+    font-size: 18px;
+    color: var(--color-ink);
+    margin-bottom: 12px;
+    line-height: 1.3;
   }
-
-  .stat-label {
-    font-size: 14px;
+  .pillar-body {
+    font-size: 15px;
     color: var(--color-ink-secondary);
+    line-height: 1.7;
     margin: 0;
-    line-height: 1.4;
+    flex: 1;
   }
 
-  .pull-quote {
+  /* Quote feature block */
+  .quote-block {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-paper-dark);
+    border-radius: var(--radius-xl);
+    padding: 56px 64px;
+    margin-top: var(--space-7);
+    text-align: center;
+  }
+  .quote-inner {
+    position: relative;
+    z-index: 1;
+  }
+  .quote-mark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 120px;
+    color: var(--color-accent);
+    opacity: 0.15;
+    line-height: 1;
+    position: absolute;
+    top: -32px;
+    left: -16px;
+    display: block;
+  }
+  .quote-text {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 20px;
-    color: var(--color-ink);
-    border-left: 3px solid var(--color-accent);
-    padding-left: 24px;
-    margin-top: var(--space-4);
-    font-style: normal;
+    font-size: clamp(22px, 3vw, 32px);
+    color: var(--color-paper);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.3;
+  }
+  .quote-attr {
+    font-size: 15px;
+    color: rgba(245, 243, 238, 0.5);
+    margin-top: 20px;
+    line-height: 1.6;
   }
 
+  /* Why the Name */
   .name-inner {
     max-width: 640px;
     margin-inline: auto;
@@ -209,9 +290,30 @@ import Watermark from '../components/Watermark.astro';
     flex-direction: column;
   }
 
+  /* CTA */
+  .about-cta {
+    text-align: center;
+    padding-block: var(--space-7);
+  }
+  .cta-inner {
+    max-width: 600px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .cta-inner h2 {
+    color: var(--color-paper);
+    font-size: var(--text-h2);
+  }
+  .cta-inner .btn { margin-top: var(--space-2); }
+
   @media (max-width: 767px) {
     .hero { padding-top: 112px; }
-    .stats { grid-template-columns: 1fr; }
-    .stat-number { font-size: 36px; }
+    .story-columns { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr; }
+    .stat-big { font-size: 48px; }
+    .quote-block { padding: 40px 24px; }
   }
 </style>

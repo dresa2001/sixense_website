@@ -1159,51 +1159,67 @@ The question was who for.
 
 ---
 
-#### Section 2 — Story (light)
+#### Section 2 — Our Story (light)
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop (30% left / 65% right), single column mobile
+**Layout:** Full content width. Section label above, then two equal columns of body text side by side — like a magazine spread. Single column mobile (text stacks).
 
-**Left:**
 ```
 [.section-label] Our story
+
+[Two-column text layout — each column 47.5%, gap 5%]
 ```
 
-**Right:**
+**Left column:**
 ```
-[Body — DM Sans 400, 18px, --color-ink-secondary, line-height 1.75]
+[Body — DM Sans 400, 18px, --color-ink-secondary, line-height 1.8]
 Sixense started in 2012 working with large enterprises. We were capable —
 but the fit was wrong. Those environments were slow, heavily process-driven
 and far removed from the sharp end of the business. The people we worked
 with were often too distant from the front line to make fast decisions or
 feel the real cost of delay.
+```
 
+**Right column:**
+```
+[Body — DM Sans 400, 18px, --color-ink-secondary, line-height 1.8]
 We moved towards mid-market businesses — where the operations manager lives
 with the inefficiency every day, where the owner sees it on the P&L every
 month, where decisions get made by people who feel the consequences.
 That's where we do our best work — and where we've stayed.
 ```
 
+**Note to developer:** Both columns are the same font size and weight — this is a pure editorial two-column text layout, not a heading/body split. Treat it like a newspaper column break. On mobile, left column appears first, right column below.
+
 ---
 
-#### Section 3 — How We're Built (secondary background)
+#### Section 3 — Our Structure (secondary background)
 
 **Background:** `--color-paper-secondary`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop (30% / 65%), single column mobile
+**Layout:** Full content width. Two-column desktop — left column (40%) contains the stats displayed large and prominently; right column (55%, offset 5%) contains the section label, heading and body. Single column mobile (stats above text).
 
-**Left:**
+**Left column — three stats stacked vertically, each separated by 1px `--color-border` line:**
+
+Each stat: number (Plus Jakarta Sans 700, 64px, `--color-accent-deep`, line-height 1) + label (DM Sans 400, 15px, `--color-ink-secondary`, margin-top 4px). No icons — the numbers are the visual anchor.
+
+| Number | Label |
+|---|---|
+| 30+ | People in our delivery team |
+| 13+ | Years building for Australian businesses |
+| 6 | Industries we've worked across |
+
+Stat padding: 28px 0 per stat. Left-aligned within the column.
+
+**Right column:**
 ```
 [.section-label] Our structure
-```
 
-**Right:**
-```
 [H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 How we're built.
 
-[Body — DM Sans 400, 17px, --color-ink-secondary, margin-top 20px]
+[Body — DM Sans 400, 17px, --color-ink-secondary, margin-top 20px, line-height 1.75]
 Our Australian team is small and senior — automation designers and engineers,
 all hands-on. The people you meet are the people who do the work.
 
@@ -1212,47 +1228,64 @@ direct supervision of our local engineers to the same standards. It's what
 lets us deliver at a quality level that would otherwise cost significantly more.
 ```
 
-**Three-column stat row, margin-top 40px:**
-
-Each: icon (24px, above number), number (Plus Jakarta Sans 700, 48px, `--color-accent`), label (DM Sans 400, 14px, `--color-ink-secondary`).
-
-| Icon | Number | Label |
-|---|---|---|
-| `Users` | 30+ | Delivery team members |
-| `Calendar` | 13+ | Years in Australian businesses |
-| `Buildings` | 6 | Industries served |
-
 ---
 
 #### Section 4 — What We Believe (light)
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop (30% / 65%), single column mobile
+**Layout:** Full content width. Section label and H2 centred above, then three equal pillar columns, then the quote feature block below. Single column mobile (pillars stack).
 
-**Left:**
+**Heading block — centred, margin-bottom 56px:**
 ```
-[.section-label] What we believe
-```
+[.section-label — centred] What we believe
 
-**Right:**
-```
-[Body — DM Sans 400, 18px, --color-ink-secondary, line-height 1.75]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, centred]
+How we work with our clients.
 ```
 
-Three belief paragraphs, each with a small icon (24px, `--color-accent`) to the left of the opening line:
+**Three-pillar row — equal columns (3×), gap 32px:**
 
-- `HandshakeSimple` — We work alongside our clients, not above them. We follow through on what we say. We understand that cost, time and disruption are real constraints and we design around them.
-- `Rocket` — We over-index on execution over strategy. Working solutions in your hands beat elegant ones on a roadmap. We measure ourselves by what actually changes in your business — not what we delivered on paper.
-- `CheckCircle` — The feedback we hear most: "bang for buck, we get more from you than anyone else" and "I didn't think that was possible in that timeframe." That makes us proud.
+Each pillar: `background: --color-paper-secondary`, `border-radius: --radius-xl`, padding 32px, `border-top: 3px solid --color-accent-deep`.
 
-**Blockquote — below paragraphs, margin-top 32px:**
+Pillar structure (top to bottom):
+1. Icon: 36px, `--color-accent-deep`, in 56px circle `rgba(212,136,26,0.1)`, margin-bottom 20px
+2. Heading: Plus Jakarta Sans 700, 18px, `--color-ink`, margin-bottom 12px
+3. Body: DM Sans 400, 15px, `--color-ink-secondary`, line-height 1.7
+
+| Icon | Heading | Body |
+|---|---|---|
+| `HandshakeSimple` | Your operations. Your outcomes. | We work alongside our clients, not above them. Your operations and your experience are the centre of our solutions. We follow through on what we say and design around the real constraints of cost, time and disruption. |
+| `Rocket` | Execution over strategy. | Working solutions in your hands beat elegant ones on a roadmap. We over-index on delivery. We measure ourselves by what actually changes in your business — not what we delivered on paper. |
+| `Target` | Unashamedly pragmatic. | Specific and focused increments of work, with regular demos and tight feedback loops, ensure the focus is always on tangible outcomes and value to your business. |
+
+**Quote feature block — full content width, margin-top 56px:**
+
 ```css
-border-left: 3px solid var(--color-accent);
-padding-left: 24px;
-border-radius: 0;
+background: var(--color-paper-dark);
+border-radius: var(--radius-xl);
+padding: 56px 64px;
+position: relative;
+overflow: hidden;
 ```
-Text: Plus Jakarta Sans 600, 20px, `--color-ink`.
+
+Watermark instance inside this block (same spec as dark sections — gold stroke, two instances, animated).
+
+```
+[Quotation mark — decorative, Plus Jakarta Sans 700, 120px, --color-accent, opacity 0.15,
+ positioned top-left of the block, line-height 1, aria-hidden="true"]
+"
+
+[Quote text — Plus Jakarta Sans 600, clamp(22px, 3vw, 32px), #F5F3EE,
+ max-width 640px, line-height 1.3, margin: 0 auto, text-align: centred]
+Bang for buck, I love what you did for us.
+
+[Attribution — DM Sans 400, 15px, rgba(245,243,238,0.5), centred, margin-top 20px]
+The best thing a customer ever said to us.
+Our yardstick for every engagement.
+```
+
+**Note to developer:** The decorative quotation mark `"` is a large typographic element, `aria-hidden="true"`, positioned absolutely in the top-left of the block at approximately `top: 16px; left: 40px`. It is purely decorative and must not be read by screen readers.
 
 ---
 
@@ -1280,9 +1313,11 @@ we'd like to think we've earned the name.
 
 #### Section 6 — CTA (dark)
 
-**Watermark:** Yes
+**Watermark:** Yes — two instances
 
 ```
+[.section-label — centred] Work with us
+
 [H2 — Plus Jakarta Sans 700, --text-h2, #F5F3EE, centred]
 If this sounds like what you've been looking for, let's talk.
 
