@@ -7,44 +7,29 @@ import Watermark from '../components/Watermark.astro';
   title="About Sixense — automation & AI consultancy"
   description="We've been building for Australian businesses since 2012. A small, senior local team backed by a 30-person delivery centre."
 >
-  <!-- Hero -->
+  <!-- Hero — story content lives here now -->
   <section class="hero section-dark" aria-labelledby="about-heading">
     <Watermark />
     <Watermark secondary={true} />
     <div class="container">
       <span class="section-label">About</span>
-      <h1 id="about-heading" class="animate-in" style="color:var(--color-paper);max-width:660px">
-        We've always built things.<br />The question was who for.
+      <h1 id="about-heading" class="animate-in" style="color:var(--color-paper);max-width:760px">
+        We build things that work on Monday morning.<br />That's rarer than it sounds.
       </h1>
-    </div>
-  </section>
-
-  <!-- Our Story — magazine two-column text layout -->
-  <section class="section" aria-labelledby="story-label">
-    <Watermark variant="light" side="right" />
-    <div class="container">
-      <span id="story-label" class="section-label">Our story</span>
-      <div class="story-columns">
-        <p class="animate-in" style="font-size:18px;color:var(--color-ink-secondary);line-height:1.8">
-          Sixense started in 2012 working with large enterprises. We were capable —
-          but the fit was wrong. Those environments were slow, heavily process-driven
-          and far removed from the sharp end of the business. The people we worked
-          with were often too distant from the front line to make fast decisions or
-          feel the real cost of delay.
-        </p>
-        <p class="animate-in" data-delay="80ms" style="font-size:18px;color:var(--color-ink-secondary);line-height:1.8">
-          We moved towards mid-market businesses — where the operations manager lives
-          with the inefficiency every day, where the owner sees it on the P&amp;L every
-          month, where decisions get made by people who feel the consequences.
-          That's where we do our best work — and where we've stayed.
-        </p>
-      </div>
+      <p class="animate-in" data-delay="80ms" style="font-size:18px;color:rgba(245,243,238,0.65);max-width:620px;margin-top:28px;line-height:1.7">
+        Sixense started in 2012. We spent our early years in large enterprise
+        environments and learned quickly that capability alone isn't enough —
+        proximity to the problem matters. We moved towards mid-market operators,
+        where the people making decisions also feel the consequences. Where
+        inefficiency shows up on the P&amp;L. Where a working solution this month
+        is worth more than a perfect one next year. That's where we've stayed.
+      </p>
     </div>
   </section>
 
   <!-- Our Structure — large stats left, text right -->
   <section class="section section-secondary" aria-labelledby="structure-heading">
-    <Watermark variant="light" side="left" />
+    <Watermark variant="light" side="right" />
     <div class="container two-col" style="grid-template-columns:40% 55%">
       <div class="stats-col animate-in">
         <div class="stat-item">
@@ -76,9 +61,9 @@ import Watermark from '../components/Watermark.astro';
     </div>
   </section>
 
-  <!-- What We Believe — centred heading, 3 pillar cards, dark quote block -->
+  <!-- What We Believe — centred heading, 3 pillar cards, inline quote -->
   <section class="section" aria-labelledby="believe-heading">
-    <Watermark variant="light" side="right" />
+    <Watermark variant="light" side="left" />
     <div class="container">
       <div class="believe-header animate-in">
         <span class="section-label" style="justify-content:center">What we believe</span>
@@ -120,24 +105,20 @@ import Watermark from '../components/Watermark.astro';
         </div>
       </div>
 
-      <div class="quote-block animate-in" data-delay="160ms">
-        <Watermark />
-        <Watermark secondary={true} />
-        <div class="quote-inner">
-          <span class="quote-mark" aria-hidden="true">"</span>
-          <p class="quote-text">Bang for buck, I love what you did for us.</p>
-          <p class="quote-attr">
-            The best thing a customer ever said to us.<br />
-            Our yardstick for every engagement.
-          </p>
-        </div>
+      <!-- Inline quote — no background, just horizontal rules -->
+      <div class="quote-rule animate-in" data-delay="160ms">
+        <p class="quote-text">"Bang for buck, I love what you did for us."</p>
+        <p class="quote-attr">
+          CTO, Australia's largest private transport operator.<br />
+          Our yardstick for every engagement.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- Why the Name -->
   <section class="section section-secondary" aria-labelledby="name-heading">
-    <Watermark variant="light" side="left" />
+    <Watermark variant="light" side="right" />
     <div class="container name-inner">
       <span class="section-label" style="justify-content:center">Why the name</span>
       <h2 id="name-heading" class="animate-in" style="text-align:center">
@@ -154,7 +135,7 @@ import Watermark from '../components/Watermark.astro';
     </div>
   </section>
 
-  <!-- CTA — custom dark section with section label, no body text -->
+  <!-- CTA — custom dark section with section label -->
   <section class="section section-dark about-cta" aria-labelledby="about-cta-heading">
     <Watermark />
     <Watermark secondary={true} />
@@ -170,14 +151,6 @@ import Watermark from '../components/Watermark.astro';
 
 <style>
   .hero { padding-top: 120px; padding-bottom: 80px; }
-
-  /* Our Story — magazine two-column text */
-  .story-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5%;
-    margin-top: var(--space-3);
-  }
 
   /* Our Structure — large stats */
   .stats-col {
@@ -240,46 +213,29 @@ import Watermark from '../components/Watermark.astro';
     flex: 1;
   }
 
-  /* Quote feature block */
-  .quote-block {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-paper-dark);
-    border-radius: var(--radius-xl);
-    padding: 56px 64px;
-    margin-top: var(--space-7);
-    text-align: center;
-  }
-  .quote-inner {
-    position: relative;
-    z-index: 1;
-  }
-  .quote-mark {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 120px;
-    color: var(--color-accent);
-    opacity: 0.15;
-    line-height: 1;
-    position: absolute;
-    top: -32px;
-    left: -16px;
-    display: block;
+  /* Inline quote — no background, just borders */
+  .quote-rule {
+    margin-top: 56px;
+    padding: 32px 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
   }
   .quote-text {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: clamp(22px, 3vw, 32px);
-    color: var(--color-paper);
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--color-ink);
     max-width: 640px;
-    margin: 0 auto;
-    line-height: 1.3;
+    line-height: 1.4;
+    font-style: italic;
+    margin: 0;
   }
   .quote-attr {
-    font-size: 15px;
-    color: rgba(245, 243, 238, 0.5);
-    margin-top: 20px;
-    line-height: 1.6;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-ink-tertiary);
+    margin-top: 12px;
+    line-height: 1.5;
   }
 
   /* Why the Name */
@@ -311,9 +267,7 @@ import Watermark from '../components/Watermark.astro';
 
   @media (max-width: 767px) {
     .hero { padding-top: 112px; }
-    .story-columns { grid-template-columns: 1fr; }
     .pillars { grid-template-columns: 1fr; }
     .stat-big { font-size: 48px; }
-    .quote-block { padding: 40px 24px; }
   }
 </style>

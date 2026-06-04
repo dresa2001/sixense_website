@@ -1147,54 +1147,27 @@ Book a free Fit Call →
 
 #### Section 1 — Hero (dark)
 
-**Watermark:** Yes
+**Watermark:** Yes — two instances
 
 ```
 [.section-label] About
 
-[H1 — Plus Jakarta Sans 700, --text-h1, #F5F3EE, max-width 660px]
-We've always built things.
-The question was who for.
+[H1 — Plus Jakarta Sans 700, --text-h1, #F5F3EE, max-width 760px]
+We build things that work on Monday morning.
+That's rarer than it sounds.
+
+[Body — DM Sans 400, 18px, rgba(245,243,238,0.65), max-width 620px, margin-top 28px]
+Sixense started in 2012. We spent our early years in large enterprise
+environments and learned quickly that capability alone isn't enough —
+proximity to the problem matters. We moved towards mid-market operators,
+where the people making decisions also feel the consequences. Where
+inefficiency shows up on the P&L. Where a working solution this month
+is worth more than a perfect one next year. That's where we've stayed.
 ```
 
 ---
 
-#### Section 2 — Our Story (light)
-
-**Background:** `--color-paper`  
-**Vertical padding:** `--space-7`  
-**Layout:** Full content width. Section label above, then two equal columns of body text side by side — like a magazine spread. Single column mobile (text stacks).
-
-```
-[.section-label] Our story
-
-[Two-column text layout — each column 47.5%, gap 5%]
-```
-
-**Left column:**
-```
-[Body — DM Sans 400, 18px, --color-ink-secondary, line-height 1.8]
-Sixense started in 2012 working with large enterprises. We were capable —
-but the fit was wrong. Those environments were slow, heavily process-driven
-and far removed from the sharp end of the business. The people we worked
-with were often too distant from the front line to make fast decisions or
-feel the real cost of delay.
-```
-
-**Right column:**
-```
-[Body — DM Sans 400, 18px, --color-ink-secondary, line-height 1.8]
-We moved towards mid-market businesses — where the operations manager lives
-with the inefficiency every day, where the owner sees it on the P&L every
-month, where decisions get made by people who feel the consequences.
-That's where we do our best work — and where we've stayed.
-```
-
-**Note to developer:** Both columns are the same font size and weight — this is a pure editorial two-column text layout, not a heading/body split. Treat it like a newspaper column break. On mobile, left column appears first, right column below.
-
----
-
-#### Section 3 — Our Structure (secondary background)
+#### Section 2 — Our Structure (secondary background)
 
 **Background:** `--color-paper-secondary`  
 **Vertical padding:** `--space-7`  
@@ -1259,33 +1232,25 @@ Pillar structure (top to bottom):
 | `Rocket` | Execution over strategy. | Working solutions in your hands beat elegant ones on a roadmap. We over-index on delivery. We measure ourselves by what actually changes in your business — not what we delivered on paper. |
 | `Target` | Unashamedly pragmatic. | Specific and focused increments of work, with regular demos and tight feedback loops, ensure the focus is always on tangible outcomes and value to your business. |
 
-**Quote feature block — full content width, margin-top 56px:**
+**Quote block — full content width, margin-top 56px:**
 
 ```css
-background: var(--color-paper-dark);
-border-radius: var(--radius-xl);
-padding: 56px 64px;
-position: relative;
-overflow: hidden;
+padding: 32px 0;
+border-top: 1px solid var(--color-border);
+border-bottom: 1px solid var(--color-border);
 ```
 
-Watermark instance inside this block (same spec as dark sections — gold stroke, two instances, animated).
-
 ```
-[Quotation mark — decorative, Plus Jakarta Sans 700, 120px, --color-accent, opacity 0.15,
- positioned top-left of the block, line-height 1, aria-hidden="true"]
-"
+[Quote text — Plus Jakarta Sans 600, clamp(18px, 2.5vw, 24px), --color-ink,
+ max-width 640px, line-height 1.4, font-style: italic]
+"Bang for buck, I love what you did for us."
 
-[Quote text — Plus Jakarta Sans 600, clamp(22px, 3vw, 32px), #F5F3EE,
- max-width 640px, line-height 1.3, margin: 0 auto, text-align: centred]
-Bang for buck, I love what you did for us.
-
-[Attribution — DM Sans 400, 15px, rgba(245,243,238,0.5), centred, margin-top 20px]
-The best thing a customer ever said to us.
+[Attribution — DM Sans 400, 13px, --color-ink-tertiary, margin-top 12px]
+CTO, Australia's largest private transport operator.
 Our yardstick for every engagement.
 ```
 
-**Note to developer:** The decorative quotation mark `"` is a large typographic element, `aria-hidden="true"`, positioned absolutely in the top-left of the block at approximately `top: 16px; left: 40px`. It is purely decorative and must not be read by screen readers.
+**Note to developer:** This block sits inline within the section content flow — it is not a card, not a dark block, not a separate section. It appears below the three pillar columns with `margin-top: 56px`. No background colour. No border-radius. The two thin horizontal rules above and below are the only visual container. Quote text is italic; attribution is not.
 
 ---
 
