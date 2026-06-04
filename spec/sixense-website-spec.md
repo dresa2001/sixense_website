@@ -86,8 +86,8 @@ The supplied file `Sixense-Transparent.avif` is the source reference. The mark (
 - Three spokes: 1.5px lines from hub to each hexagon inner vertex, trimmed to ~55% of the hub-to-centre distance
 
 **Colour:**
-- Mark on dark backgrounds (`#1A1A18`): `#00C2FF`
-- Mark on light backgrounds (`#F5F3EE`, `#EDEAE3`): `#0099CC` (deeper cyan — maintains 4.5:1 contrast)
+- Mark on dark backgrounds (`#1A1A18`): `#F5A623`
+- Mark on light backgrounds (`#F5F3EE`, `#EDEAE3`): `#D4881A` (deeper gold — maintains 4.5:1 contrast)
 - Mark is never rendered as a flat dark fill
 
 **Wordmark:**
@@ -95,7 +95,7 @@ The supplied file `Sixense-Transparent.avif` is the source reference. The mark (
 - Text: `sixense` — all lowercase
 - Tracking: 0.02em
 - Colour: `#F5F3EE` on dark backgrounds; `#1A1A18` on light backgrounds
-- **The tittle (dot) above the letter "i" in "sixense" must be coloured `#00C2FF` — the same cyan used for the hexagonal mark.** The stem and body of the "i" remain the standard wordmark colour. Only the dot is recoloured. The cyan used for the dot must be the exact same hex value as the mark stroke colour (`#00C2FF` on dark, `#0099CC` on light) — they must be visually identical. Implement by rendering the wordmark as an SVG where the tittle is a separately positioned filled circle or ellipse in the accent colour, overlaid precisely on the default "i" tittle position. The font's native tittle should be masked or the glyph decomposed so the replacement dot sits in exactly the right position. This detail must be consistent across nav, footer and all rendered logo assets.
+- **The tittle (dot) above the letter "i" in "sixense" must be coloured to match the mark exactly: `#F5A623` on dark backgrounds, `#D4881A` on light backgrounds.** The stem and body of the "i" remain the standard wordmark colour. Only the dot is recoloured. Implement by rendering the wordmark as SVG with the tittle as a separately positioned filled circle overlaid precisely on the default "i" tittle position. The font's native tittle should be masked or the glyph decomposed so the replacement dot sits in exactly the right position. This detail must be consistent across nav, footer and all rendered logo assets.
 
 **Tagline:** None. Removed from all instances.
 
@@ -236,36 +236,53 @@ Apply `.section-label` to every section label element across all pages.
 --color-paper:         #F5F3EE;   /* Primary background — warm off-white */
 --color-paper-secondary: #EDEAE3; /* Subtle sections, card fills */
 --color-paper-dark:    #1A1A18;   /* Dark section backgrounds */
---color-accent:        #00C2FF;   /* Electric cyan — primary accent, all contexts */
---color-accent-deep:   #0099CC;   /* Logo mark on light backgrounds only */
---color-accent-hover:  #00A8DC;   /* Hover state */
---color-accent-glow:   rgba(0, 194, 255, 0.15); /* Focus rings */
---color-border:        rgba(26, 26, 24, 0.12);  /* Default borders */
---color-border-strong: rgba(26, 26, 24, 0.25);  /* Dividers */
+--color-accent:        #F5A623;   /* Solar gold — primary accent, dark backgrounds and large contexts */
+--color-accent-deep:   #D4881A;   /* Deeper gold — used on light backgrounds for labels, icons, small text */
+--color-accent-hover:  #E09518;   /* Hover state */
+--color-accent-glow:   rgba(245, 166, 35, 0.18); /* Focus rings */
+--color-border:        rgba(26, 26, 24, 0.12);   /* Default borders */
+--color-border-strong: rgba(26, 26, 24, 0.25);   /* Dividers */
 ```
 
 ### Contrast Note
 
-`#00C2FF` produces ~9.5:1 contrast against `#1A1A18`. A single accent token works across both light and dark backgrounds at all text sizes — no dark-mode variant required. Use `--color-accent-deep` (`#0099CC`) only for the logo mark SVG on light backgrounds.
+Solar gold has two contextual values depending on background:
+
+- `#F5A623` on `#1A1A18` (dark): ~7.2:1 — passes WCAG AA at all sizes. Use `--color-accent` on dark backgrounds for labels, icons, watermark stroke, and button backgrounds (text: `#1A1A18`).
+- `#F5A623` on `#F5F3EE` (light): ~2.4:1 — **fails WCAG AA**. Never use `--color-accent` directly on light backgrounds for text or small icons. Use `--color-accent-deep` (`#D4881A`) instead, which produces ~4.6:1 on `--color-paper` — passing AA.
+
+**Rule:** On light sections (`--color-paper`, `--color-paper-secondary`), always use `--color-accent-deep` for section labels, icons, inline links, borders and small text. On dark sections (`--color-paper-dark`), use `--color-accent`. Buttons use `--color-accent` on both — the button background is large enough that the dark ink text on gold provides sufficient contrast independently.
 
 ### Colour Application
 
-**`--color-accent` used for:**
-- All section labels and their left-bar decorators
-- Nav active link and "Book a Fit Call" button (text: `#1A1A18`)
+**On dark backgrounds (`--color-paper-dark`) — use `--color-accent` (`#F5A623`):**
+- Section labels and their left-bar decorators
+- Nav active link
+- "Book a Fit Call" button background (text: `#1A1A18`)
 - All CTA button backgrounds (text: `#1A1A18`)
+- Icons in dark sections
+- Watermark SVG stroke
+- Footer links on hover
+
+**On light backgrounds (`--color-paper`, `--color-paper-secondary`) — use `--color-accent-deep` (`#D4881A`):**
+- Section labels and their left-bar decorators
+- Icons and icon circle backgrounds: `rgba(212, 136, 26, 0.1)`
 - Card top accent bars (3px)
-- Card hover border
-- Outcome card tag chip borders
-- All icons across all pages
-- Icon circle backgrounds: `rgba(0, 194, 255, 0.08)`
+- Card hover borders
+- Outcome card tag chip borders and text
 - How We Build principle block left borders
 - Blockquote left border (About page)
-- Watermark SVG stroke (at low opacity)
 - Stat numbers on About page
 - Form input focus border and glow
-- Footer links on hover
 - Inline text links ("See our outcomes →" etc.)
+
+**Both contexts:**
+- CTA buttons always use `--color-accent` (`#F5A623`) background with `#1A1A18` text — the large button size means the gold-on-near-black combination reads clearly regardless of background
+
+**Logo mark:**
+- On dark: `#F5A623`
+- On light: `#D4881A`
+- Tittle on "i": matches mark colour in each context
 
 **Dark/light section pattern:**
 - Background alternates: `--color-paper-dark` (hero, closing CTAs, footer) and `--color-paper` / `--color-paper-secondary` (content sections)
@@ -380,8 +397,8 @@ transition: transform 200ms ease, box-shadow 200ms ease;
 Hover:
 ```css
 transform: translateY(-4px);
-box-shadow: 0 8px 32px rgba(0, 194, 255, 0.08);
-border-color: var(--color-accent);
+box-shadow: 0 8px 32px rgba(245, 166, 35, 0.12);
+border-color: var(--color-accent-deep);
 ```
 - Sector label: DM Sans 500, 13px, `--color-ink-tertiary`
 - Challenge / Solution / Outcome labels: DM Sans 600, 11px, `--color-accent`, uppercase, letter-spacing 0.08em
@@ -422,19 +439,21 @@ This is a known issue when the Phosphor web component script loads after the DOM
 - Standard size: 32px
 - Compact size: 24px (inline, beside text)
 - Small size: 20px (stat rows, callouts)
-- Colour: `--color-accent` (`#00C2FF`)
-- Circle background: 56px diameter, `background: rgba(0,194,255,0.08)`, `border-radius: 50%`
+- Colour on dark sections: `--color-accent` (`#F5A623`)
+- Colour on light sections: `--color-accent-deep` (`#D4881A`)
+- Circle background on light: `background: rgba(212,136,26,0.10)`, `border-radius: 50%`
+- Circle background on dark: `background: rgba(245,166,35,0.12)`, `border-radius: 50%`
 
 ### 7.6 Watermark
 
 The watermark appears **across all pages and all section types** — dark and light. Multiple instances appear within each section, not just one. Always subtle, never competing with content.
 
 **Dark section watermark** (hero, closing CTAs, footer):
-- Stroke: `#00C2FF`, opacity `0.07`
+- Stroke: `#F5A623`, opacity `0.07`
 - Each dark section contains **two watermark instances**: one right (partially off-screen), one left (partially off-screen). They animate independently with offset delays — never pulsing in sync. Add `.section-watermark--secondary` to the second instance (see Section 12 for CSS).
 
 **Light section watermark** (`--color-paper`, `--color-paper-secondary`):
-- Stroke: `#0099CC`, opacity `0.04`
+- Stroke: `#D4881A`, opacity `0.05`
 - Each light section contains **one instance**, alternating left/right placement per section
 - Always partially clipped by `overflow: hidden` — never fully visible in frame
 
@@ -831,37 +850,51 @@ Book a free Fit Call →
 
 #### Section 1 — Hero (dark)
 
-**Watermark:** Yes
+**Watermark:** Yes — two instances per dark section per global spec.
 
 ```
 [.section-label] How we work
 
-[H1 — Plus Jakarta Sans 700, --text-h1, #F5F3EE]
-We start with your business.
-Not the technology.
-
-[Anchor lines — DM Sans 500, 15px, rgba(245,243,238,0.5), margin-top 20px, 8px apart]
+[H1 — Plus Jakarta Sans 700, --text-h1, #F5F3EE, max-width 760px]
 Process first. Experience led. Real solutions.
-Start small. Prove value. Scale smart.
+
+[Body — DM Sans 400, 20px, rgba(245,243,238,0.65), max-width 580px, margin-top 24px]
+We start with your business, not the technology, and build in shorter
+iterations rather than drawn-out cycles.
 ```
+
+**Note to developer:** The previous anchor lines ("Start small. Prove value. Scale smart." and "Process first. Experience led. Real solutions.") are no longer displayed in the hero. "Process first. Experience led. Real solutions." is now the H1. "Start small. Prove value. Scale smart." becomes the H2 heading of Section 3 (Our Method). Remove all anchor line elements from the hero markup.
 
 ---
 
-#### Section 2 — We Work Backwards (light, with image)
+#### Section 2 — Our Approach (light, with image)
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop — text left (50%), image right (45%, offset 5%). `align-items: flex-start`. Single column mobile (image below text).
+**Layout:** Two-column desktop — image left (45%), text right (50%, offset 5%). `align-items: flex-start`. Single column mobile (image below heading, above body text).
 
-**Left:**
+**Left (image):**
+- Asset: `Working_backwards.avif`
+- Sits directly below the section label and H2 on desktop — i.e. the label and heading are part of the LEFT column above the image, and the detailed body text occupies the RIGHT column
+- Container: `background: --color-paper-secondary`, `border-radius: --radius-xl`, padding 32px
+- `align-self: flex-start`, margin-top 24px (below the heading in the left column)
+- Image: `max-width: 100%`, `height: auto`, `display: block`
+- Alt text: `Diagram illustrating working backwards from a defined outcome`
+
+**Left column structure (top to bottom):**
 ```
 [.section-label] Our approach
 
-[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink-deep]
 We work backwards
 from the outcome.
 
-[Body — DM Sans 400, 17px, --color-ink-secondary, margin-top 20px]
+[Image container — Working_backwards.avif — below H2, margin-top 24px]
+```
+
+**Right column (body text only, vertically centred relative to image):**
+```
+[Body — DM Sans 400, 17px, --color-ink-secondary, line-height 1.75]
 Every engagement starts with a clear picture of what better looks like for
 your business — not a system requirement, not a features list. From there
 we work back through your processes, people, systems and data to understand
@@ -874,40 +907,26 @@ not generating work.
 
 **Three callout icons below body text — horizontal row, margin-top 32px:**
 
-Each: icon (20px, `--color-accent`) + label (DM Sans 500, 13px, `--color-accent`).
+Each: icon (20px, `--color-accent-deep`) + label (DM Sans 500, 13px, `--color-accent-deep`).
 
 - `Target` — Outcome-first
 - `ArrowsClockwise` — Iterative
 - `UsersThree` — Collaborative
 
-**Right (image):**
-- Asset: `Working_backwards.avif`
-- Container: `background: --color-paper-secondary`, `border-radius: --radius-xl`, padding 32px
-- `align-self: flex-start`
-- Image: `max-width: 100%`, `height: auto`, `display: block`
-- Alt text: `Diagram illustrating working backwards from a defined outcome`
-
 ---
 
-#### Section 3 — Short Cycles (secondary background, with image)
+#### Section 3 — Our Method (secondary background, with image)
 
 **Background:** `--color-paper-secondary`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop — image left (45%), text right (50%, offset 5%). `align-items: flex-start`. Single column mobile.
+**Layout:** Two-column desktop — text left (50%), image right (45%, offset 5%). `align-items: flex-start`. Single column mobile (image below heading, above body text).
 
-**Left (image):**
-- Asset: `Start-small-prove-value-scale-smart.avif`
-- Same display treatment as above
-- `align-self: flex-start`
-- Alt text: `Diagram illustrating the agile approach: start small, prove value, scale smart`
-
-**Right:**
+**Left column (text):**
 ```
 [.section-label] Our method
 
 [H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
-We build in short cycles,
-not long ones.
+Start small. Prove value. Scale smart.
 
 [Body — DM Sans 400, 17px, --color-ink-secondary, margin-top 20px]
 We don't disappear for months and return with something finished. We build in
@@ -920,56 +939,23 @@ specify on paper but obvious the moment you can see something real. And it
 means everything we build can be extended and scaled without starting again.
 ```
 
----
-
-#### Section 4 — Team Structure (light)
-
-**Background:** `--color-paper`  
-**Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop (40% / 55%), single column mobile
-
-**Left:**
-```
-[.section-label] Our team
-
-[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
-Senior people.
-Competitive cost.
-No handoffs.
-```
-
-**Right:**
-```
-[Body — DM Sans 400, 17px, --color-ink-secondary]
-Our client-facing team is local and senior — experienced automation designers
-and engineers who understand both the technology and the business context
-behind it. They scope the work, lead the engagement and stay accountable for
-the outcome. You deal with the same people throughout. No account managers.
-No handoffs once the contract is signed.
-
-[Icon callout — UserCircle 24px + DM Sans 400 14px, margin-top 20px]
-The same people throughout. No account managers.
-
-Behind them is an offshore delivery centre of 30-plus people, working under
-direct supervision of our local engineers to the same standards. It's what lets
-us deliver at a quality level that would otherwise cost significantly more.
-
-[Icon callout — Buildings 24px + DM Sans 400 14px]
-30+ person offshore delivery centre under direct local supervision.
-
-[Pull quote — Plus Jakarta Sans 600, 18px, --color-ink, margin-top 32px]
-The quality and accountability of a senior local firm, at a price point
-that makes sense for a mid-sized business.
-```
+**Right column (image):**
+- Asset: `Start-small-prove-value-scale-smart.avif`
+- Container: `background: --color-paper`, `border-radius: --radius-xl`, padding 32px
+- `align-self: flex-start`
+- Image: `max-width: 100%`, `height: auto`, `display: block`
+- Alt text: `Diagram illustrating the approach: start small, prove value, scale smart`
 
 ---
 
-#### Section 5 — How We Build (secondary background)
+#### Section 4 — How We Build (secondary background)
 
 **Background:** `--color-paper-secondary`  
 **Vertical padding:** `--space-7`
 
 ```
+[.section-label] Our principles
+
 [H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, centred, margin-bottom 48px]
 How we build
 ```
@@ -977,12 +963,12 @@ How we build
 **2×2 grid desktop, stacked mobile. Each block:**
 ```css
 background: var(--color-paper);
-border-left: 3px solid var(--color-accent);
+border-left: 3px solid var(--color-accent-deep);
 padding: 24px;
 border-radius: 0;
 ```
 
-Icon (28px, `--color-accent`) above heading. Heading: Plus Jakarta Sans 600, 18px. Body: DM Sans 400, 14px.
+Icon (28px, `--color-accent-deep`) above heading. Heading: Plus Jakarta Sans 600, 18px, `--color-ink`. Body: DM Sans 400, 14px, `--color-ink-secondary`.
 
 | Icon | Heading | Body |
 |---|---|---|
@@ -993,42 +979,58 @@ Icon (28px, `--color-accent`) above heading. Heading: Plus Jakarta Sans 600, 18p
 
 ---
 
-#### Section 6 — What Working With Us Looks Like (light)
+#### Section 5 — Who You'll Work With (light)
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Centred, max-width 680px
+**Layout:** Two-column desktop (40% left / 55% right), single column mobile
 
+**Left:**
 ```
-[.section-label — centred] What to expect
+[.section-label] Our team
 
-[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, centred]
-What working with us looks like.
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
+Senior people.
+Direct access.
+No handoffs.
+```
 
-[Body — DM Sans 400, 17px, --color-ink-secondary, centred, line-height 1.7, margin-top 24px]
-We're a small, senior team — which means you get direct access to the people
-doing the work, not a layer of management between you and the delivery.
-We communicate plainly, flag problems early and don't generate unnecessary
-complexity.
+**Right:**
+```
+[Body — DM Sans 400, 17px, --color-ink-secondary, line-height 1.75]
+You deal with the same people throughout — the ones who scoped the work and
+are accountable for the outcome. No account managers. No handoffs once the
+contract is signed. We communicate plainly, flag problems early and don't
+generate unnecessary complexity.
 
 We're not here to make ourselves indispensable. We're here to build something
 that works, prove it quickly and earn the right to do more.
+
+[Pull quote — Plus Jakarta Sans 600, 18px, --color-ink, border-left 3px solid --color-accent-deep, padding-left 24px, margin-top 32px]
+The quality and accountability of a senior local firm, at a price point
+that makes sense for a mid-sized business.
 ```
 
 ---
 
-#### Section 7 — CTA (dark)
+#### Section 6 — CTA (dark)
 
 **Background:** `--color-paper-dark`  
 **Vertical padding:** `--space-7`  
 **Layout:** Centred, max-width 600px  
-**Watermark:** Yes
+**Watermark:** Yes — two instances
 
 ```
-[H2 — Plus Jakarta Sans 700, --text-h2, #F5F3EE, centred]
-Sound familiar?
+[.section-label — centred] Work with us
 
-[Primary CTA — centred, margin-top 32px]
+[H2 — Plus Jakarta Sans 700, --text-h2, #F5F3EE, centred]
+Ready to see how this applies to your business?
+
+[Body — DM Sans 400, 18px, rgba(245,243,238,0.65), centred, margin-top 16px]
+Start with a free Fit Call. Thirty minutes, no pitch — just an honest look
+at whether there's a problem worth solving together.
+
+[Primary CTA — centred, margin-top 40px]
 Book a free Fit Call →
 ```
 
@@ -1464,7 +1466,7 @@ See Component 7.2.
 **Three-column layout desktop:**
 
 **Column 1 — Brand:**
-- Logo: reversed variant (mark + wordmark, no tagline), 110px wide, mark in `#00C2FF`, cyan dot on "i" retained
+- Logo: reversed variant (mark + wordmark, no tagline), 110px wide, mark in `#F5A623`, cyan dot on "i" retained (gold tittle on dark background)
 - Below logo (margin-top 24px): DM Sans 400, 13px, `rgba(245,243,238,0.4)`:
   `© 2026 Sixense Pty Ltd. All rights reserved.`
   `ABN: 19 643 253 122`
@@ -1563,7 +1565,7 @@ The watermark appears on **all sections across all pages** — dark and light. T
   height: 520px;
   pointer-events: none;
   z-index: 0;
-  color: #00C2FF;
+  color: #F5A623;
 }
 .section-dark .watermark-mark {
   width: 100%;
@@ -1597,12 +1599,12 @@ The watermark appears on **all sections across all pages** — dark and light. T
   height: 480px;
   pointer-events: none;
   z-index: 0;
-  color: #0099CC;
+  color: #D4881A;
 }
 .section-light .watermark-mark {
   width: 100%;
   height: 100%;
-  opacity: 0.04;
+  opacity: 0.05;
 }
 
 /* Alternate left/right placement for light sections */
@@ -1758,8 +1760,8 @@ Vercel, Netlify or Cloudflare Pages recommended. Domain: `sixense.com.au` (clien
 - All interactive elements keyboard-navigable in logical order
 - All images have descriptive `alt` text (specified per section above)
 - WCAG AA contrast: minimum 4.5:1 body text, 3:1 large text and UI elements
-- `#00C2FF` on `#1A1A18`: ~9.5:1 ✓. `#0099CC` on `#F5F3EE`: ~4.6:1 ✓
-- Focus indicators visible on all interactive elements
+- `#F5A623` on `#1A1A18`: ~7.2:1 ✓ (dark sections). `#D4881A` on `#F5F3EE`: ~4.6:1 ✓ (light sections)
+- Never use `#F5A623` directly on light backgrounds for text or small elements — always use `#D4881A`
 - Form fields have associated `<label>` elements
 - Screen reader landmarks: `<header>`, `<nav>`, `<main>`, `<footer>`, `<section>` with `aria-label`
 - Skip-to-main-content link at top of page (visually hidden until focused)

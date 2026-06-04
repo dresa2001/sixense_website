@@ -4,7 +4,7 @@ interface Props {
   width?: number;
 }
 const { variant = 'light', width = 160 } = Astro.props;
-const markColor = variant === 'dark' ? '#00C2FF' : '#0099CC';
+const markColor = variant === 'dark' ? '#F5A623' : '#D4881A';
 const textColor = variant === 'dark' ? '#F5F3EE' : '#1A1A18';
 ---
 
@@ -30,7 +30,7 @@ const textColor = variant === 'dark' ? '#F5F3EE' : '#1A1A18';
     <circle cx="24" cy="29" r="2.5" fill={markColor}/>
   </svg>
 
-  <span class="logo-wordmark" style={`color:${textColor}`}>s<span class="i-cyan">i</span>xense</span>
+  <span class="logo-wordmark" style={`color:${textColor}`}>s<span style={`color:${markColor}`}>i</span>xense</span>
 </a>
 
 <style>
@@ -53,5 +53,4 @@ const textColor = variant === 'dark' ? '#F5F3EE' : '#1A1A18';
     letter-spacing: 0.02em;
     line-height: 1;
   }
-  .i-cyan { color: #00C2FF; }
 </style>

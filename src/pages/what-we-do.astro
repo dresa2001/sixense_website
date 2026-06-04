@@ -89,7 +89,7 @@ const buildTiers = [
         {serviceCards.map((card, i) => (
           <div class="service-card animate-in" data-delay={`${(i % 3) * 80}ms`}>
             <div class="icon-circle icon-circle-sm">
-              <i class={`ph ph-${card.icon}`} style="font-size:32px;color:#00C2FF;" aria-hidden="true"></i>
+              <i class={`ph ph-${card.icon}`} style="font-size:32px;color:#D4881A;" aria-hidden="true"></i>
             </div>
             <h3 class="svc-heading">{card.heading}</h3>
             <p class="svc-body">{card.body}</p>
@@ -113,7 +113,7 @@ const buildTiers = [
         {approachCards.map((card, i) => (
           <div class="approach-card animate-in" data-delay={`${i * 80}ms`}>
             <div class="icon-circle icon-circle-md" style="margin-bottom:var(--space-3)">
-              <i class={`ph ph-${card.icon}`} style="font-size:36px;color:#00C2FF;" aria-hidden="true"></i>
+              <i class={`ph ph-${card.icon}`} style="font-size:36px;color:#D4881A;" aria-hidden="true"></i>
             </div>
             <span class="approach-label">{card.label}</span>
             <h3 class="approach-card-heading">{card.heading}</h3>
@@ -140,7 +140,7 @@ const buildTiers = [
       <div class="engage-panels">
         <div class="engage-panel animate-in">
           <div class="icon-circle icon-circle-lg">
-            <i class="ph ph-phone" style="font-size:48px;color:#00C2FF;" aria-hidden="true"></i>
+            <i class="ph ph-phone" style="font-size:48px;color:#D4881A;" aria-hidden="true"></i>
           </div>
           <span class="engage-tag">Free · 30 minutes</span>
           <h3 class="engage-heading">The Fit Call</h3>
@@ -153,7 +153,7 @@ const buildTiers = [
         </div>
         <div class="engage-panel animate-in" data-delay="80ms">
           <div class="icon-circle icon-circle-lg">
-            <i class="ph ph-magnifying-glass" style="font-size:48px;color:#00C2FF;" aria-hidden="true"></i>
+            <i class="ph ph-magnifying-glass" style="font-size:48px;color:#D4881A;" aria-hidden="true"></i>
           </div>
           <span class="engage-tag">Fixed time · Fixed price</span>
           <h3 class="engage-heading">The Discovery Sprint</h3>
@@ -253,7 +253,7 @@ const buildTiers = [
     background: var(--color-paper);
     border-radius: var(--radius-lg);
     padding: 28px 24px;
-    border-top: 3px solid var(--color-accent);
+    border-top: 3px solid var(--color-accent-deep);
     display: flex;
     flex-direction: column;
   }
@@ -261,7 +261,7 @@ const buildTiers = [
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 11px;
-    color: var(--color-accent);
+    color: var(--color-accent-deep);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 8px;
@@ -307,8 +307,8 @@ const buildTiers = [
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 11px;
-    color: var(--color-accent);
-    border: 1px solid var(--color-accent);
+    color: var(--color-accent-deep);
+    border: 1px solid var(--color-accent-deep);
     border-radius: var(--radius-sm);
     padding: 4px 10px;
     display: inline-block;

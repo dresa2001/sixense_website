@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ClosingCTA from '../components/ClosingCTA.astro';
 import Watermark from '../components/Watermark.astro';
 
 const principles = [
@@ -21,75 +20,71 @@ const principles = [
     <Watermark secondary={true} />
     <div class="container">
       <span class="section-label">How we work</span>
-      <h1 id="hww-heading" class="animate-in" style="color:var(--color-paper)">
-        We start with your business.<br />Not the technology.
+      <h1 id="hww-heading" class="animate-in" style="color:var(--color-paper);max-width:760px">
+        Process first. Experience led. Real solutions.
       </h1>
-      <div class="hero-anchors animate-in" data-delay="80ms">
-        <p>Process first. Experience led. Real solutions.</p>
-        <p>Start small. Prove value. Scale smart.</p>
-      </div>
+      <p class="animate-in" data-delay="80ms" style="font-size:20px;color:rgba(245,243,238,0.65);max-width:580px;margin-top:var(--space-3);line-height:1.7">
+        We start with your business, not the technology, and build in shorter
+        iterations rather than drawn-out cycles.
+      </p>
     </div>
   </section>
 
-  <!-- We Work Backwards -->
-  <section class="section" aria-labelledby="backwards-heading">
+  <!-- Our Approach: label + H2 + image LEFT, body + callouts RIGHT -->
+  <section class="section" aria-labelledby="approach-heading">
     <Watermark variant="light" side="right" />
     <div class="container two-col two-col-50-50">
       <div>
         <span class="section-label">Our approach</span>
-        <h2 id="backwards-heading" class="animate-in">
+        <h2 id="approach-heading" class="animate-in">
           We work backwards<br />from the outcome.
         </h2>
-        <p class="animate-in" data-delay="80ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:var(--space-3);line-height:1.7">
+        <div class="image-container animate-in" data-delay="80ms">
+          <img
+            src="/assets/Working_backwards.avif"
+            alt="Diagram illustrating working backwards from a defined outcome"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <div>
+        <p class="animate-in" style="color:var(--color-ink-secondary);font-size:17px;line-height:1.75">
           Every engagement starts with a clear picture of what better looks like for
           your business — not a system requirement, not a features list. From there
           we work back through your processes, people, systems and data to understand
           what needs to change and what the right path forward looks like.
         </p>
-        <p class="animate-in" data-delay="120ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:1em;line-height:1.7">
+        <p class="animate-in" data-delay="80ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:1em;line-height:1.75">
           This keeps solutions grounded in how your business actually works from day one.
-          It also keeps scope honest — we're building toward a defined outcome, not generating work.
+          It also keeps scope honest — we're building toward a defined outcome,
+          not generating work.
         </p>
-        <div class="callout-row animate-in" data-delay="160ms" style="margin-top:var(--space-4)">
+        <div class="callout-row animate-in" data-delay="120ms" style="margin-top:var(--space-4)">
           <div class="callout-item">
-            <i class="ph ph-target" style="font-size:20px;color:#00C2FF;" aria-hidden="true"></i>
+            <i class="ph ph-target" style="font-size:20px;color:#D4881A;" aria-hidden="true"></i>
             <span>Outcome-first</span>
           </div>
           <div class="callout-item">
-            <i class="ph ph-arrows-clockwise" style="font-size:20px;color:#00C2FF;" aria-hidden="true"></i>
+            <i class="ph ph-arrows-clockwise" style="font-size:20px;color:#D4881A;" aria-hidden="true"></i>
             <span>Iterative</span>
           </div>
           <div class="callout-item">
-            <i class="ph ph-users-three" style="font-size:20px;color:#00C2FF;" aria-hidden="true"></i>
+            <i class="ph ph-users-three" style="font-size:20px;color:#D4881A;" aria-hidden="true"></i>
             <span>Collaborative</span>
           </div>
         </div>
       </div>
-      <div class="image-container animate-in" data-delay="80ms">
-        <img
-          src="/assets/Working_backwards.avif"
-          alt="Diagram illustrating working backwards from a defined outcome"
-          loading="lazy"
-        />
-      </div>
     </div>
   </section>
 
-  <!-- Short Cycles -->
-  <section class="section section-secondary" aria-labelledby="cycles-heading">
+  <!-- Our Method: text LEFT, image RIGHT -->
+  <section class="section section-secondary" aria-labelledby="method-heading">
     <Watermark variant="light" side="left" />
     <div class="container two-col two-col-50-50">
-      <div class="image-container animate-in">
-        <img
-          src="/assets/Start-small-prove-value-scale-smart.avif"
-          alt="Diagram illustrating the agile approach: start small, prove value, scale smart"
-          loading="lazy"
-        />
-      </div>
       <div>
         <span class="section-label">Our method</span>
-        <h2 id="cycles-heading" class="animate-in">
-          We build in short cycles,<br />not long ones.
+        <h2 id="method-heading" class="animate-in">
+          Start small. Prove value. Scale smart.
         </h2>
         <p class="animate-in" data-delay="80ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:var(--space-3);line-height:1.7">
           We don't disappear for months and return with something finished. We build in
@@ -103,59 +98,28 @@ const principles = [
           means everything we build can be extended and scaled without starting again.
         </p>
       </div>
-    </div>
-  </section>
-
-  <!-- Team Structure -->
-  <section class="section" aria-labelledby="team-heading">
-    <Watermark variant="light" side="right" />
-    <div class="container two-col two-col-40-55">
-      <div>
-        <span class="section-label">Our team</span>
-        <h2 id="team-heading" class="animate-in">
-          Senior people.<br />Competitive cost.<br />No handoffs.
-        </h2>
-      </div>
-      <div>
-        <p class="animate-in" style="color:var(--color-ink-secondary);font-size:17px;line-height:1.7">
-          Our client-facing team is local and senior — experienced automation designers
-          and engineers who understand both the technology and the business context
-          behind it. They scope the work, lead the engagement and stay accountable for
-          the outcome. You deal with the same people throughout. No account managers.
-          No handoffs once the contract is signed.
-        </p>
-        <div class="team-callout animate-in" data-delay="80ms">
-          <i class="ph ph-user-circle" style="font-size:24px;color:#00C2FF;" aria-hidden="true"></i>
-          <p>The same people throughout. No account managers.</p>
-        </div>
-        <p class="animate-in" data-delay="100ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:var(--space-3);line-height:1.7">
-          Behind them is an offshore delivery centre of 30-plus people, working under
-          direct supervision of our local engineers to the same standards. It's what lets
-          us deliver at a quality level that would otherwise cost significantly more.
-        </p>
-        <div class="team-callout animate-in" data-delay="120ms">
-          <i class="ph ph-buildings" style="font-size:24px;color:#00C2FF;" aria-hidden="true"></i>
-          <p>30+ person offshore delivery centre under direct local supervision.</p>
-        </div>
-        <p class="pull-quote animate-in" data-delay="160ms">
-          The quality and accountability of a senior local firm, at a price point
-          that makes sense for a mid-sized business.
-        </p>
+      <div class="image-container-light animate-in" data-delay="80ms">
+        <img
+          src="/assets/Start-small-prove-value-scale-smart.avif"
+          alt="Diagram illustrating the approach: start small, prove value, scale smart"
+          loading="lazy"
+        />
       </div>
     </div>
   </section>
 
   <!-- How We Build -->
   <section class="section section-secondary" aria-labelledby="build-heading">
-    <Watermark variant="light" side="left" />
+    <Watermark variant="light" side="right" />
     <div class="container">
+      <span class="section-label" style="justify-content:center">Our principles</span>
       <h2 id="build-heading" class="animate-in" style="text-align:center;margin-bottom:var(--space-5)">
         How we build
       </h2>
       <div class="principles-grid">
         {principles.map((p, i) => (
           <div class="principle animate-in" data-delay={`${i * 80}ms`}>
-            <i class={`ph ph-${p.icon}`} style="font-size:28px;color:#00C2FF;" aria-hidden="true"></i>
+            <i class={`ph ph-${p.icon}`} style="font-size:28px;color:#D4881A;" aria-hidden="true"></i>
             <h3 class="principle-heading">{p.heading}</h3>
             <p class="principle-body">{p.body}</p>
           </div>
@@ -164,49 +128,53 @@ const principles = [
     </div>
   </section>
 
-  <!-- What Working With Us Looks Like -->
-  <section class="section" aria-labelledby="expect-heading">
-    <Watermark variant="light" side="right" />
-    <div class="container expect-inner">
-      <span class="section-label" style="justify-content:center">What to expect</span>
-      <h2 id="expect-heading" class="animate-in" style="text-align:center">
-        What working with us looks like.
-      </h2>
-      <p class="animate-in" data-delay="80ms" style="color:var(--color-ink-secondary);font-size:17px;text-align:center;line-height:1.7;margin-top:var(--space-3)">
-        We're a small, senior team — which means you get direct access to the people
-        doing the work, not a layer of management between you and the delivery.
-        We communicate plainly, flag problems early and don't generate unnecessary complexity.
-      </p>
-      <p class="animate-in" data-delay="120ms" style="color:var(--color-ink-secondary);font-size:17px;text-align:center;line-height:1.7;margin-top:1em">
-        We're not here to make ourselves indispensable. We're here to build something
-        that works, prove it quickly and earn the right to do more.
-      </p>
+  <!-- Who You'll Work With -->
+  <section class="section" aria-labelledby="team-heading">
+    <Watermark variant="light" side="left" />
+    <div class="container two-col two-col-40-55">
+      <div>
+        <span class="section-label">Our team</span>
+        <h2 id="team-heading" class="animate-in">
+          Senior people.<br />Direct access.<br />No handoffs.
+        </h2>
+      </div>
+      <div>
+        <p class="animate-in" style="color:var(--color-ink-secondary);font-size:17px;line-height:1.75">
+          You deal with the same people throughout — the ones who scoped the work and
+          are accountable for the outcome. No account managers. No handoffs once the
+          contract is signed. We communicate plainly, flag problems early and don't
+          generate unnecessary complexity.
+        </p>
+        <p class="animate-in" data-delay="80ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:1em;line-height:1.75">
+          We're not here to make ourselves indispensable. We're here to build something
+          that works, prove it quickly and earn the right to do more.
+        </p>
+        <p class="pull-quote animate-in" data-delay="120ms">
+          The quality and accountability of a senior local firm, at a price point
+          that makes sense for a mid-sized business.
+        </p>
+      </div>
     </div>
   </section>
 
-  <ClosingCTA
-    heading="Sound familiar?"
-    body=""
-    ctaLabel="Book a free Fit Call →"
-    showContactLink={false}
-  />
+  <!-- CTA — custom dark section with section label -->
+  <section class="section section-dark hww-cta" aria-labelledby="hww-cta-heading">
+    <Watermark />
+    <Watermark secondary={true} />
+    <div class="container cta-inner">
+      <span class="section-label" style="justify-content:center">Work with us</span>
+      <h2 id="hww-cta-heading" class="animate-in">Ready to see how this applies to your business?</h2>
+      <p class="animate-in" data-delay="80ms">
+        Start with a free Fit Call. Thirty minutes, no pitch — just an honest look
+        at whether there's a problem worth solving together.
+      </p>
+      <a href="/contact" class="btn btn-primary animate-in" data-delay="160ms">Book a free Fit Call →</a>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
   .hero { padding-top: 120px; padding-bottom: 80px; }
-  .hero-anchors {
-    margin-top: var(--space-3);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .hero-anchors p {
-    font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 15px;
-    color: rgba(245, 243, 238, 0.5);
-    margin: 0;
-  }
 
   .image-container {
     background: var(--color-paper-secondary);
@@ -214,24 +182,24 @@ const principles = [
     padding: 32px;
     overflow: hidden;
     align-self: flex-start;
+    margin-top: var(--space-3);
   }
 
-  .team-callout {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-top: var(--space-3);
-    padding: var(--space-2);
-    background: var(--color-paper-secondary);
-    border-radius: var(--radius-md);
+  .image-container-light {
+    background: var(--color-paper);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    overflow: hidden;
+    align-self: flex-start;
   }
-  .team-callout p { font-size: 14px; color: var(--color-ink-secondary); margin: 0; line-height: 1.5; }
 
   .pull-quote {
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 18px;
     color: var(--color-ink);
+    border-left: 3px solid var(--color-accent-deep);
+    padding-left: 24px;
     margin-top: var(--space-4);
   }
 
@@ -241,12 +209,29 @@ const principles = [
     gap: var(--space-3);
   }
 
-  .expect-inner {
-    max-width: 680px;
+  .hww-cta {
+    text-align: center;
+    padding-block: var(--space-7);
+  }
+  .cta-inner {
+    max-width: 600px;
     margin-inline: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
   }
+  .cta-inner h2 {
+    color: var(--color-paper);
+    font-size: var(--text-h2);
+  }
+  .cta-inner p {
+    color: rgba(245, 243, 238, 0.65);
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .cta-inner .btn { margin-top: var(--space-2); }
 
   @media (max-width: 767px) {
     .hero { padding-top: 112px; }
