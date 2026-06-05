@@ -220,7 +220,7 @@ p { font-size: var(--text-body); line-height: 1.7; }
 @media (max-width: 767px) {
   .two-col {
     grid-template-columns: 1fr !important;
-    gap: var(--space-5);
+    gap: var(--space-4);
   }
 }
 
@@ -432,6 +432,14 @@ p { font-size: var(--text-body); line-height: 1.7; }
   gap: 16px;
 }
 @media (max-width: 767px) { .form-row { grid-template-columns: 1fr; } }
+@media (max-width: 767px) {
+  /* Prevent long button text from causing horizontal overflow */
+  .btn { white-space: normal; text-align: center; }
+  /* Reduce section vertical padding on small screens */
+  .section { padding-block: var(--space-6); }
+  /* Scale down large stat numbers */
+  .stat-number { font-size: 36px; }
+}
 
 /* ─── Watermark ──────────────────────────────────────────────────────────── */
 .section-watermark {

@@ -273,6 +273,9 @@ import Watermark from '../components/Watermark.astro';
     color: var(--color-ink);
   }
 
+  @media (max-width: 1023px) {
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 767px) {
     .hero { padding-top: 112px; }
     .pillars { grid-template-columns: 1fr; }
