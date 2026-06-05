@@ -73,7 +73,7 @@ import Watermark from '../components/Watermark.astro';
       <div class="pillars animate-in" data-delay="80ms">
         <div class="pillar">
           <div class="icon-circle icon-circle-md" style="margin-bottom:var(--space-3)">
-            <i class="ph ph-handshake-simple" style="font-size:36px;color:#D4881A;" aria-hidden="true"></i>
+            <i class="ph ph-handshake" style="font-size:36px;color:#F4C542;" aria-hidden="true"></i>
           </div>
           <h3 class="pillar-heading">Your operations. Your outcomes.</h3>
           <p class="pillar-body">
@@ -84,7 +84,7 @@ import Watermark from '../components/Watermark.astro';
         </div>
         <div class="pillar">
           <div class="icon-circle icon-circle-md" style="margin-bottom:var(--space-3)">
-            <i class="ph ph-rocket" style="font-size:36px;color:#D4881A;" aria-hidden="true"></i>
+            <i class="ph ph-rocket" style="font-size:36px;color:#F4C542;" aria-hidden="true"></i>
           </div>
           <h3 class="pillar-heading">Execution over strategy.</h3>
           <p class="pillar-body">
@@ -95,7 +95,7 @@ import Watermark from '../components/Watermark.astro';
         </div>
         <div class="pillar">
           <div class="icon-circle icon-circle-md" style="margin-bottom:var(--space-3)">
-            <i class="ph ph-target" style="font-size:36px;color:#D4881A;" aria-hidden="true"></i>
+            <i class="ph ph-target" style="font-size:36px;color:#F4C542;" aria-hidden="true"></i>
           </div>
           <h3 class="pillar-heading">Unashamedly pragmatic.</h3>
           <p class="pillar-body">
@@ -107,7 +107,7 @@ import Watermark from '../components/Watermark.astro';
 
       <!-- Inline quote — no background, just horizontal rules -->
       <div class="quote-rule animate-in" data-delay="160ms">
-        <p class="quote-text">"Bang for buck, I love what you did for us."</p>
+        <p class="quote-text">"Bang for buck, this outcome is one of the best we've delivered for our business."</p>
         <p class="quote-attr">
           CTO, Australia's largest private transport operator.<br />
           Our yardstick for every engagement.
@@ -122,7 +122,7 @@ import Watermark from '../components/Watermark.astro';
     <div class="container name-inner">
       <span class="section-label" style="justify-content:center">Why the name</span>
       <h2 id="name-heading" class="animate-in" style="text-align:center">
-        A sixth sense for operational problems.
+        A sixth sense for business <span class="strikethrough-gold">problems</span> automation.
       </h2>
       <p class="animate-in" data-delay="80ms" style="font-size:17px;color:var(--color-ink-secondary);text-align:center;line-height:1.7;margin-top:var(--space-3)">
         Sixense is a take on sixth sense — connected, intuitive thinking.
@@ -159,7 +159,7 @@ import Watermark from '../components/Watermark.astro';
     align-self: start;
   }
   .stat-item {
-    padding: 28px 0;
+    padding: 20px 0;
     border-bottom: 1px solid var(--color-border);
   }
   .stat-item:first-child { padding-top: 0; }
@@ -167,13 +167,13 @@ import Watermark from '../components/Watermark.astro';
   .stat-big {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 64px;
-    color: var(--color-accent-deep);
+    font-size: 48px;
+    color: var(--color-accent);
     line-height: 1;
     display: block;
   }
   .stat-desc {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--color-ink-secondary);
     margin-top: 4px;
     margin-bottom: 0;
@@ -182,7 +182,7 @@ import Watermark from '../components/Watermark.astro';
   /* What We Believe */
   .believe-header {
     text-align: center;
-    margin-bottom: var(--space-7);
+    margin-bottom: 56px;
   }
   .pillars {
     display: grid;
@@ -193,7 +193,7 @@ import Watermark from '../components/Watermark.astro';
     background: var(--color-paper-secondary);
     border-radius: var(--radius-xl);
     padding: 32px;
-    border-top: 3px solid var(--color-accent-deep);
+    border-top: 3px solid var(--color-accent);
     display: flex;
     flex-direction: column;
   }
@@ -219,6 +219,7 @@ import Watermark from '../components/Watermark.astro';
     padding: 32px 0;
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
+    text-align: center;
   }
   .quote-text {
     font-family: var(--font-display);
@@ -226,9 +227,9 @@ import Watermark from '../components/Watermark.astro';
     font-size: clamp(18px, 2.5vw, 24px);
     color: var(--color-ink);
     max-width: 640px;
+    margin: 0 auto;
     line-height: 1.4;
     font-style: italic;
-    margin: 0;
   }
   .quote-attr {
     font-family: var(--font-body);
@@ -236,6 +237,7 @@ import Watermark from '../components/Watermark.astro';
     color: var(--color-ink-tertiary);
     margin-top: 12px;
     line-height: 1.5;
+    text-align: center;
   }
 
   /* Why the Name */
@@ -265,9 +267,14 @@ import Watermark from '../components/Watermark.astro';
   }
   .cta-inner .btn { margin-top: var(--space-2); }
 
+  .strikethrough-gold {
+    text-decoration: line-through;
+    text-decoration-color: var(--color-accent);
+    color: var(--color-ink);
+  }
+
   @media (max-width: 767px) {
     .hero { padding-top: 112px; }
     .pillars { grid-template-columns: 1fr; }
-    .stat-big { font-size: 48px; }
   }
 </style>

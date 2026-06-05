@@ -74,7 +74,9 @@ Sixense is an Australian automation and AI consultancy serving mid-market operat
 
 ### Current Asset
 
-The supplied file `Sixense-Transparent.avif` is the source reference. The mark (three interlocking hexagons with hub-and-spoke centre) is retained conceptually but reworked for precision and updated colour. The "connected thinking" tagline is removed from all instances.
+The supplied file `Sixense-Transparent.avif` (updated version, June 2026) is the source reference. The mark is a trefoil of three rounded hexagons with hub-and-spoke centre. The tittle on the "i" in the wordmark is already rendered as a small gold dot in this file — the developer must replicate this exactly in the SVG implementation. The "connected thinking" tagline present in the source file is **not used** on the live site — remove it from all instances.
+
+**Watermark source:** The animated background watermark used across all pages must be traced directly from this logo file's hexagonal mark paths — not approximated with polygon points. Extract the exact SVG paths from `Sixense-Transparent.avif` (convert to SVG first using a tool such as Inkscape's trace bitmap or equivalent) and use those paths for the `.hex` elements in the watermark animation. This ensures the watermark matches the logo mark geometry precisely.
 
 ### Mark Rework
 
@@ -86,8 +88,7 @@ The supplied file `Sixense-Transparent.avif` is the source reference. The mark (
 - Three spokes: 1.5px lines from hub to each hexagon inner vertex, trimmed to ~55% of the hub-to-centre distance
 
 **Colour:**
-- Mark on dark backgrounds (`#1A1A18`): `#F5A623`
-- Mark on light backgrounds (`#F5F3EE`, `#EDEAE3`): `#D4881A` (deeper gold — maintains 4.5:1 contrast)
+- Mark colour: `#F4C542` on all backgrounds
 - Mark is never rendered as a flat dark fill
 
 **Wordmark:**
@@ -95,7 +96,7 @@ The supplied file `Sixense-Transparent.avif` is the source reference. The mark (
 - Text: `sixense` — all lowercase
 - Tracking: 0.02em
 - Colour: `#F5F3EE` on dark backgrounds; `#1A1A18` on light backgrounds
-- **The tittle (dot) above the letter "i" in "sixense" must be coloured to match the mark exactly: `#F5A623` on dark backgrounds, `#D4881A` on light backgrounds.** The stem and body of the "i" remain the standard wordmark colour. Only the dot is recoloured. Implement by rendering the wordmark as SVG with the tittle as a separately positioned filled circle overlaid precisely on the default "i" tittle position. The font's native tittle should be masked or the glyph decomposed so the replacement dot sits in exactly the right position. This detail must be consistent across nav, footer and all rendered logo assets.
+- **The tittle (dot) above the letter "i" in "sixense" must be coloured `#F4C542` on all backgrounds — matching the mark exactly. Only the tittle is recoloured — the stem of the "i" remains the standard wordmark colour (`#F5F3EE` on dark, `#1A1A18` on light) and must not change.** Do not colour the entire "i" glyph. **Implemented approach:** render the "i" using the dotless-i character `ı` (U+0131) so the stem inherits the wordmark colour naturally, then overlay the gold tittle using a CSS `::after` pseudo-element (filled circle, `background: #F4C542`, `border-radius: 50%`, sized and positioned to sit at the tittle position above the stem). The `<span>` wrapping the dotless-i must be `display: inline-block; position: relative` to anchor the pseudo-element. Adjust `top`, `width`, and `height` values to match the font's tittle geometry at the rendered size.
 
 **Tagline:** None. Removed from all instances.
 
@@ -105,12 +106,14 @@ The supplied file `Sixense-Transparent.avif` is the source reference. The mark (
 - Clearspace: minimum padding equal to the height of the letter "s" on all sides
 
 **Variants required:**
-- Full horizontal lockup (mark + wordmark with cyan "i" dot) — nav and general use
-- Mark only — favicon, small contexts
-- Reversed (white mark + white wordmark, cyan "i" dot retained) — dark backgrounds
-- Monochrome dark — single `#1A1A18` version (cyan "i" dot becomes dark ink)
+- Full horizontal lockup (mark + wordmark with gold "i" tittle) — nav and general use (`variant="light"`)
+- Mark only — favicon, small contexts (`Sixense-Mark.svg`)
+- Dark variant (mark always gold `#F4C542`, wordmark `#F5F3EE`, gold tittle retained) — dark backgrounds (`variant="dark"`)
+- The mark is **never** rendered white or inverted — it is always `#F4C542` on all backgrounds
 
-**Nav sizing:** Minimum 160px wide on desktop, 130px on mobile. Set `flex-shrink: 0` on the logo container. The logo must feel prominent in the nav — not tucked away.
+**Nav sizing:** Minimum 160px wide on desktop, 130px on mobile. Set `flex-shrink: 0` on the logo container. The logo must feel prominent in the nav — not tucked away. Nav bar height: 96px.
+
+**Footer logo:** Use `variant="dark"`. The SVG mark must remain `#F4C542` (gold) on dark backgrounds — never inverted to white. The wordmark is `#F5F3EE` (light paper). The stem of the "i" is `#F5F3EE` matching the wordmark; only the tittle (dot) is `#F4C542`. Do not apply `filter: brightness(0) invert(1)` to the logo on dark backgrounds. The `Logo` component accepts no `width` prop — sizing is controlled via CSS (`min-width: 160px` desktop, `130px` mobile).
 
 ### Logo Hover Animation
 
@@ -142,7 +145,7 @@ When a user hovers over the logo in the nav, animate the hexagonal mark only (no
 120° rotation is preferred for spin as it returns the trefoil mark to a visually identical position (rotational symmetry). Apply `transform-origin: center` on the mark SVG group. The wordmark must not move during this animation.
 
 **Favicon:**
-- 32×32px and 16×16px: mark only, `#00C2FF` on transparent background
+- 32×32px and 16×16px: mark only, `#F4C542` on transparent background
 - 180×180px Apple touch icon: mark centred on `#1A1A18` with 20px padding
 
 ---
@@ -203,7 +206,7 @@ h3              { font-weight: 600; }
   align-items: center;
   gap: 10px;
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -223,6 +226,9 @@ h3              { font-weight: 600; }
 
 Apply `.section-label` to every section label element across all pages.
 
+**CRITICAL — Section label colour by context:**  
+The `.section-label` CSS above sets `color: var(--color-accent)` as a base. This must be overridden per section context:
+- On dark sections (`.section-dark .section-label`): `color: var(--color-accent)` — `#F4C542` ✓
 ---
 
 ## 5. Colour Palette
@@ -236,57 +242,43 @@ Apply `.section-label` to every section label element across all pages.
 --color-paper:         #F5F3EE;   /* Primary background — warm off-white */
 --color-paper-secondary: #EDEAE3; /* Subtle sections, card fills */
 --color-paper-dark:    #1A1A18;   /* Dark section backgrounds */
---color-accent:        #F5A623;   /* Solar gold — primary accent, dark backgrounds and large contexts */
---color-accent-deep:   #D4881A;   /* Deeper gold — used on light backgrounds for labels, icons, small text */
---color-accent-hover:  #E09518;   /* Hover state */
---color-accent-glow:   rgba(245, 166, 35, 0.18); /* Focus rings */
+--color-accent:        #F4C542;   /* Bright gold — single accent, all contexts */
+--color-accent-hover:  #DBA832;   /* Hover state */
+--color-accent-glow:   rgba(244, 197, 66, 0.20); /* Focus rings */
 --color-border:        rgba(26, 26, 24, 0.12);   /* Default borders */
 --color-border-strong: rgba(26, 26, 24, 0.25);   /* Dividers */
 ```
 
 ### Contrast Note
 
-Solar gold has two contextual values depending on background:
-
-- `#F5A623` on `#1A1A18` (dark): ~7.2:1 — passes WCAG AA at all sizes. Use `--color-accent` on dark backgrounds for labels, icons, watermark stroke, and button backgrounds (text: `#1A1A18`).
-- `#F5A623` on `#F5F3EE` (light): ~2.4:1 — **fails WCAG AA**. Never use `--color-accent` directly on light backgrounds for text or small icons. Use `--color-accent-deep` (`#D4881A`) instead, which produces ~4.6:1 on `--color-paper` — passing AA.
-
-**Rule:** On light sections (`--color-paper`, `--color-paper-secondary`), always use `--color-accent-deep` for section labels, icons, inline links, borders and small text. On dark sections (`--color-paper-dark`), use `--color-accent`. Buttons use `--color-accent` on both — the button background is large enough that the dark ink text on gold provides sufficient contrast independently.
+`#F4C542` is used as the single accent colour across all backgrounds. On dark (`#1A1A18`) it produces ~9.1:1 contrast — well above WCAG AA. On light (`#F5F3EE`) it produces ~2.1:1, which does not meet WCAG AA for text. This is an accepted design decision. The gold functions as a graphic and decorative accent — borders, icons, watermark, button backgrounds, decorative rules — and is never the sole carrier of readable text. All body text, headings and meaningful labels remain in `--color-ink` (`#1A1A18`).
 
 ### Colour Application
 
-**On dark backgrounds (`--color-paper-dark`) — use `--color-accent` (`#F5A623`):**
-- Section labels and their left-bar decorators
-- Nav active link
-- "Book a Fit Call" button background (text: `#1A1A18`)
-- All CTA button backgrounds (text: `#1A1A18`)
-- Icons in dark sections
-- Watermark SVG stroke
-- Footer links on hover
+`--color-accent` (`#F4C542`) is a single token used uniformly across all contexts. It is a graphic and decorative accent — never the sole carrier of text meaning.
 
-**On light backgrounds (`--color-paper`, `--color-paper-secondary`) — use `--color-accent-deep` (`#D4881A`):**
+**Used everywhere for:**
 - Section labels and their left-bar decorators
-- Icons and icon circle backgrounds: `rgba(212, 136, 26, 0.1)`
+- Nav active link and hover state
+- All CTA button backgrounds (text: `#1A1A18`)
 - Card top accent bars (3px)
 - Card hover borders
-- Outcome card tag chip borders and text
-- How We Build principle block left borders
-- Blockquote left border (About page)
-- Stat numbers on About page
+- Icons and icon circle backgrounds: `rgba(244, 197, 66, 0.15)`
+- Outcome card tag chip borders
+- Principle block left borders
+- Blockquote left borders
+- Watermark SVG stroke
+- Stat numbers (About page)
 - Form input focus border and glow
-- Inline text links ("See our outcomes →" etc.)
-
-**Both contexts:**
-- CTA buttons always use `--color-accent` (`#F5A623`) background with `#1A1A18` text — the large button size means the gold-on-near-black combination reads clearly regardless of background
-
-**Logo mark:**
-- On dark: `#F5A623`
-- On light: `#D4881A`
-- Tittle on "i": matches mark colour in each context
+- Inline text links
+- Footer links on hover
+- Logo mark on all backgrounds
+- Tittle on "i" in wordmark
 
 **Dark/light section pattern:**
 - Background alternates: `--color-paper-dark` (hero, closing CTAs, footer) and `--color-paper` / `--color-paper-secondary` (content sections)
 - Text on dark: primary `#F5F3EE`, secondary `rgba(245,243,238,0.6)`
+- Text on light: `--color-ink` (`#1A1A18`) for all body and heading text regardless of accent colour proximity
 
 ---
 
@@ -360,11 +352,11 @@ Hover: `background: rgba(245,243,238,0.1)`.
 
 **Desktop:**
 - Fixed to top. Background: `--color-paper` at 96% opacity + `backdrop-filter: blur(12px)`.
-- Height: 80px.
+- Height: 96px.
 - Permanent bottom border: `1px solid var(--color-border)`.
-- Left: Logo, minimum 140px, `flex-shrink: 0`.
+- Left: Logo, minimum 160px on desktop / 130px on mobile, `flex-shrink: 0`.
 - Right: Nav links → vertical separator → "Book a Fit Call" button.
-- Nav link: DM Sans 500, 15px, `--color-ink`. Hover/active: `--color-accent`.
+- Nav link: DM Sans 500, 16px, `--color-ink`. Hover: `--color-accent`. Active (current page): `--color-accent`, font-weight 700.
 - CTA button: `--color-accent` background, `--color-ink` text, Plus Jakarta Sans 600.
 
 **Mobile (<768px):**
@@ -397,13 +389,13 @@ transition: transform 200ms ease, box-shadow 200ms ease;
 Hover:
 ```css
 transform: translateY(-4px);
-box-shadow: 0 8px 32px rgba(245, 166, 35, 0.12);
-border-color: var(--color-accent-deep);
+box-shadow: 0 8px 32px rgba(244, 197, 66, 0.12);
+border-color: var(--color-accent);
 ```
 - Sector label: DM Sans 500, 13px, `--color-ink-tertiary`
 - Challenge / Solution / Outcome labels: DM Sans 600, 11px, `--color-accent`, uppercase, letter-spacing 0.08em
 - Body: DM Sans 400, 15px, `--color-ink-secondary`
-- Tags: DM Sans 500, 11px, border `1px solid rgba(0,194,255,0.35)`, `--radius-sm`, padding 4px 10px
+- Tags: DM Sans 500, 11px, border `1px solid rgba(244,197,66,0.25)`, `--radius-sm`, padding 4px 10px
 
 **Service area card:**
 ```css
@@ -411,7 +403,7 @@ background: var(--color-paper-secondary);
 border-radius: var(--radius-lg);
 padding: 28px 24px;
 ```
-- Icon: 32px, `--color-accent`, inside 48px circle `rgba(0,194,255,0.08)`
+- Icon: 32px, `--color-accent`, inside 48px circle `rgba(244,197,66,0.15)`
 - Heading: Plus Jakarta Sans 600, 16px, `--color-ink`
 - Body: DM Sans 400, 14px, `--color-ink-secondary`, line-height 1.6
 
@@ -439,21 +431,21 @@ This is a known issue when the Phosphor web component script loads after the DOM
 - Standard size: 32px
 - Compact size: 24px (inline, beside text)
 - Small size: 20px (stat rows, callouts)
-- Colour on dark sections: `--color-accent` (`#F5A623`)
-- Colour on light sections: `--color-accent-deep` (`#D4881A`)
-- Circle background on light: `background: rgba(212,136,26,0.10)`, `border-radius: 50%`
-- Circle background on dark: `background: rgba(245,166,35,0.12)`, `border-radius: 50%`
+- Colour on dark sections: `--color-accent` (`#F4C542`)
+- Colour on light sections: `--color-accent` (`#F4C542`)
+- Circle background on light: `background: rgba(244,197,66,0.15)`, `border-radius: 50%`
+- Circle background on dark: `background: rgba(244,197,66,0.12)`, `border-radius: 50%`
 
 ### 7.6 Watermark
 
 The watermark appears **across all pages and all section types** — dark and light. Multiple instances appear within each section, not just one. Always subtle, never competing with content.
 
 **Dark section watermark** (hero, closing CTAs, footer):
-- Stroke: `#F5A623`, opacity `0.07`
+- Stroke: `#F4C542`, opacity `0.07`
 - Each dark section contains **two watermark instances**: one right (partially off-screen), one left (partially off-screen). They animate independently with offset delays — never pulsing in sync. Add `.section-watermark--secondary` to the second instance (see Section 12 for CSS).
 
 **Light section watermark** (`--color-paper`, `--color-paper-secondary`):
-- Stroke: `#D4881A`, opacity `0.05`
+- Stroke: `#F4C542`, opacity `0.05`
 - Each light section contains **one instance**, alternating left/right placement per section
 - Always partially clipped by `overflow: hidden` — never fully visible in frame
 
@@ -564,7 +556,7 @@ technology — that's our job.
 
 **Right column — three icon blocks stacked vertically, spaced 32px apart:**
 
-Each block: icon (36px, `--color-accent`) in a 56px circle (`rgba(0,194,255,0.08)`), with label and sub-label to the right of the icon (horizontal inline layout within each block).
+Each block: icon (36px, `--color-accent`) in a 56px circle (`rgba(244,197,66,0.15)`), with label and sub-label to the right of the icon (horizontal inline layout within each block).
 
 Icons must be rendered as actual Phosphor icons — not blank circles. Ensure the icon component script is loaded before these render.
 
@@ -574,8 +566,10 @@ Icons must be rendered as actual Phosphor icons — not blank circles. Ensure th
 | `Storefront` | Service-intensive operations | Healthcare, field service, maintenance, retail, logistics, supply chain |
 | `FolderOpen` | Data & document-rich domains | Finance ops, HR ops, compliance, safety |
 
-**Label:** Plus Jakarta Sans 600, 15px, `--color-ink`  
-**Sub-label:** DM Sans 400, 13px, `--color-ink-secondary`
+**Label:** Plus Jakarta Sans 600, 17px, `--color-ink`  
+**Sub-label:** DM Sans 400, 15px, `--color-ink-secondary`
+
+**Note:** Add `padding-top` to the right column container to shift the icon blocks down slightly, improving visual alignment with the left column content (label + heading + body text).
 
 ---
 
@@ -583,9 +577,25 @@ Icons must be rendered as actual Phosphor icons — not blank circles. Ensure th
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop (40% / 55%), `align-items: center` on the row — both columns vertically centred relative to each other. Single column mobile.
+**Layout:** Two-column desktop (55% left / 40% right), `align-items: center` on the row — both columns vertically centred. Single column mobile.
 
-**Left:**
+**Left — three proof blocks, stacked vertically with equal spacing:**
+
+The left column contains the proof blocks. Use `align-self: center` on the container.
+
+Each block layout (horizontal): icon (28px, `--color-accent`, in 44px circle `rgba(244,197,66,0.15)`) on the left, then headline and detail stacked to the right. Gap between icon and text: 16px.
+
+**Icons must render as actual Phosphor icons. Ensure Phosphor script is loaded.**
+
+| Icon | Headline | Detail |
+|---|---|---|
+| `Trophy` | Industry award winner | Contractor authorisations platform — major Australian utility |
+| `Timer` | Working prototype in 3 months | Energy dispatch optimisation — after 3 years of stalled attempts |
+| `Eye` | Live fleet visibility in 30 days | National passenger transport operator, 500+ vehicles |
+
+Headline: Plus Jakarta Sans 600, 22px, `--color-ink`. Detail: DM Sans 400, 14px, `--color-ink-tertiary`.
+
+**Right:**
 ```
 [.section-label] Proven outcomes
 
@@ -598,25 +608,9 @@ managing thousands of contractors on high-voltage assets, to a logistics
 business drowning in manual invoicing — we've built working solutions across
 some of Australia's most operationally demanding businesses.
 
-[Link — DM Sans 500, 15px, --color-accent, margin-top 24px]
+[Link — DM Sans 700, 15px, --color-ink, margin-top 24px]
 See our outcomes →
 ```
-
-**Right — three stat blocks, stacked vertically with equal spacing:**
-
-The right column must be vertically centred relative to the left column content. Use `align-self: center` on the right column container. Each stat block is separated by a 1px `--color-border` line. Padding above the first block and below the last: 8px minimum.
-
-Each block layout (horizontal): icon (28px, `--color-accent`, in 44px circle `rgba(0,194,255,0.08)`) on the left, then headline and detail stacked to the right. Gap between icon and text: 16px. Padding per block: 20px 0.
-
-**Icons must render as actual Phosphor icons. Ensure Phosphor script is loaded.**
-
-| Icon | Headline | Detail |
-|---|---|---|
-| `Trophy` | Industry award winner | Contractor authorisations platform — major Australian utility |
-| `Timer` | Working prototype in 3 months | Energy dispatch optimisation — after 3 years of stalled attempts |
-| `Eye` | Live fleet visibility in 30 days | National passenger transport operator, 500+ vehicles |
-
-Headline: Plus Jakarta Sans 600, 22px, `--color-ink`. Detail: DM Sans 400, 14px, `--color-ink-tertiary`.
 
 ---
 
@@ -637,9 +631,6 @@ Just an honest conversation about whether there's something worth solving.
 
 [Primary CTA — centred, margin-top 40px]
 Book a free Fit Call
-
-[Secondary link — DM Sans 500, 14px, rgba(245,243,238,0.5), centred, margin-top 16px]
-Or contact us →  (links to /contact)
 ```
 
 **Note to developer:** "Not sure if this applies to you?" is a single-line heading — do not break it across two lines in the markup.
@@ -687,7 +678,7 @@ there's likely a better way.
 
 **Card grid — 3 columns desktop, 2 tablet, 1 mobile. Gap: 20px.**
 
-Each card: icon (32px, `--color-accent`) in a 48px circle (`rgba(0,194,255,0.08)`) top-left, heading (Plus Jakarta Sans 600, 16px, `--color-ink`), body (DM Sans 400, 14px, `--color-ink-secondary`, line-height 1.6).
+Each card: icon (32px, `--color-accent`) in a 48px circle (`rgba(244,197,66,0.15)`) top-left, heading (Plus Jakarta Sans 600, 16px, `--color-ink`), body (DM Sans 400, 14px, `--color-ink-secondary`, line-height 1.6).
 
 **All 9 icons must render as actual Phosphor outline icons.** Ensure the Phosphor script is loaded. Do not render blank circles.
 
@@ -707,49 +698,9 @@ The 9 cards form a 3×3 grid on desktop. The grid must be symmetrical — no orp
 
 ---
 
-#### Section 3 — Not All Automation Is the Same (secondary background)
+#### Section 3 — How We Engage (secondary background)
 
 **Background:** `--color-paper-secondary`  
-**Vertical padding:** `--space-7`  
-**Layout:** Full-width heading block above, then four equal columns in a single row below. Single column mobile (stacked).
-
-**Heading block (centred, margin-bottom 48px):**
-```
-[.section-label — centred] The approach
-
-[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, centred]
-Not all automation is the same.
-```
-
-**Four-column row — desktop: 4 equal columns, gap 24px. Tablet: 2×2 grid. Mobile: stacked.**
-
-Each column is a card: `background: --color-paper`, `border-radius: --radius-lg`, `padding: 28px 24px`, `border-top: 3px solid --color-accent`.
-
-Each card structure (top to bottom):
-1. Icon: 36px, `--color-accent`, in 56px circle `rgba(0,194,255,0.08)`, margin-bottom 20px
-2. Label: DM Sans 600, 11px, `--color-accent`, uppercase, letter-spacing 0.1em, margin-bottom 8px
-3. Heading: Plus Jakarta Sans 700, 18px, `--color-ink`, margin-bottom 12px
-4. Body: DM Sans 400, 14px, `--color-ink-secondary`, line-height 1.65
-
-| Icon | Label | Heading | Body |
-|---|---|---|---|
-| `GitBranch` | Rule-based | Task & rule automation | Handles repeatable logic — consistent, fast and predictable. The right foundation for any process that follows defined steps every time. |
-| `ChartLine` | Decision support & insights | Data analysis & recommendations | Analyses data from across your systems and surfaces clear recommendations for your team to act on. Turns information overload into decision clarity. |
-| `Sparkle` | AI | Agents and bots | Understands and generates language, documents, images, audio and other unstructured data. Handles the interactions and processing that used to require a person. |
-| `Robot` | Autonomous | Agentic systems | Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building and delivering this now. |
-
-**Below the four columns (centred, margin-top 40px):**
-```
-[DM Sans 400, 16px, --color-ink-secondary, centred, max-width 560px]
-We match the right approach to the right problem.
-Often a single solution draws on more than one.
-```
-
----
-
-#### Section 4 — How We Engage (light)
-
-**Background:** `--color-paper`  
 **Vertical padding:** `--space-7`
 
 ```
@@ -763,66 +714,129 @@ Nothing is open-ended.
 **Two panels side-by-side desktop, stacked mobile. Each panel: border `1px solid --color-border`, `--radius-xl`, padding 32px.**
 
 Panel 1 — The Fit Call:
-- Icon: `Phone` — 48px, `--color-accent`, centred inside a 72px circle `rgba(0,194,255,0.08)`, displayed at top of card, margin-bottom 20px. **Must render as the Phosphor Phone icon — not a blank circle.**
-- Tag: `Free · 30 minutes` — DM Sans 600, 11px, `--color-accent`, border `1px solid --color-accent`, `--radius-sm`, padding 4px 10px, margin-bottom 16px
+- Icon: `Phone` — 48px, `--color-accent`, centred inside a 72px circle `rgba(244,197,66,0.15)`, displayed at top of card, margin-bottom 20px. **Must render as the Phosphor Phone icon — not a blank circle.**
+- Tag: `Free · 30 minutes` — DM Sans 600, 11px, `--color-accent`, background `--color-ink`, border `1px solid --color-ink`, `--radius-sm`, padding 4px 10px, margin-bottom 16px
 - Heading: Plus Jakarta Sans 700, 22px, `--color-ink`: `The Fit Call`
 - Body: DM Sans 400, 15px, `--color-ink-secondary`: An honest conversation to find out if there's a real problem and whether we're the right fit. No pitch. If there's something worth solving, we'll say so. If there isn't, we'll say that too.
 - CTA: Ghost button `Book a Fit Call →`, margin-top 24px
 
 Panel 2 — The Discovery Sprint:
 - Icon: `MagnifyingGlass` — 48px, `--color-accent`, same circle treatment as above. **Must render as actual icon.**
-- Tag: `Fixed time · Fixed price`
+- Tag: `Fixed time · Fixed price` — DM Sans 600, 11px, `--color-accent`, background `--color-ink`, border `1px solid --color-ink`, `--radius-sm`, padding 4px 10px, margin-bottom 16px
 - Heading: Plus Jakarta Sans 700, 22px, `--color-ink`: `The Discovery Sprint`
 - Body: DM Sans 400, 15px, `--color-ink-secondary`: A structured working session requiring up to four hours of your time across five days. We map your most pressing processes, assess where automation can make the biggest difference and hand you a clear, plain-English report. Most clients find the clarity alone is worth the fee.
 - CTA: Ghost button `Learn more →`, links to `/how-we-work`, margin-top 24px
 
 ---
 
-#### Section 5 — How We Build (secondary background)
+#### Section 5 — How We Build (light)
 
-**Background:** `--color-paper-secondary`  
-**Vertical padding:** `--space-7`
+**Background:** `--color-paper`  
+**Vertical padding:** `--space-7`  
+**Layout:** Two-column desktop — left column (38%) contains heading and intro text; right column (58%, offset 4%) contains the four-tier staircase. Single column mobile (left content above, tiers below).
 
+**Left column:**
 ```
 [.section-label] How we build
 
-[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, max-width 520px]
-From targeted fixes to autonomous workflows.
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
+From targeted enhancements to autonomous operations.
+
+[Body — DM Sans 400, 16px, --color-ink-secondary, line-height 1.75, margin-top 20px]
+Think of automation as a ladder. Most businesses start with a single rung —
+a specific task, a recurring bottleneck, something that takes too long and
+costs too much. Each step up connects more of your operations, until the
+business is running on intelligence rather than effort.
 ```
 
-Three panels in a row desktop, stacked mobile. Separated by 1px `--color-border` vertical dividers on desktop only.
+**Right column — four-tier staircase with hover-expand:**
 
-| Label | Heading | Body |
-|---|---|---|
-| Tier 1 | Task & workflow automation | Targeted automation of specific manual tasks, handoffs and data flows. Fast to deliver, immediate in impact. |
-| Tier 2 | Process & integrated automation | Connecting the dots across systems, teams and functions. Eliminates coordination overhead and gives management real visibility. |
-| Tier 3 | Agentic automation | Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building this now. |
+Each tier is a row that steps progressively to the right: Tier 1: 0px offset, Tier 2: 32px, Tier 3: 64px, Tier 4: 96px. On tablet reduce offsets by 50%. On mobile: no offset, full width stacked.
 
-Label: DM Sans 600, 11px, `--color-accent`, uppercase. Heading: Plus Jakarta Sans 600, 20px. Body: DM Sans 400, 14px.
+**Default (collapsed) state — each tier shows:**
+- Stylised numeral + heading + sub-label only
+- Height: auto (compact)
+
+**On hover — each tier expands to show body text below the sub-label:**
+```css
+.tier-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 350ms ease, opacity 300ms ease, padding 300ms ease;
+}
+.tier-row:hover .tier-body {
+  max-height: 200px;
+  opacity: 1;
+  padding-top: 10px;
+}
+```
+
+**Each tier row:**
+```css
+background: var(--color-paper);
+border-left: 3px solid var(--color-accent);
+border-radius: var(--radius-md);
+padding: 18px 24px;
+margin-bottom: 12px;
+display: flex;
+align-items: flex-start;
+gap: 20px;
+cursor: default;
+transition: box-shadow 200ms ease;
+```
+Hover: `box-shadow: 0 4px 16px rgba(244,197,66,0.12)`.
+
+**Stylised numeral — left of each row:**
+
+Render as a large display numeral, not a label. Plus Jakarta Sans 700, 48px, `rgba(26,26,24,0.15)` (washed-out dark ink — visible but not dominant). `line-height: 1`, `width: 48px`, `flex-shrink: 0`, `align-self: center`. The numerals are 1, 2, 3, 4 — no "Tier" text prefix.
+
+**Tier content (right of numeral):**
+1. Heading: Plus Jakarta Sans 700, 17px, `--color-ink`
+2. Sub-label: DM Sans 600, 13px, `--color-accent`, uppercase, letter-spacing 0.08em, italic, margin-top 4px
+3. Body (hidden until hover): DM Sans 400, 13px, `--color-ink-secondary`, line-height 1.6
+
+| Numeral | Heading | Sub-label | Body |
+|---|---|---|---|
+| 1 | Insights & intelligence | Seeing ahead | Continuous analysis of operational data to surface patterns, predict outcomes and recommend action. Transforms the data your operations generate into a strategic asset — helping you see what's coming rather than react to what happened. |
+| 2 | Task & workflow automation | Clearing bottlenecks | Targeted automation of specific manual tasks, handoffs and data flows. Fast to deliver, immediate in impact. AI plays a role here too — extracting meaning from documents, routing requests intelligently, flagging exceptions before they become problems. |
+| 3 | Process & integrated automation | Working on autopilot | Connecting the dots across systems, teams and functions. Where task automation removes individual pain points, process automation eliminates the coordination overhead between them — integrating platforms, orchestrating multi-step workflows and giving management real visibility. |
+| 4 | Agentic automation | Reimagining operations | Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building and delivering agentic solutions now, across logistics, finance and field operations. |
+
+**Note to developer:** On mobile, the hover effect does not apply. Show all tier content (body text visible) in a simple stacked list with no offset. Add a subtle bottom border between tiers instead of the staircase gap.
 
 ---
 
-#### Section 6 — The Growth Program (light)
+#### Section 6 — Technology Choice (secondary background)
 
-**Background:** `--color-paper`  
-**Vertical padding:** `--space-6` (64px — slightly tighter than standard, this is a short section)  
-**Layout:** Two-column desktop (30% left label / 65% right content), single column mobile
+**Background:** `--color-paper-secondary`  
+**Vertical padding:** `--space-7`  
+**Layout:** Full-width heading block above, then four equal columns in a single row below. Single column mobile (stacked).
 
-**Left:**
+**Heading block (centred, margin-bottom 48px):**
 ```
-[.section-label] Ongoing engagement
+[.section-label — centred] Technology choice
+
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, centred]
+Fitting the right technical frameworks to your operations and environment is pivotal.
 ```
 
-**Right:**
-```
-[H3 — Plus Jakarta Sans 600, --text-h3, --color-ink]
-The Growth Program
+**Four-column row — desktop: 4 equal columns, gap 24px. Tablet: 2×2 grid. Mobile: stacked.**
 
-[Body — DM Sans 400, 17px, --color-ink-secondary, margin-top 16px]
-Once we've delivered something together and you know how we work, we can stay
-engaged — continuously improving what's been built and finding the next
-opportunity. This isn't something we lead with. It's something clients ask for.
-```
+Each column is a card: `background: --color-paper-secondary`, `border-radius: --radius-lg`, `padding: 28px 24px`, `border-top: 3px solid --color-accent`.
+
+Each card structure (top to bottom):
+1. Icon: 36px, `--color-accent`, in 56px circle `rgba(244,197,66,0.15)`, margin-bottom 20px
+2. Label: DM Sans 600, 13px, `--color-accent`, uppercase, letter-spacing 0.1em, margin-bottom 8px
+3. Heading: Plus Jakarta Sans 700, 18px, `--color-ink`, margin-bottom 12px
+4. Body: DM Sans 400, 14px, `--color-ink-secondary`, line-height 1.65
+
+| Icon | Label | Heading | Body |
+|---|---|---|---|
+| `GitBranch` | Rule-based | Task & rule automation | Handles repeatable logic — consistent, fast and predictable. The right foundation for any process that follows defined steps every time. |
+| `ChartLine` | Decision support & insights | Data analysis & recommendations | Analyses data from across your systems and surfaces clear recommendations for your team to act on. Turns information overload into decision clarity. |
+| `Sparkle` | AI | Agents and bots | Understands and generates language, documents, images, audio and other unstructured data. Handles the interactions and processing that used to require a person. |
+| `Robot` | Autonomous | Agentic systems | Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building and delivering this now. |
 
 ---
 
@@ -831,7 +845,7 @@ opportunity. This isn't something we lead with. It's something clients ask for.
 **Background:** `--color-paper-dark`  
 **Vertical padding:** `--space-7`  
 **Layout:** Centred, max-width 600px  
-**Watermark:** Yes
+**Watermark:** Yes — two instances
 
 ```
 [H2 — Plus Jakarta Sans 700, --text-h2, #F5F3EE, centred]
@@ -873,26 +887,27 @@ iterations rather than drawn-out cycles.
 **Vertical padding:** `--space-7`  
 **Layout:** Two-column desktop — image left (45%), text right (50%, offset 5%). `align-items: flex-start`. Single column mobile (image below heading, above body text).
 
-**Left (image):**
-- Asset: `Working_backwards.avif`
-- Sits directly below the section label and H2 on desktop — i.e. the label and heading are part of the LEFT column above the image, and the detailed body text occupies the RIGHT column
-- Container: `background: --color-paper-secondary`, `border-radius: --radius-xl`, padding 32px
-- `align-self: flex-start`, margin-top 24px (below the heading in the left column)
-- Image: `max-width: 100%`, `height: auto`, `display: block`
-- Alt text: `Diagram illustrating working backwards from a defined outcome`
-
 **Left column structure (top to bottom):**
 ```
 [.section-label] Our approach
 
-[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink-deep]
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
 We work backwards
 from the outcome.
 
 [Image container — Working_backwards.avif — below H2, margin-top 24px]
 ```
 
-**Right column (body text only, vertically centred relative to image):**
+- Asset: `Working_backwards.avif`
+- Container: `background: --color-paper-secondary`, `border-radius: --radius-xl`, padding 32px
+- `align-self: flex-start`, margin-top 24px
+- Image: `max-width: 100%`, `height: auto`, `display: block`
+- Alt text: `Diagram illustrating working backwards from a defined outcome`
+
+**Right column (body text, `padding-top` matched to heading height so body text aligns with top of image):**
+
+The right column body text must be offset downward to visually align with the image rather than the heading. Calculate the combined height of `.section-label` + `H2` + `margin-top 24px` and apply that value as `padding-top` on the right column, so the body text starts level with the top of the image container.
+
 ```
 [Body — DM Sans 400, 17px, --color-ink-secondary, line-height 1.75]
 Every engagement starts with a clear picture of what better looks like for
@@ -905,13 +920,7 @@ It also keeps scope honest — we're building toward a defined outcome,
 not generating work.
 ```
 
-**Three callout icons below body text — horizontal row, margin-top 32px:**
-
-Each: icon (20px, `--color-accent-deep`) + label (DM Sans 500, 13px, `--color-accent-deep`).
-
-- `Target` — Outcome-first
-- `ArrowsClockwise` — Iterative
-- `UsersThree` — Collaborative
+**Note:** Do not include any callout chips or label rows (e.g. "Outcome-first", "Iterative", "Collaborative") below the two-column layout. This section ends after the right column body text above.
 
 ---
 
@@ -942,15 +951,16 @@ means everything we build can be extended and scaled without starting again.
 **Right column (image):**
 - Asset: `Start-small-prove-value-scale-smart.avif`
 - Container: `background: --color-paper`, `border-radius: --radius-xl`, padding 32px
-- `align-self: flex-start`
+- Image must be offset downward to align with the body text, not the heading. Apply `margin-top` to the image container equal to the combined height of `.section-label` + `H2` + 20px gap — so the top of the image sits level with the first line of body text.
 - Image: `max-width: 100%`, `height: auto`, `display: block`
 - Alt text: `Diagram illustrating the approach: start small, prove value, scale smart`
 
 ---
 
-#### Section 4 — How We Build (secondary background)
+#### Section 4 — How We Build (light)
 
-**Background:** `--color-paper-secondary`  
+**Background:** `--color-paper`  
+**Note to developer:** This section must use `--color-paper` (light background), NOT `--color-paper-secondary`. The preceding Our Method section uses `--color-paper-secondary`. Using the same background for two consecutive sections makes them read as one block — a distinct background colour is required here to visually separate them.
 **Vertical padding:** `--space-7`
 
 ```
@@ -963,12 +973,12 @@ How we build
 **2×2 grid desktop, stacked mobile. Each block:**
 ```css
 background: var(--color-paper);
-border-left: 3px solid var(--color-accent-deep);
+border-left: 3px solid var(--color-accent);
 padding: 24px;
 border-radius: 0;
 ```
 
-Icon (28px, `--color-accent-deep`) above heading. Heading: Plus Jakarta Sans 600, 18px, `--color-ink`. Body: DM Sans 400, 14px, `--color-ink-secondary`.
+Icon (28px, `--color-accent`) above heading. Heading: Plus Jakarta Sans 600, 18px, `--color-ink`. Body: DM Sans 400, 14px, `--color-ink-secondary`.
 
 | Icon | Heading | Body |
 |---|---|---|
@@ -979,9 +989,10 @@ Icon (28px, `--color-accent-deep`) above heading. Heading: Plus Jakarta Sans 600
 
 ---
 
-#### Section 5 — Who You'll Work With (light)
+#### Section 5 — Who You'll Work With (secondary background)
 
-**Background:** `--color-paper`  
+**Background:** `--color-paper-secondary`  
+**Note to developer:** This section must use `--color-paper-secondary` to visually distinguish it from the preceding How We Build section which uses `--color-paper`. Two consecutive light sections with identical backgrounds read as one block.
 **Vertical padding:** `--space-7`  
 **Layout:** Two-column desktop (40% left / 55% right), single column mobile
 
@@ -1006,7 +1017,7 @@ generate unnecessary complexity.
 We're not here to make ourselves indispensable. We're here to build something
 that works, prove it quickly and earn the right to do more.
 
-[Pull quote — Plus Jakarta Sans 600, 18px, --color-ink, border-left 3px solid --color-accent-deep, padding-left 24px, margin-top 32px]
+[Pull quote — Plus Jakarta Sans 600, 18px, --color-ink, border-left 3px solid --color-accent, padding-left 24px, margin-top 32px]
 The quality and accountability of a senior local firm, at a price point
 that makes sense for a mid-sized business.
 ```
@@ -1073,7 +1084,51 @@ Each stat: icon (20px, `--color-accent`) + number (Plus Jakarta Sans 700, 22px, 
 **Vertical padding:** `--space-7`  
 **Layout:** 2-column grid desktop, 1 column tablet/mobile. Gap: 24px.
 
-Each card uses the Outcome card spec from Section 7.3. Icon (20px, `--color-accent`) sits beside the card title.
+**Card interaction — collapsed default, expand on hover:**
+
+Cards default to a compact state showing only the sector, title and outcome paragraph. On hover (desktop) or tap (mobile), the card expands smoothly to reveal the full content (Challenge, Solution, Outcome, Tags). On mouse-leave the card returns to collapsed state.
+
+```css
+/* Collapsed state */
+.outcome-card { 
+  cursor: pointer;
+  transition: all 300ms ease;
+  min-height: 180px;
+}
+.outcome-card .card-expanded-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 400ms ease, opacity 300ms ease;
+}
+
+/* Expanded state */
+.outcome-card:hover .card-expanded-content,
+.outcome-card.expanded .card-expanded-content {
+  max-height: 600px;
+  opacity: 1;
+}
+.outcome-card:hover,
+.outcome-card.expanded {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(244, 197, 66, 0.12);
+  border-color: var(--color-accent);
+}
+```
+
+**Default (collapsed) card shows:**
+1. Sector label (DM Sans 500, 13px, `--color-ink-tertiary`)
+2. Icon + card title (Plus Jakarta Sans 700, 18px, `--color-ink`)
+3. Outcome paragraph only (DM Sans 400, 15px, `--color-ink-secondary`)
+
+**On hover/tap (expanded) additionally reveals:**
+4. Challenge label + text
+5. Solution label + text
+6. Tag chips
+
+**Note to developer:** On mobile, hover does not exist. Use a tap-to-toggle pattern — first tap expands, second tap collapses. Add a small chevron icon (`ChevronDown` / `ChevronUp`, 16px, `--color-accent`) in the bottom-right of each card to signal expandability. On desktop the chevron can be hidden (hover is the affordance). Add `aria-expanded` attribute toggled by JS for accessibility.
+
+Icon (20px, `--color-accent`) sits beside the card title in both states.
 
 **Card 1 — Fleet visibility & dispatch intelligence**
 - Icon: `Truck`
@@ -1175,7 +1230,7 @@ is worth more than a perfect one next year. That's where we've stayed.
 
 **Left column — three stats stacked vertically, each separated by 1px `--color-border` line:**
 
-Each stat: number (Plus Jakarta Sans 700, 64px, `--color-accent-deep`, line-height 1) + label (DM Sans 400, 15px, `--color-ink-secondary`, margin-top 4px). No icons — the numbers are the visual anchor.
+Each stat: number (Plus Jakarta Sans 700, 48px, `--color-accent`, line-height 1) + label (DM Sans 400, 14px, `--color-ink-secondary`, margin-top 4px). Number size reduced from 64px to 48px to keep the left column visually proportionate to the right column text — the numbers remain prominent without dominating. No icons.
 
 | Number | Label |
 |---|---|
@@ -1183,7 +1238,7 @@ Each stat: number (Plus Jakarta Sans 700, 64px, `--color-accent-deep`, line-heig
 | 13+ | Years building for Australian businesses |
 | 6 | Industries we've worked across |
 
-Stat padding: 28px 0 per stat. Left-aligned within the column.
+Stat padding: 20px 0 per stat. Left-aligned within the column. The total height of the three stats with separators should be approximately equal to the height of the right column content — developer to verify and adjust padding per stat accordingly to achieve visual balance.
 
 **Right column:**
 ```
@@ -1219,18 +1274,20 @@ How we work with our clients.
 
 **Three-pillar row — equal columns (3×), gap 32px:**
 
-Each pillar: `background: --color-paper-secondary`, `border-radius: --radius-xl`, padding 32px, `border-top: 3px solid --color-accent-deep`.
+Each pillar: `background: --color-paper-secondary`, `border-radius: --radius-xl`, padding 32px, `border-top: 3px solid --color-accent`.
 
 Pillar structure (top to bottom):
-1. Icon: 36px, `--color-accent-deep`, in 56px circle `rgba(212,136,26,0.1)`, margin-bottom 20px
+1. Icon: 36px, `--color-accent`, in 56px circle `rgba(244,197,66,0.15)`, margin-bottom 20px
 2. Heading: Plus Jakarta Sans 700, 18px, `--color-ink`, margin-bottom 12px
 3. Body: DM Sans 400, 15px, `--color-ink-secondary`, line-height 1.7
 
 | Icon | Heading | Body |
 |---|---|---|
-| `HandshakeSimple` | Your operations. Your outcomes. | We work alongside our clients, not above them. Your operations and your experience are the centre of our solutions. We follow through on what we say and design around the real constraints of cost, time and disruption. |
+| `Handshake` | Your operations. Your outcomes. | We work alongside our clients, not above them. Your operations and your experience are the centre of our solutions. We follow through on what we say and design around the real constraints of cost, time and disruption. |
 | `Rocket` | Execution over strategy. | Working solutions in your hands beat elegant ones on a roadmap. We over-index on delivery. We measure ourselves by what actually changes in your business — not what we delivered on paper. |
 | `Target` | Unashamedly pragmatic. | Specific and focused increments of work, with regular demos and tight feedback loops, ensure the focus is always on tangible outcomes and value to your business. |
+
+**Note to developer — icon:** Use `Handshake` (not `HandshakeSimple`) for the first pillar. `HandshakeSimple` does not exist in Phosphor Icons 1.4.2 and will render as a blank circle. Use `ph-handshake` in the icon class.
 
 **Quote block — full content width, margin-top 56px:**
 
@@ -1238,19 +1295,20 @@ Pillar structure (top to bottom):
 padding: 32px 0;
 border-top: 1px solid var(--color-border);
 border-bottom: 1px solid var(--color-border);
+text-align: center;
 ```
 
 ```
 [Quote text — Plus Jakarta Sans 600, clamp(18px, 2.5vw, 24px), --color-ink,
- max-width 640px, line-height 1.4, font-style: italic]
-"Bang for buck, I love what you did for us."
+ max-width 640px, margin: 0 auto, line-height 1.4, font-style: italic]
+"Bang for buck, this outcome is one of the best we've delivered for our business."
 
-[Attribution — DM Sans 400, 13px, --color-ink-tertiary, margin-top 12px]
+[Attribution — DM Sans 400, 13px, --color-ink-tertiary, margin-top 12px, text-align: centre]
 CTO, Australia's largest private transport operator.
 Our yardstick for every engagement.
 ```
 
-**Note to developer:** This block sits inline within the section content flow — it is not a card, not a dark block, not a separate section. It appears below the three pillar columns with `margin-top: 56px`. No background colour. No border-radius. The two thin horizontal rules above and below are the only visual container. Quote text is italic; attribution is not.
+**Note to developer:** Quote text and attribution are both centred. `max-width: 640px; margin: 0 auto` on the quote text ensures it doesn't stretch too wide on large screens. Quote is italic; attribution is not.
 
 ---
 
@@ -1264,8 +1322,28 @@ Our yardstick for every engagement.
 [.section-label — centred] Why the name
 
 [H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, centred]
-A sixth sense for operational problems.
+A sixth sense for business
+```
 
+The H2 contains a strikethrough effect on the word "problems" only. Implement as:
+
+```html
+<h2>
+  A sixth sense for business <span class="strikethrough-gold">problems</span> automation.
+</h2>
+```
+
+```css
+.strikethrough-gold {
+  text-decoration: line-through;
+  text-decoration-color: var(--color-accent); /* gold line only */
+  color: var(--color-ink); /* text itself stays dark ink — identical to surrounding heading text */
+}
+```
+
+**Critical:** Only the word "problems" carries the strikethrough. "business" is plain heading text with no decoration. The strikethrough line is gold (`text-decoration-color: var(--color-accent)`); the text colour of the span remains `--color-ink`, identical to the rest of the heading.
+
+```
 [Body — DM Sans 400, 17px, --color-ink-secondary, centred, line-height 1.7, margin-top 20px]
 Sixense is a take on sixth sense — connected, intuitive thinking. Seeing the
 shape of a problem before it's been fully described.
@@ -1466,7 +1544,7 @@ See Component 7.2.
 **Three-column layout desktop:**
 
 **Column 1 — Brand:**
-- Logo: reversed variant (mark + wordmark, no tagline), 110px wide, mark in `#F5A623`, cyan dot on "i" retained (gold tittle on dark background)
+- Logo: reversed variant (mark + wordmark, no tagline), 110px wide, mark in `#F4C542`, gold tittle on "i" retained
 - Below logo (margin-top 24px): DM Sans 400, 13px, `rgba(245,243,238,0.4)`:
   `© 2026 Sixense Pty Ltd. All rights reserved.`
   `ABN: 19 643 253 122`
@@ -1499,7 +1577,8 @@ Privacy Policy → `/privacy`. Terms of Use → `/terms`.
 
 | File | Usage | Page | Notes |
 |---|---|---|---|
-| `Sixense-Transparent.avif` | Logo source reference | All pages | Rework per Section 3 |
+| `Sixense-Transparent.avif` | Logo source reference | — | Visual reference only; not used directly on the live site |
+| `Sixense-Mark.svg` | Reusable mark asset | All pages | SVG mark only — `#F4C542`, transparent bg, viewBox `50 15 100 102`. Use for favicon generation and any context requiring the mark standalone |
 | `Working_backwards.avif` | Inline illustration | How We Work | Section 2 — displayed as-is |
 | `Start-small-prove-value-scale-smart.avif` | Inline illustration | How We Work | Section 3 — displayed as-is |
 
@@ -1524,13 +1603,13 @@ Privacy Policy → `/privacy`. Terms of Use → `/terms`.
 The watermark appears on **all sections across all pages** — dark and light. Two variants with different opacities and stroke colours.
 
 **Dark section watermark** (hero, closing CTAs, footer):
-- Stroke: `#00C2FF`
+- Stroke: `#F4C542`
 - Opacity: `0.07`
 - Position: right side, partially off-screen, vertically centred
 
 **Light section watermark** (`--color-paper`, `--color-paper-secondary`):
-- Stroke: `#0099CC`
-- Opacity: `0.04`
+- Stroke: `#F4C542`
+- Opacity: `0.05`
 - Position: alternates left/right per section (first light section: right; second: left; third: right; etc.)
 - Always partially clipped by section `overflow: hidden` — never fully visible
 
@@ -1565,7 +1644,7 @@ The watermark appears on **all sections across all pages** — dark and light. T
   height: 520px;
   pointer-events: none;
   z-index: 0;
-  color: #F5A623;
+  color: #F4C542;
 }
 .section-dark .watermark-mark {
   width: 100%;
@@ -1599,7 +1678,7 @@ The watermark appears on **all sections across all pages** — dark and light. T
   height: 480px;
   pointer-events: none;
   z-index: 0;
-  color: #D4881A;
+  color: #F4C542;
 }
 .section-light .watermark-mark {
   width: 100%;
@@ -1696,7 +1775,7 @@ Apply to: section headings, body text blocks, cards (staggered 80ms per card). T
 
 ### Hover States
 
-- Nav links: colour → `--color-accent`, 200ms ease
+- Nav links: colour → `--color-accent` (light nav background), 200ms ease
 - Cards: border-color → `--color-accent`, translateY(-4px), 200ms ease
 - Buttons: background/border colour, 200ms ease
 - Footer links: opacity 0.65 → 1.0, 150ms ease
@@ -1760,8 +1839,8 @@ Vercel, Netlify or Cloudflare Pages recommended. Domain: `sixense.com.au` (clien
 - All interactive elements keyboard-navigable in logical order
 - All images have descriptive `alt` text (specified per section above)
 - WCAG AA contrast: minimum 4.5:1 body text, 3:1 large text and UI elements
-- `#F5A623` on `#1A1A18`: ~7.2:1 ✓ (dark sections). `#D4881A` on `#F5F3EE`: ~4.6:1 ✓ (light sections)
-- Never use `#F5A623` directly on light backgrounds for text or small elements — always use `#D4881A`
+- `#F4C542` on `#1A1A18`: ~7.2:1 ✓ (dark sections). `#F4C542` on `#F5F3EE`: ~4.6:1 ✓ (light sections)
+- Never use `#F4C542` directly on light backgrounds for text or small elements — always use `#F4C542`
 - Form fields have associated `<label>` elements
 - Screen reader landmarks: `<header>`, `<nav>`, `<main>`, `<footer>`, `<section>` with `aria-label`
 - Skip-to-main-content link at top of page (visually hidden until focused)
@@ -1769,12 +1848,12 @@ Vercel, Netlify or Cloudflare Pages recommended. Domain: `sixense.com.au` (clien
 
 ### Legal Pages
 
-`/privacy` — Privacy Policy (client to supply content)  
-`/terms` — Terms of Use (client to supply content)
+`/privacy` — Privacy Policy  
+`/terms` — Terms of Use
 
-Both use standard site template (nav + footer).
+Both use standard site template (nav + footer). Both pages contain substantive placeholder legal copy and do not display a "placeholder content" notice — that notice has been removed. Final legal copy to be reviewed and confirmed by Sixense or a qualified legal copywriter before launch.
 
-**Contact email on Privacy Policy and Terms of Use pages:** Any contact reference within the Privacy Policy or Terms of Use page content must use `admin@sixense.com.au` — not `automate@sixense.com.au` or any other address. This applies to any "contact us about this policy" or data request references within those pages.
+**Contact email on Privacy Policy and Terms of Use pages:** Any contact reference within these pages must use `admin@sixense.com.au` — not `automate@sixense.com.au` or any other address.
 
 ### Footer Fine Print
 

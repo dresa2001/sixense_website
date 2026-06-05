@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 15 100 102" fill="none" width="200" height="200">
+  <polygon points="100,18 122,31 122,57 100,70 78,57 78,31" stroke="#F4C542" stroke-width="3" fill="none" stroke-linejoin="round"/>
+  <polygon points="126,62 148,75 148,101 126,114 104,101 104,75" stroke="#F4C542" stroke-width="3" fill="none" stroke-linejoin="round"/>
+  <polygon points="74,62 96,75 96,101 74,114 52,101 52,75" stroke="#F4C542" stroke-width="3" fill="none" stroke-linejoin="round"/>
+  <circle cx="100" cy="88" r="4" fill="#F4C542"/>
+  <line x1="100" y1="84" x2="100" y2="70" stroke="#F4C542" stroke-width="1.5"/>
+  <line x1="100" y1="88" x2="116" y2="96" stroke="#F4C542" stroke-width="1.5"/>
+  <line x1="100" y1="88" x2="84" y2="96" stroke="#F4C542" stroke-width="1.5"/>
+</svg>

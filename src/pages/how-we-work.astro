@@ -8,6 +8,7 @@ const principles = [
   { icon: 'wrench', heading: 'We pick the right tool for the job', body: "We're not advocates for any single platform. We select what fits — weighing cost, performance, security and reliability." },
   { icon: 'shield-check', heading: 'We build AI responsibly', body: "Data privacy, security and responsible AI practices are built in from the start. Your data stays yours. AI is introduced where it genuinely adds value." },
 ];
+
 ---
 
 <BaseLayout
@@ -30,54 +31,43 @@ const principles = [
     </div>
   </section>
 
-  <!-- Our Approach: label + H2 + image LEFT, body + callouts RIGHT -->
+  <!-- Our Approach: label + H2 + image LEFT; body text RIGHT; callouts full-width below -->
   <section class="section" aria-labelledby="approach-heading">
     <Watermark variant="light" side="right" />
-    <div class="container two-col two-col-50-50">
-      <div>
-        <span class="section-label">Our approach</span>
-        <h2 id="approach-heading" class="animate-in">
-          We work backwards<br />from the outcome.
-        </h2>
-        <div class="image-container animate-in" data-delay="80ms">
-          <img
-            src="/assets/Working_backwards.avif"
-            alt="Diagram illustrating working backwards from a defined outcome"
-            loading="lazy"
-          />
-        </div>
-      </div>
-      <div>
-        <p class="animate-in" style="color:var(--color-ink-secondary);font-size:17px;line-height:1.75">
-          Every engagement starts with a clear picture of what better looks like for
-          your business — not a system requirement, not a features list. From there
-          we work back through your processes, people, systems and data to understand
-          what needs to change and what the right path forward looks like.
-        </p>
-        <p class="animate-in" data-delay="80ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:1em;line-height:1.75">
-          This keeps solutions grounded in how your business actually works from day one.
-          It also keeps scope honest — we're building toward a defined outcome,
-          not generating work.
-        </p>
-        <div class="callout-row animate-in" data-delay="120ms" style="margin-top:var(--space-4)">
-          <div class="callout-item">
-            <i class="ph ph-target" style="font-size:20px;color:#D4881A;" aria-hidden="true"></i>
-            <span>Outcome-first</span>
-          </div>
-          <div class="callout-item">
-            <i class="ph ph-arrows-clockwise" style="font-size:20px;color:#D4881A;" aria-hidden="true"></i>
-            <span>Iterative</span>
-          </div>
-          <div class="callout-item">
-            <i class="ph ph-users-three" style="font-size:20px;color:#D4881A;" aria-hidden="true"></i>
-            <span>Collaborative</span>
+    <div class="container">
+      <div class="two-col two-col-50-50">
+        <div>
+          <span class="section-label">Our approach</span>
+          <h2 id="approach-heading" class="animate-in">
+            We work backwards<br />from the outcome.
+          </h2>
+          <div class="image-container animate-in" data-delay="80ms">
+            <img
+              src="/assets/Working_backwards.avif"
+              alt="Diagram illustrating working backwards from a defined outcome"
+              loading="lazy"
+            />
           </div>
         </div>
+        <div class="approach-right">
+          <p class="animate-in" style="color:var(--color-ink-secondary);font-size:17px;line-height:1.75">
+            Every engagement starts with a clear picture of what better looks like for
+            your business — not a system requirement, not a features list. From there
+            we work back through your processes, people, systems and data to understand
+            what needs to change and what the right path forward looks like.
+          </p>
+          <p class="animate-in" data-delay="80ms" style="color:var(--color-ink-secondary);font-size:17px;margin-top:1em;line-height:1.75">
+            This keeps solutions grounded in how your business actually works from day one.
+            It also keeps scope honest — we're building toward a defined outcome,
+            not generating work.
+          </p>
+        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Our Method: text LEFT, image RIGHT -->
+  <!-- Our Method: text LEFT, image RIGHT with offset -->
   <section class="section section-secondary" aria-labelledby="method-heading">
     <Watermark variant="light" side="left" />
     <div class="container two-col two-col-50-50">
@@ -98,7 +88,7 @@ const principles = [
           means everything we build can be extended and scaled without starting again.
         </p>
       </div>
-      <div class="image-container-light animate-in" data-delay="80ms">
+      <div class="image-container-offset animate-in" data-delay="80ms">
         <img
           src="/assets/Start-small-prove-value-scale-smart.avif"
           alt="Diagram illustrating the approach: start small, prove value, scale smart"
@@ -108,8 +98,8 @@ const principles = [
     </div>
   </section>
 
-  <!-- How We Build -->
-  <section class="section section-secondary" aria-labelledby="build-heading">
+  <!-- How We Build — light background (not secondary, to separate from Our Method) -->
+  <section class="section" aria-labelledby="build-heading">
     <Watermark variant="light" side="right" />
     <div class="container">
       <span class="section-label" style="justify-content:center">Our principles</span>
@@ -119,7 +109,7 @@ const principles = [
       <div class="principles-grid">
         {principles.map((p, i) => (
           <div class="principle animate-in" data-delay={`${i * 80}ms`}>
-            <i class={`ph ph-${p.icon}`} style="font-size:28px;color:#D4881A;" aria-hidden="true"></i>
+            <i class={`ph ph-${p.icon}`} style="font-size:28px;color:#F4C542;" aria-hidden="true"></i>
             <h3 class="principle-heading">{p.heading}</h3>
             <p class="principle-body">{p.body}</p>
           </div>
@@ -129,7 +119,7 @@ const principles = [
   </section>
 
   <!-- Who You'll Work With -->
-  <section class="section" aria-labelledby="team-heading">
+  <section class="section section-secondary" aria-labelledby="team-heading">
     <Watermark variant="light" side="left" />
     <div class="container two-col two-col-40-55">
       <div>
@@ -157,7 +147,7 @@ const principles = [
     </div>
   </section>
 
-  <!-- CTA — custom dark section with section label -->
+  <!-- CTA -->
   <section class="section section-dark hww-cta" aria-labelledby="hww-cta-heading">
     <Watermark />
     <Watermark secondary={true} />
@@ -176,6 +166,7 @@ const principles = [
 <style>
   .hero { padding-top: 120px; padding-bottom: 80px; }
 
+  /* Our Approach — image in left col below heading */
   .image-container {
     background: var(--color-paper-secondary);
     border-radius: var(--radius-xl);
@@ -185,12 +176,19 @@ const principles = [
     margin-top: var(--space-3);
   }
 
-  .image-container-light {
+  /* Right column: offset body text to align with top of image */
+  .approach-right {
+    padding-top: 100px; /* approx: section-label + H2 + margin */
+  }
+
+  /* Our Method — image offset to align with body text start */
+  .image-container-offset {
     background: var(--color-paper);
     border-radius: var(--radius-xl);
     padding: 32px;
     overflow: hidden;
     align-self: flex-start;
+    margin-top: 100px; /* approx: section-label + H2 + 20px gap */
   }
 
   .pull-quote {
@@ -198,7 +196,7 @@ const principles = [
     font-weight: 600;
     font-size: 18px;
     color: var(--color-ink);
-    border-left: 3px solid var(--color-accent-deep);
+    border-left: 3px solid var(--color-accent);
     padding-left: 24px;
     margin-top: var(--space-4);
   }
@@ -236,5 +234,8 @@ const principles = [
   @media (max-width: 767px) {
     .hero { padding-top: 112px; }
     .principles-grid { grid-template-columns: 1fr; }
+    .callout-grid { grid-template-columns: 1fr; }
+    .approach-right { padding-top: 0; }
+    .image-container-offset { margin-top: var(--space-3); }
   }
 </style>

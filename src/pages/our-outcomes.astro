@@ -99,33 +99,35 @@ const stats = [
     </div>
   </section>
 
-  <!-- Outcome Cards -->
+  <!-- Outcome Cards — collapsed default, expand on hover/tap -->
   <section class="section" aria-label="Outcome case studies">
     <Watermark variant="light" side="right" />
     <div class="container">
       <div class="outcomes-grid">
         {outcomes.map((card, i) => (
-          <article class="outcome-card animate-in" data-delay={`${(i % 2) * 80}ms`} aria-labelledby={`outcome-${i}`}>
+          <article class="outcome-card animate-in" data-delay={`${(i % 2) * 80}ms`} aria-labelledby={`outcome-${i}`} aria-expanded="false">
             <p class="card-sector">{card.sector}</p>
             <h2 id={`outcome-${i}`} class="outcome-heading">
-              <i class={`ph ph-${card.icon}`} style="font-size:20px;color:#D4881A;display:inline;vertical-align:middle;margin-right:8px" aria-hidden="true"></i>
+              <i class={`ph ph-${card.icon}`} style="font-size:20px;color:#F4C542;display:inline;vertical-align:middle;margin-right:8px" aria-hidden="true"></i>
               {card.heading}
             </h2>
-            <div class="outcome-block">
-              <span class="card-label">Challenge</span>
-              <p class="outcome-body">{card.challenge}</p>
+            <p class="outcome-body outcome-preview">{card.outcome}</p>
+
+            <div class="card-expanded-content">
+              <div class="outcome-block" style="margin-top:var(--space-2)">
+                <span class="card-label">Challenge</span>
+                <p class="outcome-body">{card.challenge}</p>
+              </div>
+              <div class="outcome-block">
+                <span class="card-label">Solution</span>
+                <p class="outcome-body">{card.solution}</p>
+              </div>
+              <div class="card-tags">
+                {card.tags.map(tag => <span class="tag">{tag}</span>)}
+              </div>
             </div>
-            <div class="outcome-block">
-              <span class="card-label">Solution</span>
-              <p class="outcome-body">{card.solution}</p>
-            </div>
-            <div class="outcome-block">
-              <span class="card-label">Outcome</span>
-              <p class="outcome-body">{card.outcome}</p>
-            </div>
-            <div class="card-tags">
-              {card.tags.map(tag => <span class="tag">{tag}</span>)}
-            </div>
+
+            <i class="ph ph-caret-down card-chevron" aria-hidden="true"></i>
           </article>
         ))}
       </div>
@@ -173,18 +175,58 @@ const stats = [
 
   .outcome-heading {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: 700;
+    font-size: 18px;
     color: var(--color-ink);
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-2);
     line-height: 1.3;
   }
   .outcome-block { margin-bottom: var(--space-2); }
   .outcome-body { font-size: 15px; color: var(--color-ink-secondary); line-height: 1.6; margin: 0; }
+  .outcome-preview { margin-bottom: 0; }
+
+  /* Expand/collapse */
+  .outcome-card { cursor: pointer; transition: all 300ms ease; min-height: 180px; position: relative; }
+  .card-expanded-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 400ms ease, opacity 300ms ease;
+  }
+  .outcome-card:hover .card-expanded-content,
+  .outcome-card.expanded .card-expanded-content {
+    max-height: 600px;
+    opacity: 1;
+  }
+
+  /* Chevron — visible on mobile only */
+  .card-chevron {
+    display: none;
+    font-size: 16px;
+    color: #F4C542;
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    transition: transform 300ms ease;
+  }
+  .outcome-card.expanded .card-chevron { transform: rotate(180deg); }
 
   @media (max-width: 767px) {
     .hero { padding-top: 112px; }
     .outcomes-grid { grid-template-columns: 1fr; }
     .stats-row { gap: var(--space-3); }
+    .card-chevron { display: block; }
+    /* On mobile: disable hover expansion, use tap only */
+    .outcome-card:hover .card-expanded-content { max-height: 0; opacity: 0; }
+    .outcome-card.expanded .card-expanded-content { max-height: 800px; opacity: 1; }
   }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.outcome-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const isExpanded = card.classList.toggle('expanded');
+      card.setAttribute('aria-expanded', String(isExpanded));
+    });
+  });
+</script>
