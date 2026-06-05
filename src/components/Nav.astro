@@ -41,18 +41,33 @@ const currentPath = Astro.url.pathname;
       <span></span><span></span><span></span>
     </button>
   </nav>
-
-  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
-    <div class="mobile-menu-inner">
-      <div class="mobile-menu-links">
-        {navLinks.map(link => (
-          <a href={link.href} class="mobile-link">{link.label}</a>
-        ))}
-      </div>
-      <a href="/contact" class="btn btn-primary mobile-cta">Book a free Fit Call</a>
-    </div>
-  </div>
 </header>
+
+<!--
+  Mobile menu is intentionally outside <header>.
+  backdrop-filter on the header creates a new containing block for
+  position:fixed children, which would confine the overlay to 96px.
+-->
+<div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+  <div class="mobile-menu-inner">
+    <button
+      class="mobile-close"
+      id="menu-close"
+      aria-label="Close navigation menu"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="mobile-menu-links">
+      {navLinks.map(link => (
+        <a href={link.href} class="mobile-link">{link.label}</a>
+      ))}
+    </div>
+    <a href="/contact" class="btn btn-primary mobile-cta">Book a free Fit Call</a>
+  </div>
+</div>
 
 <style>
   header {
@@ -103,6 +118,7 @@ const currentPath = Astro.url.pathname;
 
   .nav-cta { font-size: 14px; padding: 10px 20px; }
 
+  /* Hamburger */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -112,18 +128,24 @@ const currentPath = Astro.url.pathname;
   }
   .hamburger span {
     display: block;
-    width: 20px;
+    width: 22px;
     height: 2px;
     background: var(--color-ink);
     border-radius: 2px;
-    transition: all 200ms ease;
+    transition: transform 250ms ease, opacity 250ms ease;
   }
 
+  /* Animate hamburger → X when open */
+  .hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu overlay — outside header so inset:0 targets the viewport */
   .mobile-menu {
     position: fixed;
     inset: 0;
     background: var(--color-paper-dark);
-    z-index: 99;
+    z-index: 200;
     display: flex;
     flex-direction: column;
   }
@@ -132,27 +154,46 @@ const currentPath = Astro.url.pathname;
   .mobile-menu-inner {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     flex: 1;
-    padding: 40px 20px;
+    padding: 24px 28px 48px;
     gap: var(--space-5);
+    position: relative;
   }
+
+  /* Close button at top-right */
+  .mobile-close {
+    align-self: flex-end;
+    color: rgba(245, 243, 238, 0.7);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    line-height: 0;
+    transition: color 150ms ease;
+    margin-bottom: var(--space-4);
+  }
+  .mobile-close:hover { color: var(--color-paper); }
 
   .mobile-menu-links {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 36px;
+    flex: 1;
+    justify-content: center;
   }
 
   .mobile-link {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 28px;
+    font-size: 32px;
     color: var(--color-paper);
     text-decoration: none;
+    transition: color 150ms ease;
+    line-height: 1.1;
   }
+  .mobile-link:hover { color: var(--color-accent); }
 
-  .mobile-cta { width: 100%; text-align: center; margin-top: auto; }
+  .mobile-cta { width: 100%; text-align: center; }
 
   @media (max-width: 1023px) {
     .nav-links { display: none; }
@@ -161,29 +202,40 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
+  const toggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
+  const closeBtn = document.getElementById('menu-close');
   const menu   = document.getElementById('mobile-menu');
+
+  function openMenu() {
+    menu?.removeAttribute('hidden');
+    toggle?.setAttribute('aria-expanded', 'true');
+    toggle?.setAttribute('aria-label', 'Close navigation menu');
+    toggle?.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
+  }
+
+  function closeMenu() {
+    menu?.setAttribute('hidden', '');
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Open navigation menu');
+    toggle?.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
 
   toggle?.addEventListener('click', () => {
     const isOpen = !menu?.hasAttribute('hidden');
-    if (isOpen) {
-      menu?.setAttribute('hidden', '');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open navigation menu');
-      document.body.style.overflow = '';
-    } else {
-      menu?.removeAttribute('hidden');
-      toggle.setAttribute('aria-expanded', 'true');
-      toggle.setAttribute('aria-label', 'Close navigation menu');
-      document.body.style.overflow = 'hidden';
-    }
+    isOpen ? closeMenu() : openMenu();
   });
 
+  closeBtn?.addEventListener('click', closeMenu);
+
   menu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menu.setAttribute('hidden', '');
-      toggle?.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    });
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu?.hasAttribute('hidden')) closeMenu();
   });
 </script>
