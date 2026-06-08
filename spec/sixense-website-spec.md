@@ -22,6 +22,7 @@
 12. Animations & Interactions
 13. Technical Requirements
 14. Accessibility & Legal
+15. Content Import Guide
 
 ---
 
