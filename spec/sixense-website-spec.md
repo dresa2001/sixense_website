@@ -1873,6 +1873,184 @@ Sixense is committed to the responsible and ethical use of AI.
 
 ---
 
+## 15. Content Import Guide
+
+This section documents exactly how to merge an updated `spec/CONTENT.md` back into the site. The client edits `CONTENT.md` and returns it. The developer follows this guide to apply changes without breaking anything.
+
+---
+
+### 15.1 Process Overview
+
+1. Receive the updated `CONTENT.md`
+2. Replace the file at `spec/CONTENT.md` with the new version
+3. Open it side-by-side with the previous version (use `git diff spec/CONTENT.md` to see exactly what changed)
+4. For each changed block, locate the corresponding source file and field using the map in Section 15.2 below
+5. Apply the change — copy the new text exactly as written, preserving any HTML entities (e.g. `&amp;`, `&nbsp;`)
+6. Do not alter surrounding code, component structure, CSS or imports
+7. Build and check the affected pages before marking complete
+
+**What is safe to change:** Any text inside a ` ``` ` block in CONTENT.md maps directly to a string in the source. Edit only that string.
+
+**What is never safe to change without developer review:**
+- Field labels, section headings or structural tags in CONTENT.md (these are navigation aids, not content)
+- Icon names (e.g. `ph-trophy`) — these reference the Phosphor icon library
+- URL paths (e.g. `/contact`, `/how-we-work`)
+- CSS class names or inline style attributes
+- Array structure or object keys in `.astro` frontmatter
+
+---
+
+### 15.2 Content-to-File Map
+
+For each CONTENT.md section, the table below identifies the exact source file and the variable, prop or inline location to update.
+
+---
+
+#### Page 1 — Home (`src/pages/index.astro`)
+
+| CONTENT.md field | Location in source |
+|---|---|
+| Hero — Section Label | Inline: `<span class="section-label">` in Section 1 |
+| Hero — H1 | Inline: `<h1 id="hero-heading">` |
+| Hero — Body | Inline: `<p class="hero-sub">` |
+| Hero — CTA Button | Inline: `<a href="/contact" class="btn btn-primary">` |
+| The Problem — Section Label | Inline: `<span class="section-label">` in Section 2 |
+| The Problem — H2 | Inline: `<h2 id="problem-heading">` |
+| The Problem — Body paragraphs | Inline: `<p class="body-large">` (two paragraphs) |
+| Who We Work With — Section Label | Inline: `<span class="section-label">` in Section 3 |
+| Who We Work With — H2 | Inline: `<h2 id="who-heading">` |
+| Who We Work With — Body | Inline: `<p class="animate-in body-large">` |
+| Who We Work With — Icon Items (Label + Description) | Inline: `.who-label` / `.who-desc` paragraphs within each `.who-item` |
+| Proven Outcomes — Section Label | Inline: `<span class="section-label">` in Section 4 |
+| Proven Outcomes — H2 | Inline: `<h2 id="proof-heading">` |
+| Proven Outcomes — Body | Inline: `<p>` inside the right column div |
+| Proven Outcomes — Link Text | Inline: `<a href="/our-outcomes" class="accent-link">` |
+| Proven Outcomes — Proof Blocks (Headline + Detail) | Inline: `.proof-headline` / `.proof-detail` paragraphs in each `.proof-block` |
+| Closing CTA — H2, Body, CTA Button | Component: `<ClosingCTA />` — uses default props defined in `src/components/ClosingCTA.astro` (edit defaults there, or pass as props on the `<ClosingCTA />` call in index.astro) |
+
+---
+
+#### Page 2 — What We Do (`src/pages/what-we-do.astro`)
+
+All card/tier/tech arrays live in the frontmatter (`---` block) at the top of the file.
+
+| CONTENT.md field | Location in source |
+|---|---|
+| Hero — Section Label, H1, Body paragraphs | Inline in `<!-- Hero -->` section |
+| Outcomes We Enable — Section Label, H2 | Inline in `<!-- Outcomes We Enable -->` section |
+| Service Cards 1–9 (Heading + Body) | Frontmatter array: `const serviceCards = [...]` — each object has `heading` and `body` keys |
+| How We Engage — Section Label, H2 | Inline in `<!-- How We Engage -->` section |
+| How We Engage — Panel 1 & 2 (Tag, Heading, Body, CTA) | Inline within each `.engage-panel` div |
+| How We Build — Section Label, H2, Intro Body | Inline in `<!-- How We Build -->` section |
+| How We Build — Tiers 1–4 (Heading, Sub-label, Body) | Frontmatter array: `const buildStaircase = [...]` — each object has `heading`, `sublabel`, `body` keys |
+| Technology Choice — Section Label, H2 | Inline in `<!-- Technology Choice -->` section |
+| Technology Choice — Cards 1–4 (Label, Heading, Body) | Frontmatter array: `const techCards = [...]` — each object has `label`, `heading`, `body` keys |
+| Closing CTA — H2, Body, CTA Button | Props on `<ClosingCTA heading="..." body="..." ctaLabel="..." />` call at the bottom |
+
+---
+
+#### Page 3 — How We Work (`src/pages/how-we-work.astro`)
+
+| CONTENT.md field | Location in source |
+|---|---|
+| Hero — Section Label, H1, Body | Inline in `<!-- Hero -->` section |
+| Our Approach — Section Label, H2, Body paragraphs | Inline in `<!-- Our Approach -->` section |
+| Our Method — Section Label, H2, Body paragraphs | Inline in `<!-- Our Method -->` section |
+| Our Principles — Section Label, H2 | Inline in `<!-- How We Build -->` section |
+| Principles 1–4 (Heading + Body) | Frontmatter array: `const principles = [...]` — each object has `heading` and `body` keys |
+| Our Team — Section Label, H2, Body paragraphs, Pull Quote | Inline in `<!-- Who You'll Work With -->` section; pull quote is in `<p class="pull-quote">` |
+| Closing CTA — Section Label, H2, Body, CTA Button | Inline in `<!-- CTA -->` section at the bottom |
+
+---
+
+#### Page 4 — Our Outcomes (`src/pages/our-outcomes.astro`)
+
+| CONTENT.md field | Location in source |
+|---|---|
+| Hero — Section Label, H1, Body | Inline in `<!-- Hero -->` section |
+| Stats Row (Number + Label, 4 stats) | Frontmatter array: `const stats = [...]` — each object has `number` and `label` keys |
+| Outcome Cards 1–6 (all fields) | Frontmatter array: `const outcomes = [...]` — each object has `sector`, `heading`, `challenge`, `solution`, `outcome`, `tags` keys. Tags are an array of strings: `['Tag one', 'Tag two']` |
+| Closing CTA — H2, Body, CTA Button | Props on `<ClosingCTA heading="..." body="..." ctaLabel="..." />` call at the bottom |
+
+---
+
+#### Page 5 — About (`src/pages/about.astro`)
+
+| CONTENT.md field | Location in source |
+|---|---|
+| Hero — Section Label, H1, Body | Inline in `<!-- Hero -->` section |
+| Our Structure — Section Label, H2, Body paragraphs | Inline in `<!-- Our Structure -->` section |
+| Our Structure — Stats (Number + Label) | Inline: `.stat-big` span + `.stat-desc` paragraph in each `.stat-item` |
+| What We Believe — Section Label, H2 | Inline in `<!-- What We Believe -->` section |
+| Pillars 1–3 (Heading + Body) | Inline: `.pillar-heading` / `.pillar-body` in each `.pillar` div |
+| Quote + Attribution | Inline: `.quote-text` paragraph + `.quote-attr` paragraph |
+| Why the Name — Section Label, H2, Body paragraphs | Inline in `<!-- Why the Name -->` section. **Important:** the H2 uses `<span class="strikethrough-gold">problems</span>` — only the word "problems" is wrapped in this span. Do not alter the span, only the surrounding text if needed. |
+| Closing CTA — Section Label, H2, CTA Button | Inline in `<!-- CTA -->` section at the bottom |
+
+---
+
+#### Page 6 — Contact (`src/pages/contact.astro`)
+
+| CONTENT.md field | Location in source |
+|---|---|
+| Hero — Section Label, H1, Body | Inline in `<!-- Hero -->` section |
+| Form field labels | `<label class="form-label">` for each field |
+| Form field placeholders | `placeholder="..."` attribute on each `<input>` or `<textarea>` |
+| Dropdown options | `<option value="...">` elements inside the `<select>` |
+| Submit button text | `<span id="submit-label">` |
+| Consent note | `<p class="consent-note">` |
+| Success message | `<h3 id="success-name">` is populated by JS as `"Thanks, ${firstName}. We'll be in touch."` — edit the JS string in the `<script>` block at the bottom |
+| Success sub-message | `<p class="success-body">` |
+| Aside — Heading | `<h3 class="aside-heading">` |
+| Aside — Email | `<a href="mailto:...">` inside the first `.contact-row` |
+| Aside — Location, Response time | `<p class="aside-body">` in second and third `.contact-row` |
+
+---
+
+#### Page 7 — Privacy Policy (`src/pages/privacy.astro`)
+
+| CONTENT.md field | Location in source |
+|---|---|
+| Last updated | `<p class="last-updated">` |
+| Sections 1–7 body text | `<p>` elements inside `.legal-content`, each under an `<h2>` heading |
+| Section 7 contact email | `<a href="mailto:admin@sixense.com.au">` — update both the `href` attribute and the link text if changed |
+
+---
+
+#### Page 8 — Terms of Use (`src/pages/terms.astro`)
+
+| CONTENT.md field | Location in source |
+|---|---|
+| Last updated | `<p class="last-updated">` |
+| Sections 1–6 body text | `<p>` elements inside `.legal-content`, each under an `<h2>` heading |
+| Section 6 contact email | `<a href="mailto:admin@sixense.com.au">` — update both the `href` attribute and the link text if changed |
+
+---
+
+#### Global — Footer (`src/components/Footer.astro`)
+
+| CONTENT.md field | Location in source |
+|---|---|
+| Copyright line + ABN | `<p class="footer-legal">` |
+| Footer fine print | `<p class="footer-fine">` — the static text portions between the Privacy Policy and Terms of Use links |
+| Footer email | `<a href="mailto:...">` with class `footer-email` |
+| Footer CTA button | `<a href="/contact" class="btn btn-ghost-dark footer-cta">` |
+
+---
+
+### 15.3 Editing Rules for the Developer
+
+1. **Match text exactly.** Copy the new text from CONTENT.md verbatim. Do not reformat, reflow or correct the client's wording — that is their choice.
+2. **Preserve HTML entities.** If the source uses `&amp;` for `&` or `&nbsp;` for a non-breaking space, keep it. Do not introduce raw `&` characters inside HTML attributes or Astro expressions.
+3. **Preserve JSX/Astro expressions.** If the existing text contains `{variable}` interpolations, do not remove them. Only replace the surrounding static text.
+4. **Preserve line breaks.** If the original H1 or H2 uses a `<br />` for a deliberate line break, keep it unless the new copy clearly no longer needs it.
+5. **Arrays:** When updating frontmatter arrays (service cards, tiers, tech cards, outcomes, stats), edit only the string values. Do not add, remove or reorder array entries unless the client has explicitly asked for that. Do not alter the key names (`heading`, `body`, `sector`, etc.).
+6. **Tags (outcome cards):** Tags are comma-separated in CONTENT.md using `|` as a separator for readability. In the source they are a JavaScript string array: `['Tag one', 'Tag two']`. Convert accordingly — each tag between `|` characters becomes a quoted string in the array.
+7. **Strikethrough in About H2:** The H2 in "Why the Name" uses `<span class="strikethrough-gold">problems</span>`. Only the word inside the span should be struck through. If the client changes the surrounding words, update only the surrounding text — do not remove or alter the `<span>`.
+8. **Build and check after every page.** Run `npm run dev` and visually verify each changed page before committing.
+
+---
+
 *End of specification.*  
 *Single source of truth — all previous versions superseded.*  
 *Questions: automate@sixense.com.au*
