@@ -61,9 +61,7 @@ Your people should be doing the value-adding work that needs them.
 
 **BODY — Paragraph 1**
 ```
-Many businesses scale by adding headcount to add capacity and handle the workload — more staff handling more volume, doing things the way they've always been done. It works,
-but it's expensive and erodes productivity. The cracks show up in myriad ways — errors, delays, key person dependencies, missed opportunities, knowledge siloes, frustrated
-customers and a growing sense that the business is harder to run than it should be.
+Many businesses scale by adding headcount to increase capacity and handle the workload — more staff handling more volume, doing things the way they've always been done. It works, but it's expensive and erodes productivity. The cracks show up in myriad ways — errors, delays, key person dependencies, missed opportunities, knowledge siloes, frustrated customers and a growing sense that the business is harder to run than it should be.
 ```
 
 **BODY — Paragraph 2**
@@ -1128,7 +1126,6 @@ We put something tangible in front of you at every step — a working process, a
 **QUOTE ATTRIBUTION**
 ```
 CTO, Australia's largest private transport operator.
-Our yardstick for every engagement.
 ```
 
 ---
@@ -1270,10 +1267,6 @@ We don't share your details with third parties.
 We'll be in touch.
 ```
 
-**Success sub-message**
-```
-Expect to hear from us within one business day.
-```
 
 ---
 

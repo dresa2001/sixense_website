@@ -41,7 +41,7 @@ import Watermark from '../components/Watermark.astro';
       </div>
       <div class="animate-in" data-delay="80ms">
         <p class="body-large" style="color:var(--color-ink-secondary)">
-          Many businesses scale by adding headcount to add capacity and handle the workload — more staff
+          Many businesses scale by adding headcount to increase capacity and handle the workload — more staff
           handling more volume, doing things the way they've always been done. It works,
           but it's expensive and erodes productivity. The cracks show up in myriad ways — errors, delays,
           key person dependencies, missed opportunities, knowledge siloes, frustrated
@@ -106,7 +106,23 @@ import Watermark from '../components/Watermark.astro';
   <!-- Section 4: Proof Signal -->
   <section class="section" aria-labelledby="proof-heading">
     <Watermark variant="light" side="right" />
-    <div class="container two-col" style="grid-template-columns:55% 40%;align-items:center">
+    <div class="container two-col" style="grid-template-columns:40% 55%;align-items:center">
+
+      <div>
+        <span class="section-label">Proven outcomes</span>
+        <h2 id="proof-heading" class="animate-in">
+          We've done this before.
+        </h2>
+        <p class="animate-in" data-delay="80ms" style="color:var(--color-ink-secondary);margin-top:var(--space-2);font-size:16px;line-height:1.7">
+          From a national transport operator needing live fleet visibility, to a utility
+          vetting thousands of contractors working on high-voltage assets, to a logistics
+          business consumed by manual invoicing — we've built working solutions across
+          some of Australia's most operationally demanding businesses.
+        </p>
+        <a href="/our-outcomes" class="accent-link animate-in" data-delay="120ms" style="margin-top:var(--space-3);color:var(--color-ink);font-weight:700;">
+          See our outcomes →
+        </a>
+      </div>
 
       <div class="proof-blocks animate-in" data-delay="80ms" style="align-self:center">
         <div class="proof-block">
@@ -136,22 +152,6 @@ import Watermark from '../components/Watermark.astro';
             <p class="proof-detail">National passenger transport operator - 1,200+ vehicles</p>
           </div>
         </div>
-      </div>
-
-      <div>
-        <span class="section-label">Proven outcomes</span>
-        <h2 id="proof-heading" class="animate-in">
-          We've done this before.
-        </h2>
-        <p class="animate-in" data-delay="80ms" style="color:var(--color-ink-secondary);margin-top:var(--space-2);font-size:16px;line-height:1.7">
-          From a national transport operator needing live fleet visibility, to a utility
-          vetting thousands of contractors working on high-voltage assets, to a logistics
-          business consumed by manual invoicing — we've built working solutions across
-          some of Australia's most operationally demanding businesses.
-        </p>
-        <a href="/our-outcomes" class="accent-link animate-in" data-delay="120ms" style="margin-top:var(--space-3);color:var(--color-ink);font-weight:700;">
-          See our outcomes →
-        </a>
       </div>
     </div>
   </section>
@@ -211,6 +211,14 @@ import Watermark from '../components/Watermark.astro';
 
   /* Proof icon circle */
   .proof-icon-wrap { width: 44px; height: 44px; flex-shrink: 0; }
+
+  .proof-headline {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--color-ink);
+    margin: 0;
+  }
 
   @media (max-width: 767px) {
     .hero { padding-top: 112px; padding-bottom: 80px; }
