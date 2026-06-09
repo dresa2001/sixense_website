@@ -35,9 +35,9 @@ What's the hold up?
 
 **BODY**
 ```
-Most business leaders we talk to have been living with the same operational
-frustrations for years — assuming it would be too expensive or too complex
-to fix. It's usually none of those things.
+Business leaders we talk to have been living with the same operational
+frustrations for years — assuming it would be too expensive, too slow or
+too complex to fix. It's usually none of those things.
 ```
 
 **CTA BUTTON**
@@ -56,8 +56,8 @@ The problem
 
 **H2**
 ```
-Growth adds people.
-It doesn't have to.
+Adding headcount to handle more work is an expensive and inefficient way to scale.
+Your people should be doing the value-adding work that needs them.
 ```
 
 **BODY — Paragraph 1**
@@ -92,9 +92,9 @@ We work with operators, not IT departments.
 **BODY**
 ```
 Our clients are GMs, COOs, operations managers and business owners in
-asset-heavy, service-intensive and operationally complex businesses.
-They know their industry deeply. They don't need to know anything about
-technology — that's our job.
+asset-heavy, service-intensive and data-rich organisations. They know their
+operations deeply and their challenges intimately — but they don't have the
+capacity or time for technology. That's our job.
 ```
 
 **ICON ITEM 1 — Label** *(bold line)*
@@ -104,7 +104,7 @@ Asset-heavy businesses
 
 **ICON ITEM 1 — Description**
 ```
-Transport, utilities, logistics, infrastructure, real estate, construction, fleet
+Transport, utilities, logistics, infrastructure, real estate, construction, mining, fleet
 ```
 
 **ICON ITEM 2 — Label**
@@ -114,7 +114,7 @@ Service-intensive operations
 
 **ICON ITEM 2 — Description**
 ```
-Healthcare, field service, maintenance, retail, logistics, supply chain
+Healthcare, aged care, field service, maintenance, retail, logistics, supply chain
 ```
 
 **ICON ITEM 3 — Label**
@@ -124,7 +124,7 @@ Data & document-rich domains
 
 **ICON ITEM 3 — Description**
 ```
-Finance ops, HR ops, compliance, safety
+Financial services, finance ops, legal, contract management, compliance, education, safety, audit
 ```
 
 ---
@@ -171,7 +171,7 @@ Working prototype in 3 months
 
 **PROOF BLOCK 2 — Detail**
 ```
-Energy dispatch optimisation — after 3 years of stalled attempts
+Energy dispatch schedule optimisation — after 3 years of stalled attempts
 ```
 
 **PROOF BLOCK 3 — Headline**
@@ -225,10 +225,10 @@ Fix what's broken. Build what's missing.
 
 **BODY — Paragraph 1**
 ```
-Some of the businesses we work with have a specific problem they need fixed.
-Others can see an opportunity — a new capability, a better way of operating,
-something a competitor is doing that they can't yet — but have no way to build
-toward it. We do both.
+We work with business leaders that see the opportunities to run better — whether
+that's streamlining what's slow and manual, innovating user experiences, connecting
+systems that don't talk or building capabilities that would give them a real advantage.
+Usually it's a mix of these.
 ```
 
 **BODY — Paragraph 2**
@@ -261,7 +261,7 @@ Finance & accounts
 
 **SERVICE CARD 1 — Body**
 ```
-Invoice matching and approval workflows. Automated reconciliation. Payment follow-up and dunning. Month-end reporting without the scramble.
+Invoice matching and three-way reconciliation. Payment run automation. Approval workflows. Dunning and collections. Month-end reporting. AI extraction of invoice data from unstructured documents.
 ```
 
 **SERVICE CARD 2 — Heading**
@@ -271,7 +271,7 @@ Procurement & supplier management
 
 **SERVICE CARD 2 — Body**
 ```
-Purchase order automation. Supplier onboarding and credential tracking. Contract expiry alerts. Spend visibility across fragmented systems.
+Purchase order automation. Supplier onboarding and credential tracking. Contract expiry management. Spend visibility across systems. AI-assisted contract review and risk flagging.
 ```
 
 **SERVICE CARD 3 — Heading**
@@ -281,7 +281,7 @@ Field service & scheduling
 
 **SERVICE CARD 3 — Body**
 ```
-Live job visibility and dispatch optimisation. Automated scheduling based on location, skills and availability. Real-time status updates without the phone calls.
+Job dispatch and scheduling automation. Live job visibility. Work order management. Real-time status tracking. AI-optimised scheduling based on location, skills and availability.
 ```
 
 **SERVICE CARD 4 — Heading**
@@ -291,7 +291,7 @@ Document processing
 
 **SERVICE CARD 4 — Body**
 ```
-Automated document classification and data extraction. Contract review and flagging. Forms processing without manual rekeying.
+Document classification and data extraction. Forms processing and data routing. AI-assisted contract review and obligation tracking. Intelligent data validation across systems.
 ```
 
 **SERVICE CARD 5 — Heading**
@@ -301,7 +301,7 @@ Warehouse & inventory
 
 **SERVICE CARD 5 — Body**
 ```
-Live inventory visibility across locations. Automated reorder triggers. Inbound and outbound reconciliation. Order status without chasing the warehouse.
+Live inventory visibility. Automated reorder management. Inbound and outbound reconciliation. Order tracking and status. AI-driven demand forecasting and stock optimisation.
 ```
 
 **SERVICE CARD 6 — Heading**
@@ -311,7 +311,7 @@ Sales operations
 
 **SERVICE CARD 6 — Body**
 ```
-Live product, pricing and inventory access for field reps. Order submission without back-office delays. Pipeline reporting without a spreadsheet.
+Marketing automation and lead nurturing. CRM data management and pipeline reporting. Quote and proposal generation. Order processing automation. AI-assisted lead scoring and opportunity prioritisation.
 ```
 
 **SERVICE CARD 7 — Heading**
@@ -321,7 +321,7 @@ Contact centre & service desk
 
 **SERVICE CARD 7 — Body**
 ```
-Intelligent triage and routing. Automated responses to common requests. Knowledge assistants that give agents the right answer faster.
+AI customer chatbots. Intelligent triage and routing. Agent knowledge assistants. Automated follow-up and case management. AI-powered sentiment analysis and escalation triggers.
 ```
 
 **SERVICE CARD 8 — Heading**
@@ -331,7 +331,7 @@ Reporting & business intelligence
 
 **SERVICE CARD 8 — Body**
 ```
-Automated data pipelines from fragmented sources. Dashboards that update without someone building them each week. Alerts when something needs attention.
+Automated data pipelines. Real-time dashboards. Operational reporting. Exception alerting. AI-generated narrative summaries of operational performance.
 ```
 
 **SERVICE CARD 9 — Heading**
@@ -341,7 +341,7 @@ Asset operations
 
 **SERVICE CARD 9 — Body**
 ```
-Failure prediction and maintenance optimisation. Work order scheduling automation. Language-first work execution via voice or text. Document intelligence for maintenance records and compliance.
+Predictive maintenance and failure alerting. Work order automation. Compliance and inspection record management. AI maintenance and safety document intelligence.
 ```
 
 ---
@@ -393,10 +393,9 @@ The Discovery Sprint
 
 **PANEL 2 — Body**
 ```
-A structured working session requiring up to four hours of your time across five
-days. We map your most pressing processes, assess where automation can make the
-biggest difference and hand you a clear, plain-English report. Most clients find
-the clarity alone is worth the fee.
+A series of structured working sessions where we map your most pressing processes,
+scan your pain points and assess where automation can make the biggest difference.
+We hand you a clear, plain-English report with actionable next steps.
 ```
 
 **PANEL 2 — CTA Button**
@@ -410,20 +409,19 @@ Learn more →
 
 **SECTION LABEL**
 ```
-How we build
+Automation in layers
 ```
 
 **H2**
 ```
-From targeted enhancements to autonomous operations.
+Four layers of automation capability — each more sophisticated than the last.
 ```
 
 **INTRO BODY**
 ```
-Think of automation as a ladder. Most businesses start with a single rung —
-a specific task, a recurring bottleneck, something that takes too long and
-costs too much. Each step up connects more of your operations, until the
-business is running on intelligence rather than effort.
+Your automation capability should grow in layers — from targeted fixes to fully autonomous operations.
+
+Operational challenges are rarely the result of a single issue, but you don't need to fix all of them to start making gains. Fix the most painful one first, then solve the next — and each solution is built to connect with what came before.
 ```
 
 **TIER 1 — Heading**
@@ -433,14 +431,12 @@ Insights & intelligence
 
 **TIER 1 — Sub-label** *(small italic tag)*
 ```
-Seeing ahead
+Know early
 ```
 
 **TIER 1 — Body** *(visible on hover)*
 ```
-Continuous analysis of operational data to surface patterns, predict outcomes
-and recommend action. Transforms the data your operations generate into a
-strategic asset — helping you see what's coming rather than react to what happened.
+Faster analysis of your operational data surfaces patterns, flags problems early and turns information into something you can actually act on.
 ```
 
 **TIER 2 — Heading**
@@ -467,7 +463,7 @@ Process & integrated automation
 
 **TIER 3 — Sub-label**
 ```
-Working on autopilot
+End to end
 ```
 
 **TIER 3 — Body**
@@ -485,7 +481,7 @@ Agentic automation
 
 **TIER 4 — Sub-label**
 ```
-Reimagining operations
+Hands free
 ```
 
 **TIER 4 — Body**
@@ -506,7 +502,7 @@ Technology choice
 
 **H2**
 ```
-Fitting the right technical frameworks to your operations and environment is pivotal.
+Not all automation is the same. We match the right approach to the right problem.
 ```
 
 **TECH CARD 1 — Label** *(small uppercase tag)*
@@ -536,7 +532,7 @@ Data analysis & recommendations
 
 **TECH CARD 2 — Body**
 ```
-Analyses data from across your systems and surfaces clear recommendations for your team to act on. Turns information overload into decision clarity.
+Your team gets clear answers from your data instead of spending time finding them — so they can act faster and with more confidence.
 ```
 
 **TECH CARD 3 — Label**
@@ -546,7 +542,7 @@ AI
 
 **TECH CARD 3 — Heading**
 ```
-Agents and bots
+AI applications
 ```
 
 **TECH CARD 3 — Body**
@@ -609,8 +605,7 @@ Process first. Experience led. Real solutions.
 
 **BODY**
 ```
-We start with your business, not the technology, and build in shorter
-iterations rather than drawn-out cycles.
+We start with your business, not the technology. Then we build quickly and show you something real as fast as possible.
 ```
 
 ---
@@ -631,9 +626,8 @@ from the outcome.
 **BODY — Paragraph 1**
 ```
 Every engagement starts with a clear picture of what better looks like for
-your business — not a system requirement, not a features list. From there
-we work back through your processes, people, systems and data to understand
-what needs to change and what the right path forward looks like.
+your business. From there we work back through your processes, people, systems
+and data to understand what needs to change and what the right path forward looks like.
 ```
 
 **BODY — Paragraph 2**
@@ -667,7 +661,7 @@ decision point — you stay in control of pace and investment throughout.
 
 **BODY — Paragraph 2**
 ```
-It gets value into your hands fast. It surfaces the things that are hard to
+This approach gets value into your hands fast. It surfaces the things that are hard to
 specify on paper but obvious the moment you can see something real. And it
 means everything we build can be extended and scaled without starting again.
 ```
@@ -756,10 +750,9 @@ We're not here to make ourselves indispensable. We're here to build something
 that works, prove it quickly and earn the right to do more.
 ```
 
-**PULL QUOTE** *(large styled quote with gold left border)*
+**STATEMENT** *(large styled text with gold left border)*
 ```
-The quality and accountability of a senior local firm, at a price point
-that makes sense for a mid-sized business.
+The quality and accountability of a senior local firm, at a price point that makes sense for a mid-sized business.
 ```
 
 ---
@@ -773,13 +766,12 @@ Work with us
 
 **H2**
 ```
-Ready to see how this applies to your business?
+Does this sound like your business?
 ```
 
 **BODY**
 ```
-Start with a free Fit Call. Thirty minutes, no pitch — just an honest look
-at whether there's a problem worth solving together.
+Start with a free Fit Call. Thirty minutes, no pitch — just an honest conversation about whether there's something worth building.
 ```
 
 **CTA BUTTON**
@@ -1109,21 +1101,6 @@ direct supervision of our local engineers to the same standards. It's what
 lets us deliver at a quality level that would otherwise cost significantly more.
 ```
 
-**STAT 1 — Number / Label**
-```
-30+ / People in our delivery team
-```
-
-**STAT 2 — Number / Label**
-```
-13+ / Years building for Australian businesses
-```
-
-**STAT 3 — Number / Label**
-```
-6 / Industries we've worked across
-```
-
 ---
 
 ### Section 3 — What We Believe
@@ -1135,7 +1112,7 @@ What we believe
 
 **H2**
 ```
-How we work with our clients.
+What you can count on.
 ```
 
 **PILLAR 1 — Heading**
@@ -1145,9 +1122,7 @@ Your operations. Your outcomes.
 
 **PILLAR 1 — Body**
 ```
-We work alongside our clients, not above them. Your operations and your experience
-are the centre of our solutions. We follow through on what we say and design
-around the real constraints of cost, time and disruption.
+We work alongside our clients, not above them. We follow through on what we say. Cost, time and disruption are real constraints — we design around them, not past them.
 ```
 
 **PILLAR 2 — Heading**
@@ -1169,8 +1144,7 @@ Unashamedly pragmatic.
 
 **PILLAR 3 — Body**
 ```
-Specific and focused increments of work, with regular demos and tight feedback
-loops, ensure the focus is always on tangible outcomes and value to your business.
+We put something tangible in front of you at every step — a working process, a prototype, a mapped concept. If it's not delivering value, we change course.
 ```
 
 **QUOTE** *(large centred quote between horizontal rules)*
