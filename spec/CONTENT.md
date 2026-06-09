@@ -56,16 +56,13 @@ The problem
 
 **H2**
 ```
-Adding headcount to handle more work is an expensive and inefficient way to scale.
 Your people should be doing the value-adding work that needs them.
 ```
 
 **BODY — Paragraph 1**
 ```
-Many businesses scale by adding headcount to absorb the workload — more staff
-handling more volume, doing things the way they've always been done. It works,
-but it erodes productivity. The cracks show up in myriad ways — errors, delays,
-key person dependencies, missed opportunities, knowledge siloes, frustrated
+Many businesses scale by adding headcount to add capacity and handle the workload — more staff handling more volume, doing things the way they've always been done. It works,
+but it's expensive and erodes productivity. The cracks show up in myriad ways — errors, delays, key person dependencies, missed opportunities, knowledge siloes, frustrated
 customers and a growing sense that the business is harder to run than it should be.
 ```
 
@@ -94,7 +91,7 @@ We work with operators, not IT departments.
 Our clients are GMs, COOs, operations managers and business owners in
 asset-heavy, service-intensive and data-rich organisations. They know their
 operations deeply and their challenges intimately — but they don't have the
-capacity or time for technology. That's our job.
+capacity or time to put the technology to work. That's our job.
 ```
 
 **ICON ITEM 1 — Label** *(bold line)*
@@ -104,7 +101,7 @@ Asset-heavy businesses
 
 **ICON ITEM 1 — Description**
 ```
-Transport, utilities, logistics, infrastructure, real estate, construction, mining, fleet
+Transport, utilities, infrastructure, real estate, construction, mining, fleet
 ```
 
 **ICON ITEM 2 — Label**
@@ -124,7 +121,7 @@ Data & document-rich domains
 
 **ICON ITEM 3 — Description**
 ```
-Financial services, finance ops, legal, contract management, compliance, education, safety, audit
+Financial services, education, legal, finance operations, contract management, compliance, safety, audit
 ```
 
 ---
@@ -143,9 +140,9 @@ We've done this before.
 
 **BODY**
 ```
-From a national transport operator with no live fleet visibility, to a utility
-managing thousands of contractors on high-voltage assets, to a logistics
-business drowning in manual invoicing — we've built working solutions across
+From a national transport operator needing live fleet visibility, to a utility
+vetting thousands of contractors working on high-voltage assets, to a logistics
+business consumed by manual invoicing — we've built working solutions across
 some of Australia's most operationally demanding businesses.
 ```
 
@@ -166,22 +163,22 @@ Contractor authorisations platform — major Australian utility
 
 **PROOF BLOCK 2 — Headline**
 ```
-Working prototype in 3 months
+Working pilot in 3 months
 ```
 
 **PROOF BLOCK 2 — Detail**
 ```
-Energy dispatch schedule optimisation — after 3 years of stalled attempts
+Dispatch schedule optimisation — after 3 years of stalled attempts
 ```
 
 **PROOF BLOCK 3 — Headline**
 ```
-Live fleet visibility in 30 days
+Live fleet visibility in 50 days
 ```
 
 **PROOF BLOCK 3 — Detail**
 ```
-National passenger transport operator, 500+ vehicles
+National passenger transport operator - 1,200+ vehicles
 ```
 
 ---
@@ -226,9 +223,8 @@ Fix what's broken. Build what's missing.
 **BODY — Paragraph 1**
 ```
 We work with business leaders that see the opportunities to run better — whether
-that's streamlining what's slow and manual, innovating user experiences, connecting
-systems that don't talk or building capabilities that would give them a real advantage.
-Usually it's a mix of these.
+that's streamlining what's slow and manual, innovating dated user experiences, connecting
+systems that don't talk or building capabilities that add a real advantage. Usually it's a mix of these.
 ```
 
 **BODY — Paragraph 2**
@@ -261,7 +257,7 @@ Finance & accounts
 
 **SERVICE CARD 1 — Body**
 ```
-Invoice matching and three-way reconciliation. Payment run automation. Approval workflows. Dunning and collections. Month-end reporting. AI extraction of invoice data from unstructured documents.
+Invoice matching and three-way reconciliation. Payment run automation. Approval workflows. Dunning and collections. Month-end reporting. AI invoice extraction from documents.
 ```
 
 **SERVICE CARD 2 — Heading**
@@ -271,7 +267,7 @@ Procurement & supplier management
 
 **SERVICE CARD 2 — Body**
 ```
-Purchase order automation. Supplier onboarding and credential tracking. Contract expiry management. Spend visibility across systems. AI-assisted contract review and risk flagging.
+Purchase order automation. Supplier onboarding and credential tracking. Contract expiry management. Spend visibility across systems. AI contract review and risk flagging. AI-based terms enforcement.
 ```
 
 **SERVICE CARD 3 — Heading**
@@ -281,17 +277,17 @@ Field service & scheduling
 
 **SERVICE CARD 3 — Body**
 ```
-Job dispatch and scheduling automation. Live job visibility. Work order management. Real-time status tracking. AI-optimised scheduling based on location, skills and availability.
+Job dispatch and scheduling automation. Agentic service request management. Work order generation. Real-time job tracking. AI-optimised scheduling using location, skills and availability.
 ```
 
 **SERVICE CARD 4 — Heading**
 ```
-Document processing
+Document intelligence
 ```
 
 **SERVICE CARD 4 — Body**
 ```
-Document classification and data extraction. Forms processing and data routing. AI-assisted contract review and obligation tracking. Intelligent data validation across systems.
+Document classification and data extraction. Forms processing and data routing. Agentic contract review and obligation tracking. Natural-language document inquiries. Image processing and object detection.
 ```
 
 **SERVICE CARD 5 — Heading**
@@ -341,7 +337,7 @@ Asset operations
 
 **SERVICE CARD 9 — Body**
 ```
-Predictive maintenance and failure alerting. Work order automation. Compliance and inspection record management. AI maintenance and safety document intelligence.
+Predictive maintenance and failure alerting. Compliance and inspection record management. AI maintenance and safety document intelligence. Spare parts and inventory optimisation. Permits to work. Authorisation and credential management.
 ```
 
 ---
@@ -414,14 +410,14 @@ Automation in layers
 
 **H2**
 ```
-Four layers of automation capability — each more sophisticated than the last.
+Four layers of automation capability — each smarter than the last.
 ```
 
 **INTRO BODY**
 ```
 Your automation capability should grow in layers — from targeted fixes to fully autonomous operations.
 
-Operational challenges are rarely the result of a single issue, but you don't need to fix all of them to start making gains. Fix the most painful one first, then solve the next — and each solution is built to connect with what came before.
+Operational challenges are rarely the result of a single issue, but you don't need to fix all of them to start making gains. Fix the most painful one first, then solve the next, with each solution built to connect with and compound on what came before.
 ```
 
 **TIER 1 — Heading**
@@ -431,7 +427,7 @@ Insights & intelligence
 
 **TIER 1 — Sub-label** *(small italic tag)*
 ```
-Know early
+Knowing early
 ```
 
 **TIER 1 — Body** *(visible on hover)*
@@ -452,8 +448,7 @@ Clearing bottlenecks
 **TIER 2 — Body**
 ```
 Targeted automation of specific manual tasks, handoffs and data flows. Fast to
-deliver, immediate in impact. AI plays a role here too — extracting meaning from
-documents, routing requests intelligently, flagging exceptions before they become problems.
+deliver, immediate in impact and foundational for end-to-end automation.
 ```
 
 **TIER 3 — Heading**
@@ -463,7 +458,7 @@ Process & integrated automation
 
 **TIER 3 — Sub-label**
 ```
-End to end
+End-to-end
 ```
 
 **TIER 3 — Body**
@@ -481,14 +476,13 @@ Agentic automation
 
 **TIER 4 — Sub-label**
 ```
-Hands free
+Hands-free
 ```
 
 **TIER 4 — Body**
 ```
 Goal-oriented AI that monitors, decides and acts across complex workflows — with
-human oversight built in. Not science fiction. We're building and delivering
-agentic solutions now, across logistics, finance and field operations.
+human oversight built in for safety and governance. Not science fiction. We're building and delivering agentic solutions now.
 ```
 
 ---
@@ -502,47 +496,33 @@ Technology choice
 
 **H2**
 ```
-Not all automation is the same. We match the right approach to the right problem.
-```
-
-**TECH CARD 1 — Label** *(small uppercase tag)*
-```
-Rule-based
+Not all automation is the same. We match the right technical approach that fits your need.
 ```
 
 **TECH CARD 1 — Heading**
 ```
-Task & rule automation
+Rule-based automation
 ```
 
 **TECH CARD 1 — Body**
 ```
-Handles repeatable logic — consistent, fast and predictable. The right foundation for any process that follows defined steps every time.
-```
-
-**TECH CARD 2 — Label**
-```
-Decision support & insights
+Handles repeatable logic — consistently, quickly and predictably. The right foundation for any process that follows defined steps every time.
 ```
 
 **TECH CARD 2 — Heading**
 ```
-Data analysis & recommendations
+Data analysis
 ```
 
 **TECH CARD 2 — Body**
 ```
-Your team gets clear answers from your data instead of spending time finding them — so they can act faster and with more confidence.
+Processes data to get clear answers and insights quickly, reliably and repeataedly so you can act faster and with more confidence.
 ```
 
-**TECH CARD 3 — Label**
-```
-AI
-```
 
 **TECH CARD 3 — Heading**
 ```
-AI applications
+Generative AI
 ```
 
 **TECH CARD 3 — Body**
@@ -550,19 +530,15 @@ AI applications
 Understands and generates language, documents, images, audio and other unstructured data. Handles the interactions and processing that used to require a person.
 ```
 
-**TECH CARD 4 — Label**
-```
-Autonomous
-```
 
 **TECH CARD 4 — Heading**
 ```
-Agentic systems
+Agentic AI systems
 ```
 
 **TECH CARD 4 — Body**
 ```
-Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building and delivering this now.
+Autonomous systems that observe, reason, act and learn. Capable of executing workflows that don't follow traditional, rule-based sequences, whilst maintaining humans-in-the-loop for oversight and intervention.
 ```
 
 ---
@@ -619,8 +595,7 @@ Our approach
 
 **H2**
 ```
-We work backwards
-from the outcome.
+We work backwards from the outcome.
 ```
 
 **BODY — Paragraph 1**
@@ -633,7 +608,7 @@ and data to understand what needs to change and what the right path forward look
 **BODY — Paragraph 2**
 ```
 This keeps solutions grounded in how your business actually works from day one.
-It also keeps scope honest — we're building toward a defined outcome,
+And it keeps scope honest — we're building toward a defined outcome,
 not generating work.
 ```
 
@@ -731,9 +706,7 @@ Our team
 
 **H2**
 ```
-Senior people.
-Direct access.
-No handoffs.
+Senior people. Direct access. No handoffs.
 ```
 
 **BODY — Paragraph 1**
@@ -819,7 +792,7 @@ Stat 2 — Number / Label
 
 Stat 3 — Number / Label
 ```
-<30 days / Fastest delivery
+<50 days / Fastest delivery
 ```
 
 Stat 4 — Number / Label
@@ -837,7 +810,7 @@ Australia-wide / Where we operate
 
 **CARD 1 — Sector** *(small descriptor above heading)*
 ```
-National passenger transport operator — ~1,000 staff, 500+ vehicles
+National passenger transport operator — ~1,000 staff, 1,200+ vehicles
 ```
 
 **CARD 1 — Heading**
@@ -847,7 +820,7 @@ Fleet visibility & dispatch intelligence
 
 **CARD 1 — Outcome** *(visible by default)*
 ```
-Live fleet awareness delivered in under 30 days. Became the operational foundation for dispatch optimisation and mobile app bookings.
+Live fleet awareness delivered in under 50 days. Became the operational foundation for dispatch optimisation and app bookings.
 ```
 
 **CARD 1 — Challenge** *(visible on expand)*
@@ -901,12 +874,12 @@ System integration | Data pipeline | AI document understanding
 
 **CARD 3 — Sector**
 ```
-Major Australian utility — national grid operations
+Regional multi-utility — network operations
 ```
 
 **CARD 3 — Heading**
 ```
-Energy dispatch optimisation platform
+Dispatch schedule optimisation engine
 ```
 
 **CARD 3 — Outcome**
@@ -916,12 +889,12 @@ Working prototype delivered in three months. Program renewed with full stakehold
 
 **CARD 3 — Challenge**
 ```
-Three years of planning with no working solution. Dispatch decisions made without real-time inputs. Stakeholders losing confidence.
+Three years of planning with no working solution. Dispatch decisions made with limited real-time inputs. Stakeholders losing confidence.
 ```
 
 **CARD 3 — Solution**
 ```
-High-frequency data ingestion platform pulling live forecasts, grid state and outage data, feeding an optimisation engine that models dispatch scenarios and surfaces least-cost recommendations automatically.
+High-frequency data ingestion platform pulling live forecasts, grid state and outage data, feeding an optimisation engine that models scenarios and surfaces least-cost recommendations automatically.
 ```
 
 **CARD 3 — Tags**
@@ -938,7 +911,7 @@ Major Australian utility — thousands of contractors on high-voltage assets
 
 **CARD 4 — Heading**
 ```
-Contractor authorisations platform
+Contractor authorisations and vetting platform
 ```
 
 **CARD 4 — Outcome**
@@ -1096,7 +1069,7 @@ all hands-on. The people you meet are the people who do the work.
 
 **BODY — Paragraph 2**
 ```
-Behind them is an offshore delivery centre of 30-plus people, working under
+Behind them is an offshore delivery centre of 20-plus people, working under
 direct supervision of our local engineers to the same standards. It's what
 lets us deliver at a quality level that would otherwise cost significantly more.
 ```

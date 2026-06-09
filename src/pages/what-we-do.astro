@@ -4,22 +4,22 @@ import ClosingCTA from '../components/ClosingCTA.astro';
 import Watermark from '../components/Watermark.astro';
 
 const serviceCards = [
-  { icon: 'receipt', heading: 'Finance & accounts', body: 'Invoice matching and three-way reconciliation. Payment run automation. Approval workflows. Dunning and collections. Month-end reporting. AI extraction of invoice data from unstructured documents.' },
-  { icon: 'clipboard-text', heading: 'Procurement & supplier management', body: 'Purchase order automation. Supplier onboarding and credential tracking. Contract expiry management. Spend visibility across systems. AI-assisted contract review and risk flagging.' },
-  { icon: 'map-pin', heading: 'Field service & scheduling', body: 'Job dispatch and scheduling automation. Live job visibility. Work order management. Real-time status tracking. AI-optimised scheduling based on location, skills and availability.' },
-  { icon: 'file-text', heading: 'Document processing', body: 'Document classification and data extraction. Forms processing and data routing. AI-assisted contract review and obligation tracking. Intelligent data validation across systems.' },
+  { icon: 'receipt', heading: 'Finance & accounts', body: 'Invoice matching and three-way reconciliation. Payment run automation. Approval workflows. Dunning and collections. Month-end reporting. AI invoice extraction from documents.' },
+  { icon: 'clipboard-text', heading: 'Procurement & supplier management', body: 'Purchase order automation. Supplier onboarding and credential tracking. Contract expiry management. Spend visibility across systems. AI contract review and risk flagging. AI-based terms enforcement.' },
+  { icon: 'map-pin', heading: 'Field service & scheduling', body: 'Job dispatch and scheduling automation. Agentic service request management. Work order generation. Real-time job tracking. AI-optimised scheduling using location, skills and availability.' },
+  { icon: 'file-text', heading: 'Document intelligence', body: 'Document classification and data extraction. Forms processing and data routing. Agentic contract review and obligation tracking. Natural-language document inquiries. Image processing and object detection.' },
   { icon: 'package', heading: 'Warehouse & inventory', body: 'Live inventory visibility. Automated reorder management. Inbound and outbound reconciliation. Order tracking and status. AI-driven demand forecasting and stock optimisation.' },
   { icon: 'chart-line-up', heading: 'Sales operations', body: "Marketing automation and lead nurturing. CRM data management and pipeline reporting. Quote and proposal generation. Order processing automation. AI-assisted lead scoring and opportunity prioritisation." },
   { icon: 'headset', heading: 'Contact centre & service desk', body: 'AI customer chatbots. Intelligent triage and routing. Agent knowledge assistants. Automated follow-up and case management. AI-powered sentiment analysis and escalation triggers.' },
   { icon: 'chart-bar', heading: 'Reporting & business intelligence', body: 'Automated data pipelines. Real-time dashboards. Operational reporting. Exception alerting. AI-generated narrative summaries of operational performance.' },
-  { icon: 'wrench', heading: 'Asset operations', body: 'Predictive maintenance and failure alerting. Work order automation. Compliance and inspection record management. AI maintenance and safety document intelligence.' },
+  { icon: 'wrench', heading: 'Asset operations', body: 'Predictive maintenance and failure alerting. Compliance and inspection record management. AI maintenance and safety document intelligence. Spare parts and inventory optimisation. Permits to work. Authorisation and credential management.' },
 ];
 
 const buildStaircase = [
   {
     num: '1',
     heading: 'Insights & intelligence',
-    sublabel: 'Know early',
+    sublabel: 'Knowing early',
     body: 'Faster analysis of your operational data surfaces patterns, flags problems early and turns information into something you can actually act on.',
   },
   {
@@ -31,14 +31,14 @@ const buildStaircase = [
   {
     num: '3',
     heading: 'Process & integrated automation',
-    sublabel: 'End to end',
+    sublabel: 'End-to-end',
     body: 'Connecting the dots across systems, teams and functions. Where task automation removes individual pain points, process automation eliminates the coordination overhead between them — integrating platforms, orchestrating multi-step workflows and giving management real visibility.',
   },
   {
     num: '4',
     heading: 'Agentic automation',
-    sublabel: 'Hands free',
-    body: "Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building and delivering agentic solutions now, across logistics, finance and field operations.",
+    sublabel: 'Hands-free',
+    body: "Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in for safety and governance. Not science fiction. We're building and delivering agentic solutions now.",
   },
 ];
 
@@ -46,26 +46,26 @@ const techCards = [
   {
     icon: 'git-branch',
     label: 'Rule-based',
-    heading: 'Task & rule automation',
-    body: 'Handles repeatable logic — consistent, fast and predictable. The right foundation for any process that follows defined steps every time.',
+    heading: 'Rule-based automation',
+    body: 'Handles repeatable logic — consistently, quickly and predictably. The right foundation for any process that follows defined steps every time.',
   },
   {
     icon: 'chart-line',
     label: 'Decision support & insights',
-    heading: 'Data analysis & recommendations',
-    body: 'Your team gets clear answers from your data instead of spending time finding them — so they can act faster and with more confidence.',
+    heading: 'Data analysis',
+    body: 'Processes data to get clear answers and insights quickly, reliably and repeatedly so you can act faster and with more confidence.',
   },
   {
     icon: 'sparkle',
     label: 'AI',
-    heading: 'AI applications',
+    heading: 'Generative AI',
     body: 'Understands and generates language, documents, images, audio and other unstructured data. Handles the interactions and processing that used to require a person.',
   },
   {
     icon: 'robot',
     label: 'Autonomous',
-    heading: 'Agentic systems',
-    body: "Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building and delivering this now.",
+    heading: 'Agentic AI systems',
+    body: 'Autonomous systems that observe, reason, act and learn. Capable of executing workflows that don\'t follow traditional, rule-based sequences, whilst maintaining humans-in-the-loop for oversight and intervention.',
   },
 ];
 ---
@@ -85,8 +85,8 @@ const techCards = [
       </h1>
       <p class="hero-sub animate-in" data-delay="80ms">
         We work with business leaders that see the opportunities to run better — whether
-        that's streamlining what's slow and manual, innovating user experiences, connecting
-        systems that don't talk or building capabilities that would give them a real advantage.
+        that's streamlining what's slow and manual, innovating dated user experiences, connecting
+        systems that don't talk or building capabilities that add a real advantage.
         Usually it's a mix of these.
       </p>
       <p class="hero-sub animate-in" data-delay="120ms" style="margin-top:1em">
@@ -166,12 +166,12 @@ const techCards = [
     <div class="container build-layout">
       <div class="build-left animate-in">
         <span class="section-label">Automation in layers</span>
-        <h2 id="build-heading">Four layers of automation capability — each more sophisticated than the last.</h2>
+        <h2 id="build-heading">Four layers of automation capability — each smarter than the last.</h2>
         <p class="build-intro">
           Your automation capability should grow in layers — from targeted fixes to fully autonomous operations.
         </p>
         <p class="build-intro" style="margin-top:1em">
-          Operational challenges are rarely the result of a single issue, but you don't need to fix all of them to start making gains. Fix the most painful one first, then solve the next — and each solution is built to connect with what came before.
+          Operational challenges are rarely the result of a single issue, but you don't need to fix all of them to start making gains. Fix the most painful one first, then solve the next, with each solution built to connect with and compound on what came before.
         </p>
       </div>
       <div class="build-right animate-in" data-delay="80ms">
@@ -196,7 +196,7 @@ const techCards = [
       <div class="tech-header animate-in">
         <span class="section-label" style="justify-content:center">Technology choice</span>
         <h2 id="tech-heading" style="text-align:center">
-          Not all automation is the same. We match the right approach to the right problem.
+          Not all automation is the same. We match the right technical approach that fits your need.
         </h2>
       </div>
       <div class="tech-cards">
