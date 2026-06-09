@@ -578,11 +578,28 @@ Icons must be rendered as actual Phosphor icons — not blank circles. Ensure th
 
 **Background:** `--color-paper`  
 **Vertical padding:** `--space-7`  
-**Layout:** Two-column desktop (55% left / 40% right), `align-items: center` on the row — both columns vertically centred. Single column mobile.
+**Layout:** Two-column desktop (40% left / 55% right), `align-items: center` on the row — both columns vertically centred. Single column mobile.
 
-**Left — three proof blocks, stacked vertically with equal spacing:**
+**Left:**
+```
+[.section-label] Proven outcomes
 
-The left column contains the proof blocks. Use `align-self: center` on the container.
+[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
+We've done this before.
+
+[Body — DM Sans 400, 16px, --color-ink-secondary, margin-top 16px]
+From a national transport operator needing live fleet visibility, to a utility
+vetting thousands of contractors working on high-voltage assets, to a logistics
+business consumed by manual invoicing — we've built working solutions across
+some of Australia's most operationally demanding businesses.
+
+[Link — DM Sans 700, 15px, --color-ink, margin-top 24px]
+See our outcomes →
+```
+
+**Right — three proof blocks, stacked vertically with equal spacing:**
+
+The right column contains the proof blocks. Use `align-self: center` on the container.
 
 Each block layout (horizontal): icon (28px, `--color-accent`, in 44px circle `rgba(244,197,66,0.15)`) on the left, then headline and detail stacked to the right. Gap between icon and text: 16px.
 
@@ -591,27 +608,12 @@ Each block layout (horizontal): icon (28px, `--color-accent`, in 44px circle `rg
 | Icon | Headline | Detail |
 |---|---|---|
 | `Trophy` | Industry award winner | Contractor authorisations platform — major Australian utility |
-| `Timer` | Working prototype in 3 months | Energy dispatch optimisation — after 3 years of stalled attempts |
-| `Eye` | Live fleet visibility in 30 days | National passenger transport operator, 500+ vehicles |
+| `Timer` | Working pilot in 3 months | Dispatch schedule optimisation — after 3 years of stalled attempts |
+| `Eye` | Live fleet visibility in 50 days | National passenger transport operator - 1,200+ vehicles |
 
-Headline: Plus Jakarta Sans 600, 22px, `--color-ink`. Detail: DM Sans 400, 14px, `--color-ink-tertiary`.
+Headline: Plus Jakarta Sans 600, 17px, `--color-ink`. Detail: DM Sans 400, 15px, `--color-ink-secondary`.
 
-**Right:**
-```
-[.section-label] Proven outcomes
-
-[H2 — Plus Jakarta Sans 700, --text-h2, --color-ink]
-We've done this before.
-
-[Body — DM Sans 400, 16px, --color-ink-secondary, margin-top 16px]
-From a national transport operator with no live fleet visibility, to a utility
-managing thousands of contractors on high-voltage assets, to a logistics
-business drowning in manual invoicing — we've built working solutions across
-some of Australia's most operationally demanding businesses.
-
-[Link — DM Sans 700, 15px, --color-ink, margin-top 24px]
-See our outcomes →
-```
+**Typography note:** Headline and detail styles intentionally match the Who We Work With icon item labels (`.who-label` / `.who-desc`) for visual consistency across both sections.
 
 ---
 
