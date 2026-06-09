@@ -435,7 +435,7 @@ Faster analysis of your operational data surfaces patterns, flags problems early
 
 **TIER 2 — Heading**
 ```
-Task & workflow automation
+Task automation
 ```
 
 **TIER 2 — Sub-label**
@@ -456,7 +456,7 @@ Process & integrated automation
 
 **TIER 3 — Sub-label**
 ```
-End-to-end
+Flowing end-to-end
 ```
 
 **TIER 3 — Body**
@@ -474,7 +474,7 @@ Agentic automation
 
 **TIER 4 — Sub-label**
 ```
-Hands-free
+Working hands-free
 ```
 
 **TIER 4 — Body**

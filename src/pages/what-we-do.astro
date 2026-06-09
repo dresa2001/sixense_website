@@ -24,20 +24,20 @@ const buildStaircase = [
   },
   {
     num: '2',
-    heading: 'Task & workflow automation',
+    heading: 'Task automation',
     sublabel: 'Clearing bottlenecks',
-    body: 'Targeted automation of specific manual tasks, handoffs and data flows. Fast to deliver, immediate in impact. AI plays a role here too — extracting meaning from documents, routing requests intelligently, flagging exceptions before they become problems.',
+    body: 'Targeted automation of specific manual tasks, handoffs and data flows. Fast to deliver, immediate in impact and foundational for end-to-end automation.',
   },
   {
     num: '3',
     heading: 'Process & integrated automation',
-    sublabel: 'End-to-end',
+    sublabel: 'Flowing end-to-end',
     body: 'Connecting the dots across systems, teams and functions. Where task automation removes individual pain points, process automation eliminates the coordination overhead between them — integrating platforms, orchestrating multi-step workflows and giving management real visibility.',
   },
   {
     num: '4',
     heading: 'Agentic automation',
-    sublabel: 'Hands-free',
+    sublabel: 'Working hands-free',
     body: "Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in for safety and governance. Not science fiction. We're building and delivering agentic solutions now.",
   },
 ];
@@ -45,25 +45,21 @@ const buildStaircase = [
 const techCards = [
   {
     icon: 'git-branch',
-    label: 'Rule-based',
     heading: 'Rule-based automation',
     body: 'Handles repeatable logic — consistently, quickly and predictably. The right foundation for any process that follows defined steps every time.',
   },
   {
     icon: 'chart-line',
-    label: 'Decision support & insights',
     heading: 'Data analysis',
     body: 'Processes data to get clear answers and insights quickly, reliably and repeatedly so you can act faster and with more confidence.',
   },
   {
     icon: 'sparkle',
-    label: 'AI',
     heading: 'Generative AI',
     body: 'Understands and generates language, documents, images, audio and other unstructured data. Handles the interactions and processing that used to require a person.',
   },
   {
     icon: 'robot',
-    label: 'Autonomous',
     heading: 'Agentic AI systems',
     body: 'Autonomous systems that observe, reason, act and learn. Capable of executing workflows that don\'t follow traditional, rule-based sequences, whilst maintaining humans-in-the-loop for oversight and intervention.',
   },
@@ -205,7 +201,6 @@ const techCards = [
             <div class="icon-circle icon-circle-md" style="margin-bottom:20px">
               <i class={`ph ph-${card.icon}`} style="font-size:36px;color:#F4C542;" aria-hidden="true"></i>
             </div>
-            <span class="tech-label">{card.label}</span>
             <h3 class="tech-card-heading">{card.heading}</h3>
             <p class="tech-card-body">{card.body}</p>
           </div>
@@ -337,11 +332,11 @@ const techCards = [
     font-weight: 600;
     font-size: 13px;
     color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
     font-style: italic;
     margin-top: 4px;
   }
+  .tier-sublabel::before { content: '"'; }
+  .tier-sublabel::after { content: '"'; }
   .tier-body {
     font-size: 13px;
     color: var(--color-ink-secondary);
@@ -375,15 +370,6 @@ const techCards = [
     border-top: 3px solid var(--color-accent);
     display: flex;
     flex-direction: column;
-  }
-  .tech-label {
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 13px;
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
   }
   .tech-card-heading {
     font-family: var(--font-display);

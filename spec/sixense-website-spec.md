@@ -796,15 +796,15 @@ Render as a large display numeral, not a label. Plus Jakarta Sans 700, 48px, `rg
 
 **Tier content (right of numeral):**
 1. Heading: Plus Jakarta Sans 700, 17px, `--color-ink`
-2. Sub-label: DM Sans 600, 13px, `--color-accent`, uppercase, letter-spacing 0.08em, italic, margin-top 4px
+2. Sub-label: DM Sans 600, 13px, `--color-accent`, italic, margin-top 4px — rendered lowercase with CSS-injected opening and closing quotation marks (`::before`/`::after`). No `text-transform` or `letter-spacing`.
 3. Body (hidden until hover): DM Sans 400, 13px, `--color-ink-secondary`, line-height 1.6
 
 | Numeral | Heading | Sub-label | Body |
 |---|---|---|---|
-| 1 | Insights & intelligence | Seeing ahead | Continuous analysis of operational data to surface patterns, predict outcomes and recommend action. Transforms the data your operations generate into a strategic asset — helping you see what's coming rather than react to what happened. |
-| 2 | Task & workflow automation | Clearing bottlenecks | Targeted automation of specific manual tasks, handoffs and data flows. Fast to deliver, immediate in impact. AI plays a role here too — extracting meaning from documents, routing requests intelligently, flagging exceptions before they become problems. |
-| 3 | Process & integrated automation | Working on autopilot | Connecting the dots across systems, teams and functions. Where task automation removes individual pain points, process automation eliminates the coordination overhead between them — integrating platforms, orchestrating multi-step workflows and giving management real visibility. |
-| 4 | Agentic automation | Reimagining operations | Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building and delivering agentic solutions now, across logistics, finance and field operations. |
+| 1 | Insights & intelligence | "Knowing early" | Faster analysis of your operational data surfaces patterns, flags problems early and turns information into something you can actually act on. |
+| 2 | Task automation | "Clearing bottlenecks" | Targeted automation of specific manual tasks, handoffs and data flows. Fast to deliver, immediate in impact and foundational for end-to-end automation. |
+| 3 | Process & integrated automation | "Flowing end-to-end" | Connecting the dots across systems, teams and functions. Where task automation removes individual pain points, process automation eliminates the coordination overhead between them — integrating platforms, orchestrating multi-step workflows and giving management real visibility. |
+| 4 | Agentic automation | "Working hands-free" | Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in for safety and governance. Not science fiction. We're building and delivering agentic solutions now. |
 
 **Note to developer:** On mobile, the hover effect does not apply. Show all tier content (body text visible) in a simple stacked list with no offset. Add a subtle bottom border between tiers instead of the staircase gap.
 
@@ -821,7 +821,7 @@ Render as a large display numeral, not a label. Plus Jakarta Sans 700, 48px, `rg
 [.section-label — centred] Technology choice
 
 [H2 — Plus Jakarta Sans 700, --text-h2, --color-ink, centred]
-Fitting the right technical frameworks to your operations and environment is pivotal.
+Not all automation is the same. We match the right technical approach that fits your need.
 ```
 
 **Four-column row — desktop: 4 equal columns, gap 24px. Tablet: 2×2 grid. Mobile: stacked.**
@@ -830,16 +830,17 @@ Each column is a card: `background: --color-paper-secondary`, `border-radius: --
 
 Each card structure (top to bottom):
 1. Icon: 36px, `--color-accent`, in 56px circle `rgba(244,197,66,0.15)`, margin-bottom 20px
-2. Label: DM Sans 600, 13px, `--color-accent`, uppercase, letter-spacing 0.1em, margin-bottom 8px
-3. Heading: Plus Jakarta Sans 700, 18px, `--color-ink`, margin-bottom 12px
-4. Body: DM Sans 400, 14px, `--color-ink-secondary`, line-height 1.65
+2. Heading: Plus Jakarta Sans 700, 18px, `--color-ink`, margin-bottom 12px
+3. Body: DM Sans 400, 14px, `--color-ink-secondary`, line-height 1.65
 
-| Icon | Label | Heading | Body |
-|---|---|---|---|
-| `GitBranch` | Rule-based | Task & rule automation | Handles repeatable logic — consistent, fast and predictable. The right foundation for any process that follows defined steps every time. |
-| `ChartLine` | Decision support & insights | Data analysis & recommendations | Analyses data from across your systems and surfaces clear recommendations for your team to act on. Turns information overload into decision clarity. |
-| `Sparkle` | AI | Agents and bots | Understands and generates language, documents, images, audio and other unstructured data. Handles the interactions and processing that used to require a person. |
-| `Robot` | Autonomous | Agentic systems | Goal-oriented AI that monitors, decides and acts across complex workflows — with human oversight built in. Not science fiction. We're building and delivering this now. |
+**Note:** There is no label/tag element. The yellow uppercase label that previously appeared above each heading has been removed.
+
+| Icon | Heading | Body |
+|---|---|---|
+| `GitBranch` | Rule-based automation | Handles repeatable logic — consistently, quickly and predictably. The right foundation for any process that follows defined steps every time. |
+| `ChartLine` | Data analysis | Processes data to get clear answers and insights quickly, reliably and repeatedly so you can act faster and with more confidence. |
+| `Sparkle` | Generative AI | Understands and generates language, documents, images, audio and other unstructured data. Handles the interactions and processing that used to require a person. |
+| `Robot` | Agentic AI systems | Autonomous systems that observe, reason, act and learn. Capable of executing workflows that don't follow traditional, rule-based sequences, whilst maintaining humans-in-the-loop for oversight and intervention. |
 
 ---
 
