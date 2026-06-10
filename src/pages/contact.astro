@@ -33,6 +33,8 @@ import Watermark from '../components/Watermark.astro';
 
         <div id="form-container">
           <form id="contact-form" novalidate aria-label="Contact enquiry form">
+            <!-- Web3Forms access key -->
+            <input type="hidden" name="access_key" value="1304119a-3dce-4657-88cb-d7b294515633" />
             <!-- Honeypot -->
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
@@ -353,13 +355,15 @@ import Watermark from '../components/Watermark.astro';
     const firstName = data.get('firstName') as string;
 
     try {
-      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: data,
         headers: { Accept: 'application/json' },
       });
 
-      if (res.ok) {
+      const json = await res.json();
+
+      if (json.success) {
         if (successName) successName.textContent = `Thanks, ${firstName}. We'll be in touch.`;
         formContainer?.setAttribute('hidden', '');
         formSuccess?.removeAttribute('hidden');

@@ -1481,7 +1481,7 @@ Full-width on mobile. Label: `Send enquiry`. Loading state: spinner + `Sending..
 
 **Recipient:** `automate@sixense.com.au`  
 **Reply-to:** Submitter's email address  
-**Method:** Server-side handler or transactional service (Resend, Formspree, EmailJS — developer to confirm)
+**Method:** Web3Forms (`https://api.web3forms.com/submit`). Access key stored as a hidden field (`access_key`) in the form. Account registered to `automate@sixense.com.au`. Free tier: 250 submissions/month.
 
 **Subject line:**
 ```
