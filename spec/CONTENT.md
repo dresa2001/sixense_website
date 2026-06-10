@@ -790,7 +790,7 @@ Stat 2 — Number / Label
 
 Stat 3 — Number / Label
 ```
-<50 days / Fastest delivery
+8 weeks / Average delivery
 ```
 
 Stat 4 — Number / Label

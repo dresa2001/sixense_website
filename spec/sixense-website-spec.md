@@ -1071,13 +1071,15 @@ solutions we've delivered.
 
 **Stat row — 4 columns, below intro text, margin-top 48px:**
 
-Each stat: icon (20px, `--color-accent`) + number (Plus Jakarta Sans 700, 22px, `#F5F3EE`) + label (DM Sans 400, 12px, `rgba(245,243,238,0.55)`).
+Each stat: icon (20px, `#F4C542`) + number (Plus Jakarta Sans 700, 22px, `#F5F3EE`) + label (DM Sans 400, 12px, `rgba(245,243,238,0.55)`).
+
+**Icon colour note:** Use `#F4C542` (the site's standard accent gold), not `#F5A623`. These icons sit on a dark background — `#F4C542` must be used consistently across all pages.
 
 | Icon | Number | Label |
 |---|---|---|
 | `Buildings` | 6 | Case studies |
 | `Trophy` | 1 | Industry award |
-| `Timer` | <30 days | Fastest delivery |
+| `Timer` | 8 weeks | Average delivery |
 | `MapPin` | Australia-wide | Where we operate |
 
 ---
