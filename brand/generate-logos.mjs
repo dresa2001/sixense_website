@@ -65,7 +65,7 @@ function getDotMetrics(FS) {
 
   const elemTopToBL = A + (FS - A - D) / 2;   // = (FS + A - D) / 2
 
-  const dotOffsetX = sAdv + LS + iAdv / 2 - 3;                   // from text origin (-3 corrects render vs metric gap)
+  const dotOffsetX = sAdv + LS + iAdv / 2 - 1.9;                 // from text origin (-1.9 corrects render vs metric gap)
   const dotOffsetY = -elemTopToBL + 0.04 * FS + dotR;            // from baseline (negative = above)
 
   return { dotOffsetX, dotOffsetY, dotR };
